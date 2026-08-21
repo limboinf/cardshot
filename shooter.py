@@ -11,10 +11,12 @@
   python3 shooter.py --list-presets                      # 查看全部预设
 """
 import argparse
+import html
 import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -46,25 +48,63 @@ def find_chrome() -> str:
     raise SystemExit("未找到 Chrome/Chromium，请安装 Google Chrome")
 
 
+def render_adaptive_html(source: str, width: int, height: int, base_href=None) -> str:
+    """运行时覆盖卡片画布尺寸，不修改源 HTML."""
+    if width <= 0 or height <= 0:
+        raise ValueError("画布宽高必须是正整数")
+
+    base = ""
+    if base_href:
+        base = f'<base href="{html.escape(base_href, quote=True)}">\n'
+    override = (
+        '<style id="cardshot-adaptive-canvas">\n'
+        'html, body {\n'
+        f'  width: {width}px !important;\n'
+        f'  height: {height}px !important;\n'
+        '  min-width: 0 !important;\n'
+        '  min-height: 0 !important;\n'
+        '  margin: 0 !important;\n'
+        '  overflow: hidden !important;\n'
+        '}\n'
+        '</style>\n'
+    )
+    injection = base + override
+    head = re.search(r"<head(?:\s[^>]*)?>", source, re.IGNORECASE)
+    if not head:
+        return injection + source
+    return source[:head.end()] + "\n" + injection + source[head.end():]
+
+
 def shoot(html_path: Path, out_path: Path, width: int, height: int, scale: float = 1.0,
           timeout: int = 60) -> Path:
     """对单个 HTML 文件截图. out_path 已含扩展名(.png)."""
     chrome = find_chrome()
-    # window-size 始终用 CSS 像素, 输出倍率交给 force-device-scale-factor
-    # (两者都乘会导致 4x: 2160 窗口 × 2 倍率 = 4320px)
-    cmd = [
-        chrome,
-        "--headless",
-        "--disable-gpu",
-        "--hide-scrollbars",
-        f"--window-size={width},{height}",
-        f"--screenshot={out_path}",
-        "--virtual-time-budget=8000",   # 等 JS/字体/图片
-        html_path.resolve().as_uri(),
-    ]
-    if scale != 1.0:
-        cmd.insert(4, f"--force-device-scale-factor={scale}")
-    subprocess.run(cmd, check=True, capture_output=True, timeout=timeout)
+    source_path = html_path.resolve()
+    source = source_path.read_text(encoding="utf-8")
+    rendered = render_adaptive_html(
+        source,
+        width,
+        height,
+        source_path.parent.as_uri() + "/",
+    )
+    with tempfile.TemporaryDirectory(prefix="cardshot-") as temp_dir:
+        render_path = Path(temp_dir) / source_path.name
+        render_path.write_text(rendered, encoding="utf-8")
+        # window-size 始终用 CSS 像素, 输出倍率交给 force-device-scale-factor
+        # (两者都乘会导致 4x: 2160 窗口 × 2 倍率 = 4320px)
+        cmd = [
+            chrome,
+            "--headless",
+            "--disable-gpu",
+            "--hide-scrollbars",
+            f"--window-size={width},{height}",
+            f"--screenshot={out_path.resolve()}",
+            "--virtual-time-budget=8000",   # 等 JS/字体/图片
+            render_path.as_uri(),
+        ]
+        if scale != 1.0:
+            cmd.insert(4, f"--force-device-scale-factor={scale}")
+        subprocess.run(cmd, check=True, capture_output=True, timeout=timeout)
     if not out_path.exists():
         raise RuntimeError("Chrome 未产出文件")
     return out_path
