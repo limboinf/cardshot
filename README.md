@@ -1,8 +1,8 @@
 # cardshot — HTML 卡片截图工作室
 
-**AI 生成 HTML 卡片 → 一键出各平台尺寸 PNG。** 本地 WebUI + CLI 双模式，零依赖（Python 标准库 + 你机器上已有的 Chrome）。
+**AI 生成 HTML 卡片 → 一键出各平台尺寸 PNG。** 本地 WebUI + CLI 双模式，零依赖（Python 标准库 + 你机器上已有的 Chrome）。同时是一个可复用的 **Agent Skill**（本仓库自带 `SKILL.md`，见下）。
 
-核心流程：AI（Hermes / Claude / 任意 LLM）按你的风格约定生成一批 HTML 知识卡片放进 `cards/` → 你在 WebUI 里预览、切比例、用内置代码编辑器实时微调 → CLI 或网页按钮批量出图。**不生成内容，只负责“网页 → 图”的最后一公里。**
+核心流程：AI（Claude / Hermes / 任意 LLM）按你的风格约定生成一批 HTML 知识卡片放进 `cards/` → 你在 WebUI 里预览、切比例、用内置代码编辑器实时微调 → CLI 或网页按钮批量出图。**不生成内容，只负责“网页 → 图”的最后一公里。**
 
 ```
 AI 写卡 → cards/*.html → WebUI 预览/编辑 → shooter.py → output/*.png → 发小红书/抖音/X/公众号
@@ -105,9 +105,28 @@ cardshot/
 ├── server.py        # WebUI 服务 (stdlib, 零依赖)
 ├── shooter.py       # 截图核心 + CLI (headless Chrome)
 ├── static/index.html# WebUI 前端
-├── cards/           # AI 生成的 HTML 卡片
+├── SKILL.md         # Agent Skill 入口 (见下节)
+├── references/      # 平台规范: 配色/信息密度/结构套路 (skill 引用文件)
+├── scripts/         # check-overflow / shoot / quality-check (skill 脚本)
+├── cards/           # AI 生成的 HTML 卡片 (含 seedance 5 卡范例)
 └── output/          # PNG 输出 (gitignore)
 ```
+
+## 作为 Agent Skill 使用
+
+本仓库同时是一个标准 Agent Skill（`SKILL.md` + `references/` + `scripts/`），供任何 LLM agent（Claude Code / Hermes / Cursor…）直接加载：agent 读 `SKILL.md` 获得五步工作流，按 `references/platform-conventions.md` 的平台规范写卡，用 `scripts/` 里的脚本做溢出检测、批量出图和质检。脚本路径全部相对仓库，clone 到哪都能跑。
+
+两种接法：
+
+```bash
+# 1. Claude Code 风格: clone 后直接作为项目 skill
+git clone https://github.com/<you>/cardshot ~/cardshot
+
+# 2. Hermes: 软链到 skills 目录
+ln -s ~/cardshot ~/.hermes/skills/creative/cardshot
+```
+
+人说的话：把内容发全平台时让 agent 加载本 skill；agent 的说法：触发词为“知识卡片 / 社媒配图 / 多平台出图”。
 
 ## 依赖
 
