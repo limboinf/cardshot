@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Seedance 价格 · 公众号封面</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 900px; height: 383px; overflow: hidden;
+    font-family: "PingFang SC", -apple-system, sans-serif;
+    background: linear-gradient(100deg, #141021 0%, #251545 60%, #3a1d66 100%);
+    color: #fff; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; position: relative;
+  }
+  body::after {  /* 细网格质感 */
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 44px 44px; pointer-events: none;
+  }
+  .left { position: relative; }
+  .kicker {
+    display: inline-block; background: rgba(165,139,255,.18); border: 1px solid rgba(165,139,255,.5);
+    color: #c9b8ff; font-size: 19px; font-weight: 700; letter-spacing: 3px;
+    padding: 6px 16px; border-radius: 999px; margin-bottom: 18px;
+  }
+  h1 { font-size: 66px; font-weight: 900; line-height: 1.18; letter-spacing: -1px; }
+  h1 em { font-style: normal; color: #c9b8ff; }
+  .sub { font-size: 24px; color: rgba(255,255,255,.75); margin-top: 14px; }
+  .right { text-align: right; position: relative; flex-shrink: 0; }
+  .big { font-size: 108px; font-weight: 900; color: #c9b8ff; line-height: 1; }
+  .big small { font-size: 34px; color: rgba(255,255,255,.7); font-weight: 500; }
+  .right .per { font-size: 22px; color: rgba(255,255,255,.65); margin-top: 8px; letter-spacing: 2px; }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="kicker">AI 视频成本拆解</div>
+    <h1>字节 AI 视频生成<br>一秒<em>一块五</em>？</h1>
+    <div class="sub">Seedance 2.5 全平台价格实测 · 5 种时长方案</div>
+  </div>
+  <div class="right">
+    <div class="big">¥1.5<small>/秒</small></div>
+    <div class="per">720P · 官方 API 口径</div>
+  </div>
+</body>
+</html>

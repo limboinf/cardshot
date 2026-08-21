@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Seedance Price · X Card</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1600px; height: 900px; overflow: hidden;
+    font-family: "SF Pro Display", -apple-system, "Helvetica Neue", "PingFang SC", sans-serif;
+    background: #000; color: #e7e9ea;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 64px 84px; position: relative;
+  }
+  .brand-row { display: flex; align-items: center; gap: 14px; }
+  .avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, #1d9bf0, #7c5bff);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px; font-weight: 800; color: #fff;
+  }
+  .who { font-size: 30px; font-weight: 700; }
+  .who span { color: #71767b; font-weight: 400; margin-left: 10px; }
+  h1 { font-size: 66px; font-weight: 800; line-height: 1.24; letter-spacing: -1.5px; max-width: 1380px; }
+  h1 em { font-style: normal; color: #1d9bf0; }
+  .stat-row { display: flex; gap: 28px; }
+  .stat {
+    background: #16181c; border: 1px solid #2f3336; border-radius: 20px;
+    padding: 28px 38px; min-width: 240px;
+  }
+  .stat .k { font-size: 24px; color: #71767b; margin-bottom: 10px; }
+  .stat .v { font-size: 58px; font-weight: 800; }
+  .stat .v em { font-style: normal; font-size: 26px; color: #71767b; font-weight: 400; }
+  .stat.hot .v { color: #1d9bf0; }
+  .bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+  .note { font-size: 26px; color: #71767b; line-height: 1.6; max-width: 760px; }
+  .note b { color: #e7e9ea; }
+  .price-tag {
+    font-size: 30px; color: #71767b; text-align: right; line-height: 1.5;
+  }
+  .price-tag b { font-size: 44px; color: #e7e9ea; display: block; }
+</style>
+</head>
+<body>
+  <div class="brand-row">
+    <div class="avatar">L</div>
+    <div class="who">LimboAI <span>@limbopeng · 2026.8</span></div>
+  </div>
+  <h1>ByteDance's Seedance 2.5 costs <em>~1.5 ¥/sec</em> at 720p. A 30s ad = 45 ¥. Here's the full price map 🧵</h1>
+  <div class="stat-row">
+    <div class="stat"><div class="k">15s video</div><div class="v">¥23</div></div>
+    <div class="stat hot"><div class="k">30s native</div><div class="v">¥45</div></div>
+    <div class="stat"><div class="k">60s (2-shot)</div><div class="v">¥91</div></div>
+    <div class="stat"><div class="k">480p saves</div><div class="v">56%<em> vs 720p</em></div></div>
+  </div>
+  <div class="bottom">
+    <div class="note">v2.5 is <b>+50% vs v2.0</b> but renders <b>30s in one pass</b> — no stitching seams.<br>API: 70 ¥/M tokens (no video input) · 42 ¥/M (with reference).</div>
+    <div class="text" style="text-align:right">
+      <div class="price-tag"><b>¥68/mo</b>Jimeng subscription<br>same model, unlimited-ish</div>
+    </div>
+  </div>
+</body>
+</html>

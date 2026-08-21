@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Seedance 价格 · 通用横图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1920px; height: 1080px; overflow: hidden;
+    font-family: "PingFang SC", -apple-system, "Helvetica Neue", sans-serif;
+    background: linear-gradient(135deg, #0f1220 0%, #1a1030 100%); color: #f2f3f8;
+    display: flex; padding: 90px 100px; gap: 80px; position: relative;
+  }
+  .left { flex: 0 0 640px; display: flex; flex-direction: column; }
+  .tag {
+    align-self: flex-start; background: rgba(124,91,255,.16); border: 1px solid rgba(124,91,255,.4);
+    color: #b39bff; border-radius: 999px; padding: 10px 26px; font-size: 26px; font-weight: 700;
+    letter-spacing: 3px; margin-bottom: 36px;
+  }
+  h1 { font-size: 82px; font-weight: 800; line-height: 1.22; letter-spacing: -1px; }
+  h1 em { font-style: normal; color: #a58bff; }
+  .desc { font-size: 30px; color: #8b93b0; line-height: 1.7; margin-top: 32px; }
+  .desc b { color: #e8eaf4; }
+  .price-line { margin-top: auto; display: flex; align-items: baseline; gap: 14px; }
+  .price-line .n { font-size: 110px; font-weight: 900; color: #a58bff; }
+  .price-line .u { font-size: 30px; color: #8b93b0; line-height: 1.4; }
+  .right { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+  .bar-row { display: flex; align-items: center; gap: 24px; }
+  .bar-row .lab { flex: 0 0 190px; font-size: 28px; color: #c3c8dd; text-align: right; }
+  .bar-row .lab small { display: block; font-size: 20px; color: #666f8c; }
+  .bar-track { flex: 1; height: 66px; background: rgba(255,255,255,.06); border-radius: 14px; overflow: hidden; }
+  .bar-fill {
+    height: 100%; border-radius: 14px;
+    background: linear-gradient(90deg, #5b8cff, #7c5bff);
+    display: flex; align-items: center; justify-content: flex-end; padding-right: 20px;
+    font-size: 30px; font-weight: 800; color: #fff;
+  }
+  .bar-fill.dim { background: rgba(124,91,255,.35); color: #cfc6ff; font-weight: 600; }
+  .src { position: absolute; bottom: 34px; right: 100px; font-size: 20px; color: #59617a; }
+</style>
+</head>
+<body>
+  <section class="left">
+    <div class="tag">SEEDANCE 2.5 · API 实价</div>
+    <h1>AI 视频<br>到底多少钱<em>一秒</em>？</h1>
+    <div class="desc">火山引擎官方 token 计费，720P/24fps 纯文生视频口径。<br>含参考视频输入单价降至 <b>42 元/百万 tokens</b>。</div>
+    <div class="price-line"><span class="n">¥1.5</span><span class="u">/ 秒 · 720P<br> Seedance 2.5</span></div>
+  </section>
+  <section class="right">
+    <div class="bar-row"><div class="lab">15 秒<small>单次直出</small></div><div class="bar-track"><div class="bar-fill" style="width:26%">¥23</div></div></div>
+    <div class="bar-row"><div class="lab">30 秒<small>2.5 原生直出</small></div><div class="bar-track"><div class="bar-fill" style="width:50%">¥45</div></div></div>
+    <div class="bar-row"><div class="lab">60 秒<small>需 2 段拼接</small></div><div class="bar-track"><div class="bar-fill" style="width:100%">¥91</div></div></div>
+    <div class="bar-row"><div class="lab">30 秒 480P<small>省 56%</small></div><div class="bar-track"><div class="bar-fill dim" style="width:23%">¥20</div></div></div>
+    <div class="bar-row"><div class="lab">即梦订阅<small>个人月付</small></div><div class="bar-track"><div class="bar-fill dim" style="width:15%">¥68/月</div></div></div>
+  </section>
+  <div class="src">数据来源：火山引擎官方定价 2026.7 · 70元/百万tokens</div>
+</body>
+</html>

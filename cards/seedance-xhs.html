@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Seedance 价格 · 小红书卡</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px; overflow: hidden;
+    font-family: "PingFang SC", -apple-system, "Helvetica Neue", sans-serif;
+    background: #faf6ef; color: #2b2620;
+    display: flex; flex-direction: column; padding: 72px 76px 60px; position: relative;
+  }
+  .tag {
+    align-self: flex-start; background: #ffe9c7; color: #a0620a;
+    border-radius: 999px; padding: 12px 28px; font-size: 28px; font-weight: 700;
+    letter-spacing: 2px; margin-bottom: 34px;
+  }
+  h1 { font-size: 76px; font-weight: 800; line-height: 1.22; letter-spacing: -1px; }
+  h1 .hl { background: linear-gradient(transparent 62%, #ffd591 62%); }
+  .sub { font-size: 30px; color: #8a7f6e; margin: 26px 0 44px; line-height: 1.5; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; }
+  .cell {
+    background: #fff; border-radius: 22px; padding: 30px 26px;
+    box-shadow: 0 4px 18px rgba(120, 90, 40, .08); text-align: center;
+  }
+  .cell .k { font-size: 26px; color: #a09482; margin-bottom: 14px; }
+  .cell .v { font-size: 56px; font-weight: 800; color: #d4570e; }
+  .cell .v small { font-size: 26px; font-weight: 500; color: #a09482; }
+  .cell.note { background: #2b2620; }
+  .cell.note .k { color: #b3a893; }
+  .cell.note .v { color: #ffd591; font-size: 40px; }
+  .tips { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .tip {
+    display: flex; align-items: center; gap: 16px; font-size: 29px; color: #4a4238;
+    background: #fff; border-radius: 16px; padding: 20px 26px;
+  }
+  .tip b { color: #d4570e; }
+  .tip .dot { width: 12px; height: 12px; border-radius: 50%; background: #d4570e; flex-shrink: 0; }
+  .conclusion {
+    margin-top: auto; background: #2b2620; color: #fff; border-radius: 22px;
+    padding: 32px 36px; font-size: 30px; line-height: 1.6;
+  }
+  .conclusion b { color: #ffd591; }
+  .conclusion .t { font-size: 26px; color: #b3a893; margin-bottom: 8px; letter-spacing: 3px; }
+</style>
+</head>
+<body>
+  <div class="tag">字节 AI 视频 · 价格拆解</div>
+  <h1>用 AI 生成视频<br>一秒要<span class="hl">一块五</span>？</h1>
+  <div class="sub">Seedance 2.5 火山引擎 API 实价测算（720P 纯文生视频）</div>
+  <div class="grid">
+    <div class="cell"><div class="k">15 秒</div><div class="v">¥23</div></div>
+    <div class="cell"><div class="k">30 秒</div><div class="v">¥45</div></div>
+    <div class="cell"><div class="k">1 分钟</div><div class="v">¥91</div></div>
+    <div class="cell note"><div class="k">降级 480P</div><div class="v">立省 56%</div></div>
+    <div class="cell note"><div class="k">用旧版 2.0</div><div class="v">¥0.95/秒</div></div>
+    <div class="cell note"><div class="k">个人玩即梦</div><div class="v">¥68/月</div></div>
+  </div>
+  <div class="tips">
+    <div class="tip"><span class="dot"></span>2.5 比 2.0 贵 50%，但能 <b>30 秒原生直出</b>不用拼接</div>
+    <div class="tip"><span class="dot"></span>有参考视频走「含视频输入」档，单价 70 → <b>42 元/百万 tokens</b></div>
+  </div>
+  <div class="conclusion">
+    <div class="t">结 论</div>
+   专业走量选 API · 要画质选 720P 直出 · <b>自己玩订阅即梦就够</b>
+  </div>
+</body>
+</html>

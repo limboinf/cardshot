@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Seedance 价格 · 抖音卡</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1920px; overflow: hidden;
+    font-family: "PingFang SC", -apple-system, "Helvetica Neue", sans-serif;
+    background: #0d0f14; color: #f2f4fa;
+    display: flex; flex-direction: column; padding: 110px 84px 90px; position: relative;
+  }
+  body::before {  /* 顶部光晕 */
+    content: ''; position: absolute; top: -260px; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 600px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(124,91,255,.35), transparent 65%);
+  }
+  .tag {
+    align-self: flex-start; border: 2px solid #7c5bff; color: #b39bff;
+    border-radius: 999px; padding: 12px 30px; font-size: 30px; font-weight: 700;
+    letter-spacing: 4px; margin-bottom: 44px; position: relative;
+  }
+  h1 { font-size: 96px; font-weight: 900; line-height: 1.2; letter-spacing: -2px; position: relative; }
+  h1 em { font-style: normal; color: #a58bff; }
+  .sub { font-size: 34px; color: #7d86a0; margin: 30px 0 60px; position: relative; }
+  .big-price { display: flex; align-items: baseline; gap: 18px; margin-bottom: 56px; position: relative; }
+  .big-price .num { font-size: 190px; font-weight: 900; color: #a58bff; line-height: 1; }
+  .big-price .unit { font-size: 44px; color: #7d86a0; }
+  .rows { display: flex; flex-direction: column; gap: 20px; position: relative; }
+  .row {
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
+    border-radius: 20px; padding: 30px 40px;
+  }
+  .row .label { font-size: 36px; color: #c3c9da; }
+  .row .label small { display: block; font-size: 24px; color: #666f88; margin-top: 6px; }
+  .row .price { font-size: 52px; font-weight: 800; color: #fff; }
+  .row .price.hl { color: #ffd166; }
+  .footer {
+    margin-top: auto; text-align: center; position: relative;
+  }
+  .footer .cta {
+    background: linear-gradient(135deg, #7c5bff, #5b8cff); border-radius: 999px;
+    padding: 30px; font-size: 36px; font-weight: 800; letter-spacing: 2px;
+  }
+  .footer .src { font-size: 24px; color: #59617a; margin-top: 26px; }
+</style>
+</head>
+<body>
+  <div class="tag">AI 视频 · 明码标价</div>
+  <h1>AI 生成视频<br>1 秒 <em>1 块 5</em></h1>
+  <div class="sub">字节 Seedance 2.5 · 720P 文生视频实价</div>
+  <div class="big-price"><span class="num">¥45</span><span class="unit">/ 30 秒成片 · 一次直出</span></div>
+  <div class="rows">
+    <div class="row"><div class="label">15 秒短视频<small>广告切片 / 商品展示</small></div><div class="price">¥23</div></div>
+    <div class="row"><div class="label">60 秒完整版<small>需 2 段拼接</small></div><div class="price">¥91</div></div>
+    <div class="row"><div class="label">同款降 480P<small>效果差距小 · 省一半多</small></div><div class="price hl">¥20 / 30秒</div></div>
+    <div class="row"><div class="label">个人订阅即梦<small>同款模型 · 随便生成</small></div><div class="price hl">¥68 / 月</div></div>
+  </div>
+  <div class="footer">
+    <div class="cta">收藏这条 · 做 AI 视频前先算账</div>
+    <div class="src">数据：火山引擎 2026.7 官方定价 · 70元/百万tokens</div>
+  </div>
+</body>
+</html>
