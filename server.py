@@ -14,7 +14,7 @@ import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from shooter import shoot, shoot_dir
+from shooter import render_adaptive_html, shoot, shoot_dir
 
 ROOT = Path(__file__).parent
 CARDS_DIR = ROOT / "cards"
@@ -49,7 +49,25 @@ class Handler(SimpleHTTPRequestHandler):
         path = parsed.path
         qs = urllib.parse.parse_qs(parsed.query)
 
-        if path == "/api/cards":
+        if path == "/api/preview":
+            name = qs.get("f", [""])[0]
+            try:
+                p = self._safe_card(name)
+                w = int(qs.get("w", [""])[0])
+                h = int(qs.get("h", [""])[0])
+                body = render_adaptive_html(
+                    p.read_text(encoding="utf-8"), w, h, "/cards/"
+                ).encode("utf-8")
+            except (TypeError, ValueError) as e:
+                self._json({"error": f"参数错误，宽高必须是正整数: {e}"}, 400)
+                return
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        elif path == "/api/cards":
             files = sorted([f.name for f in CARDS_DIR.glob("*.html")])
             self._json({"cards": files})
 

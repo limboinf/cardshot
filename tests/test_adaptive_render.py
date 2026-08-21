@@ -5,14 +5,27 @@ from shooter import render_adaptive_html
 
 class RenderAdaptiveHtmlTests(unittest.TestCase):
     def test_injects_canvas_override_before_closing_head(self):
-        source = "<html><head><title>Card</title></HEAD><body>Hi</body></html>"
+        source = (
+            "<html><head><title>Card</title>"
+            "<style>body{width:1080px!important}</style>"
+            "</HEAD><body>Hi</body></html>"
+        )
 
         result = render_adaptive_html(source, 1920, 1080)
 
         self.assertIn("width: 1920px !important", result)
         self.assertIn("height: 1080px !important", result)
+        self.assertGreater(
+            result.index("cardshot-adaptive-canvas"),
+            result.index("body{width:1080px!important}"),
+        )
         self.assertLess(result.index("cardshot-adaptive-canvas"), result.index("</HEAD>"))
-        self.assertEqual(source, "<html><head><title>Card</title></HEAD><body>Hi</body></html>")
+        self.assertEqual(
+            source,
+            "<html><head><title>Card</title>"
+            "<style>body{width:1080px!important}</style>"
+            "</HEAD><body>Hi</body></html>",
+        )
 
     def test_injects_escaped_base_href(self):
         result = render_adaptive_html(

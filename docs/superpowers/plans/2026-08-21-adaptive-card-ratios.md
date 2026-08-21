@@ -27,27 +27,27 @@
 - Consumes: source HTML text, positive integer width and height, optional base URL.
 - Produces: `render_adaptive_html(source: str, width: int, height: int, base_href: str | None = None) -> str`; `shoot()` uses the transformed result through a temporary file.
 
-- [ ] **Step 1: Write failing unit tests**
+- [x] **Step 1: Write failing unit tests**
 
 Add standard-library `unittest` cases proving that the transform injects target dimensions before `</head>`, includes an escaped optional `<base>` URL, rejects non-positive dimensions, and leaves the input string unchanged.
 
-- [ ] **Step 2: Verify the tests fail**
+- [x] **Step 2: Verify the tests fail**
 
 Run: `python3 -m unittest tests/test_adaptive_render.py -v`
 
 Expected: import failure because `render_adaptive_html` does not exist.
 
-- [ ] **Step 3: Implement the pure transform and screenshot integration**
+- [x] **Step 3: Implement the pure transform and screenshot integration**
 
 Add a runtime style that sets `html` and `body` to the requested pixel dimensions with `!important`, zeroes margins, and hides overflow. Insert it before a case-insensitive closing head tag, or prepend it when no head exists. Update `shoot()` to render this transformed HTML from a temporary directory, adding the source directory URI as `<base href>` so relative resources still resolve, and always clean up the temporary file.
 
-- [ ] **Step 4: Run unit and syntax checks**
+- [x] **Step 4: Run unit and syntax checks**
 
 Run: `python3 -m unittest tests/test_adaptive_render.py -v && python3 -m py_compile shooter.py server.py`
 
 Expected: all tests pass and compilation exits 0.
 
-- [ ] **Step 5: Commit the shared renderer**
+- [x] **Step 5: Commit the shared renderer**
 
 ```bash
 git add shooter.py tests/test_adaptive_render.py
@@ -64,23 +64,23 @@ git commit -m "feat: render cards at adaptive canvas sizes"
 - Consumes: `render_adaptive_html()` from Task 1 and query parameters `f`, `w`, `h`.
 - Produces: `GET /api/preview?f=<name>&w=<width>&h=<height>` and a WebUI `refreshPreview()` path used by selection, resize, and editor save.
 
-- [ ] **Step 1: Add the preview endpoint**
+- [x] **Step 1: Add the preview endpoint**
 
 Import the shared renderer in `server.py`. Validate width and height as positive integers, read the safe card, transform it with `/cards/` as its base URL, and return UTF-8 HTML. Return HTTP 400 JSON for invalid names or dimensions.
 
-- [ ] **Step 2: Unify frontend dimension state**
+- [x] **Step 2: Unify frontend dimension state**
 
 In `static/index.html`, add helpers to synchronize the active ratio chip, build the adaptive preview URL, refresh the current preview, and fit the frame to the available stage. Make `setSize()` reject invalid values, update width/height inputs and state, reload the preview, and fit automatically.
 
-- [ ] **Step 3: Route all preview reloads through the helper**
+- [x] **Step 3: Route all preview reloads through the helper**
 
 Update ratio clicks, custom Apply, card selection, and editor saves to call the shared size/preview functions. Preserve the current target dimensions when switching or editing cards and activate a preset whenever custom dimensions exactly match it.
 
-- [ ] **Step 4: Verify service and browser behavior**
+- [x] **Step 4: Verify service and browser behavior**
 
 Run the server, request a transformed preview with `curl`, and generate demo-card screenshots at 1080×1080 and 1920×1080. Confirm both PNG dimensions, confirm injected dimensions are present in preview HTML, and compare the source card checksum before and after.
 
-- [ ] **Step 5: Run final checks and commit**
+- [x] **Step 5: Run final checks and commit**
 
 Run: `python3 -m unittest discover -s tests -v && python3 -m py_compile shooter.py server.py && git diff --check`
 

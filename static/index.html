@@ -203,26 +203,46 @@ function renderChips() {
   $('ratioChips').innerHTML = RATIOS.map((r, i) =>
     `<span class="ratio-chip" data-i="${i}">${r.label}</span>`).join('');
   document.querySelectorAll('.ratio-chip').forEach(el => el.onclick = () => {
-    document.querySelectorAll('.ratio-chip').forEach(c => c.classList.remove('active'));
-    el.classList.add('active');
     const r = RATIOS[+el.dataset.i];
-    $('customW').value = r.w; $('customH').value = r.h;
     setSize(r.w, r.h);
   });
-  document.querySelector('.ratio-chip').classList.add('active');
 }
 $('applyCustom').onclick = () => {
-  document.querySelectorAll('.ratio-chip').forEach(c => c.classList.remove('active'));
-  setSize(+$('customW').value || 1080, +$('customH').value || 1440);
+  setSize(Number($('customW').value), Number($('customH').value));
 };
 
 /* ---------- 尺寸 / 缩放 ---------- */
 function setSize(w, h) {
+  if (!Number.isInteger(w) || !Number.isInteger(h) || w <= 0 || h <= 0) {
+    setStatus('宽高必须是正整数', 'err');
+    return false;
+  }
   state.w = w; state.h = h;
+  $('customW').value = w;
+  $('customH').value = h;
+  syncActiveRatio();
   $('preview').style.width = w + 'px';
   $('preview').style.height = h + 'px';
   $('sizeTag').textContent = `${w} × ${h}${state.scale > 1 ? `  ×${state.scale} 输出 ${w*scale()}×${h*scale()}` : ''}`;
-  applyZoom();
+  refreshPreview();
+  requestAnimationFrame(fitCanvas);
+  return true;
+}
+function syncActiveRatio() {
+  document.querySelectorAll('.ratio-chip').forEach(chip => {
+    const ratio = RATIOS[+chip.dataset.i];
+    chip.classList.toggle('active', ratio.w === state.w && ratio.h === state.h);
+  });
+}
+function refreshPreview() {
+  if (!state.current) return;
+  const params = new URLSearchParams({
+    f: state.current,
+    w: state.w,
+    h: state.h,
+    t: Date.now(),
+  });
+  $('preview').src = '/api/preview?' + params;
 }
 const scale = () => $('scaleSel') ? +$('scaleSel').value : 1;
 function applyZoom() {
@@ -232,13 +252,14 @@ function applyZoom() {
   $('zoomLabel').textContent = Math.round(z * 100) + '%';
 }
 $('zoomSlider').oninput = e => { state.zoom = e.target.value / 100; applyZoom(); };
-$('btnFit').onclick = () => {
+function fitCanvas() {
   const wrap = $('canvasWrap');
   const z = Math.min((wrap.clientWidth - 60) / state.w, (wrap.clientHeight - 60) / state.h, 1);
   state.zoom = Math.max(0.1, z);
   $('zoomSlider').value = Math.round(state.zoom * 100);
   applyZoom();
-};
+}
+$('btnFit').onclick = fitCanvas;
 
 /* ---------- 卡片列表 ---------- */
 async function loadCards() {
@@ -261,7 +282,7 @@ function renderSidebar() {
 function selectCard(f) {
   state.current = f;
   renderSidebar();
-  $('preview').src = '/cards/' + encodeURIComponent(f);
+  refreshPreview();
   setStatus(`已选: ${f}`, '');
 }
 
@@ -365,8 +386,7 @@ async function saveSource(silent) {
     if (r.error) throw new Error(r.error);
     st.textContent = '已保存 ' + new Date().toLocaleTimeString('zh-CN', { hour12: false });
     st.className = 'saved';
-    // 刷新预览 (加时间戳绕缓存)
-    $('preview').src = '/cards/' + encodeURIComponent(state.current) + '?t=' + Date.now();
+    refreshPreview();
     if (!silent) setStatus('💾 已保存并刷新预览', 'ok');
   } catch (e) {
     st.textContent = '保存失败'; st.className = '';
@@ -470,7 +490,7 @@ renderChips();
 setSize(1080, 1440);
 loadCards();
 loadOutputs();
-window.addEventListener('resize', () => {});
+window.addEventListener('resize', fitCanvas);
 </script>
 </body>
 </html>

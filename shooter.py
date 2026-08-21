@@ -68,11 +68,17 @@ def render_adaptive_html(source: str, width: int, height: int, base_href=None) -
         '}\n'
         '</style>\n'
     )
-    injection = base + override
     head = re.search(r"<head(?:\s[^>]*)?>", source, re.IGNORECASE)
     if not head:
-        return injection + source
-    return source[:head.end()] + "\n" + injection + source[head.end():]
+        return base + override + source
+    closing_head = re.search(r"</head\s*>", source[head.end():], re.IGNORECASE)
+    if not closing_head:
+        return source[:head.end()] + "\n" + base + override + source[head.end():]
+    close_at = head.end() + closing_head.start()
+    return (
+        source[:head.end()] + "\n" + base + source[head.end():close_at]
+        + "\n" + override + source[close_at:]
+    )
 
 
 def shoot(html_path: Path, out_path: Path, width: int, height: int, scale: float = 1.0,
