@@ -1,7 +1,6 @@
 ---
 name: cardshot
 description: 内容→多平台社媒卡片出图。做小红书/抖音/X/公众号配图、知识卡片批量出图时用。
-license: MIT
 ---
 
 # cardshot — 内容 → 多平台知识卡片流水线

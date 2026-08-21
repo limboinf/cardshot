@@ -120,13 +120,17 @@ cardshot/
 
 ```bash
 # 1. Claude Code 风格: clone 后直接作为项目 skill
-git clone https://github.com/<you>/cardshot ~/cardshot
+git clone https://github.com/limboinf/cardshot ~/cardshot
 
 # 2. Hermes: 软链到 skills 目录
 ln -s ~/cardshot ~/.hermes/skills/creative/cardshot
 ```
 
 人说的话：把内容发全平台时让 agent 加载本 skill；agent 的说法：触发词为“知识卡片 / 社媒配图 / 多平台出图”。
+
+## 许可
+
+未设置开源许可证，保留所有权利（All rights reserved）。个人使用、fork 学习请自便；商用或转载请先联系作者。
 
 ## 依赖
 
