@@ -5,6 +5,7 @@
 """
 import json
 import os
+import shutil
 import subprocess
 import sys
 import threading
@@ -105,6 +106,30 @@ class Handler(SimpleHTTPRequestHandler):
                     files.append({"name": f.name, "path": str(f), "kb": round(f.stat().st_size / 1024)})
             self._json({"outputs": files[:50]})
 
+        elif path == "/api/backup":
+            # 读取首次修改前的原件备份 (没有则返回 no_backup)
+            name = qs.get("f", [""])[0]
+            try:
+                p = self._safe_card(name)
+            except ValueError as e:
+                self._json({"error": str(e)}, 400)
+                return
+            orig = CARDS_DIR / ".backups" / f"{p.stem}.orig.html"
+            if orig.exists():
+                self._json({"name": name, "content": orig.read_text(encoding="utf-8")})
+            else:
+                self._json({"no_backup": True})
+
+        elif path == "/api/source":
+            # 读取卡片源码 (代码编辑器用)
+            name = qs.get("f", [""])[0]
+            try:
+                p = self._safe_card(name)
+            except ValueError as e:
+                self._json({"error": str(e)}, 400)
+                return
+            self._json({"name": p.name, "content": p.read_text(encoding="utf-8")})
+
         elif path.startswith("/cards/"):
             # 卡片原件: 供 iframe 预览
             name = urllib.parse.unquote(path[len("/cards/"):])
@@ -164,6 +189,27 @@ class Handler(SimpleHTTPRequestHandler):
 
             threading.Thread(target=run, daemon=True).start()
             self._json({"ok": True, "msg": "批量截图已启动, 稍后到 output/ 查看"})
+
+        elif self.path == "/api/save":
+            # 保存/新建卡片 (代码编辑器用)
+            req = self._read_body()
+            name = req.get("file", "")
+            content = req.get("content", "")
+            if (not name or "/" in name or "\\" in name or name.startswith(".")
+                    or not name.lower().endswith(".html")):
+                self._json({"error": f"非法文件名: {name}"}, 400)
+                return
+            p = CARDS_DIR / name
+            created = not p.exists()
+            if not created:
+                # 首次修改前备份原件, 改坏了可从 cards/.backups/ 找回
+                bdir = CARDS_DIR / ".backups"
+                bdir.mkdir(exist_ok=True)
+                orig = bdir / f"{p.stem}.orig.html"
+                if not orig.exists():
+                    shutil.copy2(p, orig)
+            p.write_text(content, encoding="utf-8")
+            self._json({"ok": True, "path": str(p), "created": created})
 
         else:
             self._json({"error": "not found"}, 404)

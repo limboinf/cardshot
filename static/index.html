@@ -96,6 +96,35 @@
   #status { margin-left: auto; }
   #status.ok { color: var(--ok); } #status.err { color: var(--warn); }
 
+  /* 代码编辑器 */
+  #editorPanel {
+    width: 420px; min-width: 260px; max-width: 60vw; background: #14171f;
+    border-right: 1px solid var(--line); display: none; flex-direction: column; flex-shrink: 0;
+  }
+  #editorPanel.open { display: flex; }
+  .ed-head {
+    display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+    border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); flex-shrink: 0;
+  }
+  .ed-head .fname { color: var(--text); font-family: ui-monospace, monospace; }
+  #edStatus { margin-left: auto; font-size: 11px; }
+  #edStatus.saving { color: var(--warn); } #edStatus.saved { color: var(--ok); }
+  #editor {
+    flex: 1; width: 100%; resize: none; border: 0; outline: none;
+    background: #14171f; color: #d6dae6; padding: 14px 16px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; line-height: 1.65;
+    tab-size: 2; white-space: pre; overflow: auto;
+  }
+  #edGutter {  /* 拖宽窄的分隔条 */
+    width: 5px; cursor: col-resize; background: var(--line); flex-shrink: 0; display: none;
+  }
+  #edGutter.open { display: block; }
+  #edGutter:hover { background: var(--accent); }
+  #editorPanel .ed-foot {
+    display: flex; gap: 8px; padding: 8px 12px; border-top: 1px solid var(--line); flex-shrink: 0;
+  }
+  #editorPanel .ed-foot button { font-size: 12px; padding: 5px 12px; }
+
   /* 比例预设 chip */
   .ratio-chip {
     padding: 6px 11px; border-radius: 999px; border: 1px solid var(--line);
@@ -114,12 +143,27 @@
     <button id="applyCustom">应用</button>
     <button class="primary" id="btnShoot">截图</button>
     <button id="btnShootAll">全部截图</button>
+    <button id="btnEditor" title="编辑当前卡片源码 (⌘E)">‹/› 代码编辑</button>
+    <button id="btnNewCard" title="新建空白卡片">＋ 新建</button>
     <button id="btnRefresh" title="重新扫描 cards/">刷新</button>
   </div>
 </header>
 
 <main>
   <nav id="sidebar"></nav>
+  <section id="editorPanel">
+    <div class="ed-head">
+      <span>📝</span><span class="fname" id="edFname">—</span>
+      <span id="edStatus"></span>
+    </div>
+    <textarea id="editor" spellcheck="false" placeholder="在这里编辑当前卡片的 HTML 源码…&#10;&#10;改动会自动保存 (900ms 防抖) 并实时刷新预览&#10;⌘/Ctrl+S 立即保存 · ⌘/Ctrl+E 开关编辑器"></textarea>
+    <div class="ed-foot">
+      <button id="edSave">保存 ⌘S</button>
+      <button id="edRestore" title="恢复到首次修改前的原件 (cards/.backups/)">恢复原件</button>
+      <button id="edCopy" title="复制全部源码">复制源码</button>
+    </div>
+  </section>
+  <div id="edGutter"></div>
   <section id="stage">
     <div id="canvasWrap">
       <div id="frameBox">
@@ -283,6 +327,141 @@ function addOutItem(path, name) {
 $('btnShoot').onclick = shoot;
 $('btnShootAll').onclick = shootAll;
 $('btnRefresh').onclick = () => { loadCards(); setStatus('已刷新', 'ok'); };
+
+/* ---------- 代码编辑器 ---------- */
+let edOpen = false, edTimer = null, edLoadedFor = null, suppressReload = false;
+
+function toggleEditor(force) {
+  edOpen = force !== undefined ? force : !edOpen;
+  $('editorPanel').classList.toggle('open', edOpen);
+  $('edGutter').classList.toggle('open', edOpen);
+  $('btnEditor').textContent = edOpen ? '›‹ 收起编辑' : '‹/› 代码编辑';
+  if (edOpen && state.current && edLoadedFor !== state.current) loadSource();
+  if (edOpen) $('editor').focus();
+}
+$('btnEditor').onclick = () => toggleEditor();
+
+async function loadSource() {
+  if (!state.current) return;
+  const r = await fetch('/api/source?f=' + encodeURIComponent(state.current)).then(r => r.json());
+  if (r.error) return setStatus(`❌ ${r.error}`, 'err');
+  suppressReload = true;           // 程序写入不算用户编辑, 不触发保存循环
+  $('editor').value = r.content;
+  $('edFname').textContent = r.name;
+  edLoadedFor = state.current;
+  setTimeout(() => suppressReload = false, 50);
+}
+
+async function saveSource(silent) {
+  if (!state.current || edLoadedFor !== state.current) return;
+  const content = $('editor').value;
+  const st = $('edStatus');
+  st.textContent = '保存中…'; st.className = 'saving';
+  try {
+    const r = await fetch('/api/save', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ file: state.current, content })
+    }).then(r => r.json());
+    if (r.error) throw new Error(r.error);
+    st.textContent = '已保存 ' + new Date().toLocaleTimeString('zh-CN', { hour12: false });
+    st.className = 'saved';
+    // 刷新预览 (加时间戳绕缓存)
+    $('preview').src = '/cards/' + encodeURIComponent(state.current) + '?t=' + Date.now();
+    if (!silent) setStatus('💾 已保存并刷新预览', 'ok');
+  } catch (e) {
+    st.textContent = '保存失败'; st.className = '';
+    setStatus(`❌ ${e.message}`, 'err');
+  }
+}
+
+$('editor').addEventListener('input', () => {
+  if (suppressReload) return;
+  clearTimeout(edTimer);
+  edTimer = setTimeout(() => saveSource(true), 900);   // 防抖自动保存
+  $('edStatus').textContent = '编辑中… (自动保存)'; $('edStatus').className = '';
+});
+$('editor').addEventListener('keydown', e => {
+  if (e.key === 'Tab') {   // Tab 输入两个空格而不是跳焦点
+    e.preventDefault();
+    const t = e.target, s = t.selectionStart, en = t.selectionEnd;
+    t.value = t.value.slice(0, s) + '  ' + t.value.slice(en);
+    t.selectionStart = t.selectionEnd = s + 2;
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); clearTimeout(edTimer); saveSource(); }
+});
+$('edSave').onclick = () => { clearTimeout(edTimer); saveSource(); };
+$('edCopy').onclick = () => { navigator.clipboard.writeText($('editor').value); setStatus('源码已复制', 'ok'); };
+$('edRestore').onclick = async () => {
+  if (!state.current) return;
+  if (!confirm(`恢复 ${state.current} 到首次修改前的原件?` + '\n(之后的手动编辑将丢失)')) return;
+  const bk = await fetch('/api/backup?f=' + encodeURIComponent(state.current)).then(r => r.json()).catch(() => ({}));
+  if (bk.content !== undefined) {
+    $('editor').value = bk.content;
+    clearTimeout(edTimer); saveSource();
+  } else {
+    setStatus('未找到备份 (可能从未修改过)', 'err');
+  }
+};
+
+/* 拖宽窄 */
+(() => {
+  let dragging = false;
+  $('edGutter').addEventListener('mousedown', e => { dragging = true; e.preventDefault(); });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const w = Math.min(Math.max(e.clientX - 200, 260), window.innerWidth * 0.6);
+    $('editorPanel').style.width = w + 'px';
+  });
+  window.addEventListener('mouseup', () => dragging = false);
+})();
+
+/* 新建卡片 */
+$('btnNewCard').onclick = async () => {
+  const name = prompt('新卡片文件名 (自动加 .html):', 'card-' + Date.now().toString(36));
+  if (!name) return;
+  const fname = name.toLowerCase().endsWith('.html') ? name : name + '.html';
+  const tpl = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>${fname}</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px; overflow: hidden;
+    font-family: "PingFang SC", -apple-system, sans-serif;
+    background: linear-gradient(160deg, #1a1d29, #14161f);
+    color: #f0f2f8; display: flex; align-items: center; justify-content: center;
+  }
+  h1 { font-size: 72px; font-weight: 800; }
+</style>
+</head>
+<body>
+  <h1>新卡片</h1>
+</body>
+</html>`;
+  const r = await fetch('/api/save', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ file: fname, content: tpl })
+  }).then(r => r.json());
+  if (r.error) return setStatus(`❌ ${r.error}`, 'err');
+  await loadCards();
+  selectCard(fname);
+  toggleEditor(true);
+  setStatus(`✅ 已新建 ${fname}`, 'ok');
+};
+
+/* 全局快捷键 */
+window.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && (e.key === 'e' || e.key === 'E')) { e.preventDefault(); toggleEditor(); }
+});
+
+/* 切卡片时编辑器跟随 */
+const _origSelect = selectCard;
+selectCard = function (f) {
+  _origSelect(f);
+  if (edOpen) loadSource();
+};
 
 function setStatus(msg, cls) { const s = $('status'); s.textContent = msg; s.className = cls || ''; }
 
