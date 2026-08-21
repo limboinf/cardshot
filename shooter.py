@@ -33,8 +33,9 @@ def shoot(html_path: Path, out_path: Path, width: int, height: int, scale: float
           timeout: int = 60) -> Path:
     """对单个 HTML 文件截图. out_path 已含扩展名(.png)."""
     chrome = find_chrome()
-    vw, vh = width, height
-    real_w, real_h = int(width * scale), int(height * scale)
+    # window-size 始终用 CSS 像素, 输出倍率交给 force-device-scale-factor
+    # (两者都乘会导致 4x: 2160 窗口 × 2 倍率 = 4320px)
+    real_w, real_h = width, height
     cmd = [
         chrome,
         "--headless",
@@ -45,7 +46,6 @@ def shoot(html_path: Path, out_path: Path, width: int, height: int, scale: float
         "--virtual-time-budget=8000",   # 等 JS/字体/图片
         html_path.resolve().as_uri(),
     ]
-    # viewport 与设备像素比: 用 --force-device-scale-factor 保证 CSS 像素布局一致
     if scale != 1.0:
         cmd.insert(4, f"--force-device-scale-factor={scale}")
     subprocess.run(cmd, check=True, capture_output=True, timeout=timeout)
