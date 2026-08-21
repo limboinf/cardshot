@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>demo — cardshot 示例卡片</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1440px; overflow: hidden;
+    font-family: "PingFang SC", -apple-system, sans-serif;
+    background: linear-gradient(160deg, #1a1d29 0%, #14161f 100%);
+    color: #f0f2f8; display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 90px; position: relative;
+  }
+  .badge {
+    position: absolute; top: 64px; left: 90px;
+    background: rgba(91,140,255,.15); color: #7ea4ff; border: 1px solid rgba(91,140,255,.35);
+    padding: 10px 22px; border-radius: 999px; font-size: 26px; font-weight: 600; letter-spacing: 2px;
+  }
+  h1 { font-size: 74px; line-height: 1.25; font-weight: 800; margin-bottom: 36px; }
+  h1 em { font-style: normal; color: #7ea4ff; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 44px; }
+  .cell {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
+    border-radius: 18px; padding: 30px 32px;
+  }
+  .cell .k { font-size: 30px; color: #8b93a7; margin-bottom: 12px; }
+  .cell .v { font-size: 52px; font-weight: 700; color: #3ecf8e; }
+  .cell .v span { font-size: 26px; color: #8b93a7; font-weight: 400; margin-left: 8px; }
+  .footer {
+    border-top: 1px solid rgba(255,255,255,.12); padding-top: 30px;
+    display: flex; justify-content: space-between; font-size: 26px; color: #8b93a7;
+  }
+</style>
+</head>
+<body>
+  <div class="badge">DEMO CARD</div>
+  <h1>AI 写网页，<br>Chrome 出<em>社媒图</em></h1>
+  <div class="grid">
+    <div class="cell"><div class="k">工作流</div><div class="v">HTML→PNG<span>1 步</span></div></div>
+    <div class="cell"><div class="k">分辨率</div><div class="v">1080×1440<span>3:4</span></div></div>
+    <div class="cell"><div class="k">依赖</div><div class="v">0<span>纯标准库</span></div></div>
+    <div class="cell"><div class="k">引擎</div><div class="v">Chrome<span>headless</span></div></div>
+  </div>
+  <div class="footer">
+    <span>cardshot · 本地截图工作室</span>
+    <span>localhost:8766</span>
+  </div>
+</body>
+</html>

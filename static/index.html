@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cardshot — 卡片截图工作室</title>
+<style>
+  :root {
+    --bg: #0f1115; --panel: #171a21; --panel2: #1d212b; --line: #2a2f3c;
+    --text: #e8eaf0; --muted: #8b93a7; --accent: #5b8cff; --accent2: #7c5bff;
+    --ok: #3ecf8e; --warn: #f5a623; --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+  }
+
+  /* ---------- 顶栏 ---------- */
+  header {
+    display: flex; align-items: center; gap: 16px; padding: 10px 16px;
+    background: var(--panel); border-bottom: 1px solid var(--line); flex-shrink: 0;
+  }
+  .logo { font-weight: 700; font-size: 15px; }
+  .logo span { color: var(--accent); }
+  .toolbar { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+
+  select, button, input[type=text] {
+    background: var(--panel2); color: var(--text); border: 1px solid var(--line);
+    border-radius: 8px; padding: 7px 12px; font-size: 13px; cursor: pointer; outline: none;
+  }
+  select:focus, input:focus { border-color: var(--accent); }
+  button:hover, select:hover { border-color: var(--accent); }
+  button.primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none; font-weight: 600; color: #fff;
+  }
+  button.primary:hover { filter: brightness(1.1); }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+
+  /* ---------- 主区 ---------- */
+  main { flex: 1; display: flex; min-height: 0; }
+
+  /* 左侧卡片列表 */
+  #sidebar {
+    width: 200px; background: var(--panel); border-right: 1px solid var(--line);
+    overflow-y: auto; flex-shrink: 0; padding: 10px;
+  }
+  .card-item {
+    padding: 9px 11px; border-radius: 8px; cursor: pointer; font-size: 13px;
+    color: var(--muted); margin-bottom: 4px; word-break: break-all;
+    display: flex; align-items: center; gap: 8px; border: 1px solid transparent;
+  }
+  .card-item:hover { background: var(--panel2); }
+  .card-item.active { background: var(--panel2); color: var(--text); border-color: var(--accent); }
+  .card-item .idx { font-size: 11px; opacity: .5; flex-shrink: 0; }
+  .card-item .shot-mark { margin-left: auto; font-size: 11px; }
+
+  /* 中间预览区 */
+  #stage { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  #canvasWrap {
+    flex: 1; overflow: auto; background:
+      radial-gradient(circle at 1px 1px, #232836 1px, transparent 1px) 0 0/24px 24px;
+    display: flex; align-items: flex-start; justify-content: center; padding: 28px;
+  }
+  #frameBox { position: relative; flex-shrink: 0; box-shadow: 0 12px 48px rgba(0,0,0,.55); border-radius: 4px; overflow: hidden; background: #fff; }
+  iframe#preview { border: 0; display: block; background: #fff; }
+  .size-tag {
+    position: absolute; bottom: -26px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: var(--muted); white-space: nowrap; font-family: ui-monospace, monospace;
+  }
+
+  /* 右侧输出面板 */
+  #rightbar {
+    width: 240px; background: var(--panel); border-left: 1px solid var(--line);
+    display: flex; flex-direction: column; flex-shrink: 0;
+  }
+  #rightbar h3 { font-size: 12px; color: var(--muted); padding: 12px 14px 8px; letter-spacing: .5px; }
+  #outList { flex: 1; overflow-y: auto; padding: 0 10px 10px; }
+  .out-item {
+    background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 10px; margin-bottom: 8px; font-size: 12px; cursor: pointer;
+  }
+  .out-item:hover { border-color: var(--accent); }
+  .out-item .name { word-break: break-all; color: var(--text); }
+  .out-item .meta { color: var(--muted); font-size: 11px; margin-top: 3px; }
+  .empty { color: var(--muted); font-size: 12px; padding: 14px; text-align: center; }
+
+  /* 底部状态条 */
+  footer {
+    display: flex; align-items: center; gap: 14px; padding: 7px 16px;
+    background: var(--panel); border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); flex-shrink: 0;
+  }
+  #zoomSlider { width: 140px; accent-color: var(--accent); }
+  .zoom-label { font-family: ui-monospace, monospace; min-width: 42px; text-align: right; }
+  #status { margin-left: auto; }
+  #status.ok { color: var(--ok); } #status.err { color: var(--warn); }
+
+  /* 比例预设 chip */
+  .ratio-chip {
+    padding: 6px 11px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--panel2); font-size: 12px; cursor: pointer; color: var(--muted);
+  }
+  .ratio-chip.active { border-color: var(--accent); color: var(--text); background: rgba(91,140,255,.12); }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">📸 card<span>shot</span></div>
+  <div class="toolbar">
+    <span id="ratioChips"></span>
+    <input type="text" id="customW" style="width:56px" value="1080" title="宽"> ×
+    <input type="text" id="customH" style="width:56px" value="1440" title="高">
+    <button id="applyCustom">应用</button>
+    <button class="primary" id="btnShoot">截图</button>
+    <button id="btnShootAll">全部截图</button>
+    <button id="btnRefresh" title="重新扫描 cards/">刷新</button>
+  </div>
+</header>
+
+<main>
+  <nav id="sidebar"></nav>
+  <section id="stage">
+    <div id="canvasWrap">
+      <div id="frameBox">
+        <iframe id="preview" src="about:blank"></iframe>
+        <div class="size-tag" id="sizeTag">1080 × 1440</div>
+      </div>
+    </div>
+  </section>
+  <aside id="rightbar">
+    <h3>输出 (output/)</h3>
+    <div id="outList"><div class="empty">还没有截图</div></div>
+  </aside>
+</main>
+
+<footer>
+  <span>缩放</span>
+  <input type="range" id="zoomSlider" min="10" max="100" value="30">
+  <span class="zoom-label" id="zoomLabel">30%</span>
+  <button id="btnFit" style="padding:4px 10px;font-size:12px">适配</button>
+  <span id="status">就绪</span>
+</footer>
+
+<script>
+const RATIOS = [
+  { label: '3:4 小红书', w: 1080, h: 1440 },
+  { label: '9:16 抖音', w: 1080, h: 1920 },
+  { label: '1:1 方图', w: 1080, h: 1080 },
+  { label: '16:9 横版', w: 1920, h: 1080 },
+  { label: '4:5 Ins', w: 1080, h: 1350 },
+];
+let state = { cards: [], current: null, w: 1080, h: 1440, scale: 1, zoom: 0.3, shotSet: new Set() };
+
+const $ = id => document.getElementById(id);
+
+/* ---------- 顶栏: 比例 chips ---------- */
+function renderChips() {
+  $('ratioChips').innerHTML = RATIOS.map((r, i) =>
+    `<span class="ratio-chip" data-i="${i}">${r.label}</span>`).join('');
+  document.querySelectorAll('.ratio-chip').forEach(el => el.onclick = () => {
+    document.querySelectorAll('.ratio-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    const r = RATIOS[+el.dataset.i];
+    $('customW').value = r.w; $('customH').value = r.h;
+    setSize(r.w, r.h);
+  });
+  document.querySelector('.ratio-chip').classList.add('active');
+}
+$('applyCustom').onclick = () => {
+  document.querySelectorAll('.ratio-chip').forEach(c => c.classList.remove('active'));
+  setSize(+$('customW').value || 1080, +$('customH').value || 1440);
+};
+
+/* ---------- 尺寸 / 缩放 ---------- */
+function setSize(w, h) {
+  state.w = w; state.h = h;
+  $('preview').style.width = w + 'px';
+  $('preview').style.height = h + 'px';
+  $('sizeTag').textContent = `${w} × ${h}${state.scale > 1 ? `  ×${state.scale} 输出 ${w*scale()}×${h*scale()}` : ''}`;
+  applyZoom();
+}
+const scale = () => $('scaleSel') ? +$('scaleSel').value : 1;
+function applyZoom() {
+  const z = state.zoom;
+  $('frameBox').style.transform = `scale(${z})`;
+  $('frameBox').style.transformOrigin = 'top center';
+  $('zoomLabel').textContent = Math.round(z * 100) + '%';
+}
+$('zoomSlider').oninput = e => { state.zoom = e.target.value / 100; applyZoom(); };
+$('btnFit').onclick = () => {
+  const wrap = $('canvasWrap');
+  const z = Math.min((wrap.clientWidth - 60) / state.w, (wrap.clientHeight - 60) / state.h, 1);
+  state.zoom = Math.max(0.1, z);
+  $('zoomSlider').value = Math.round(state.zoom * 100);
+  applyZoom();
+};
+
+/* ---------- 卡片列表 ---------- */
+async function loadCards() {
+  const r = await fetch('/api/cards').then(r => r.json());
+  state.cards = r.cards || [];
+  renderSidebar();
+  if (state.cards.length && !state.current) selectCard(state.cards[0]);
+}
+function renderSidebar() {
+  if (!state.cards.length) {
+    $('sidebar').innerHTML = '<div class="empty">cards/ 下还没有 HTML<br>让 AI 生成后放进来</div>';
+    return;
+  }
+  $('sidebar').innerHTML = state.cards.map((c, i) =>
+    `<div class="card-item${c === state.current ? ' active' : ''}" data-f="${c}">
+       <span class="idx">${i + 1}</span><span>${c.replace(/\.html?$/, '')}</span>
+     </div>`).join('');
+  document.querySelectorAll('.card-item').forEach(el => el.onclick = () => selectCard(el.dataset.f));
+}
+function selectCard(f) {
+  state.current = f;
+  renderSidebar();
+  $('preview').src = '/cards/' + encodeURIComponent(f);
+  setStatus(`已选: ${f}`, '');
+}
+
+/* ---------- 截图 ---------- */
+async function shoot() {
+  if (!state.current) return setStatus('先选一张卡片', 'err');
+  const btn = $('btnShoot'); btn.disabled = true; btn.textContent = '截图中…';
+  setStatus('截图中… (headless Chrome)', '');
+  try {
+    const r = await fetch('/api/shoot', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ file: state.current, w: state.w, h: state.h, scale: 1 })
+    }).then(r => r.json());
+    if (r.error) throw new Error(r.error);
+    setStatus(`✅ 已保存 ${r.name}`, 'ok');
+    addOutItem(r.path, r.name);
+  } catch (e) { setStatus(`❌ ${e.message}`, 'err'); }
+  btn.disabled = false; btn.textContent = '截图';
+}
+async function shootAll() {
+  if (!state.cards.length) return setStatus('cards/ 是空的', 'err');
+  const btn = $('btnShootAll'); btn.disabled = true; btn.textContent = '批量中…';
+  setStatus('批量截图已启动, 完成后刷新输出列表', '');
+  try {
+    await fetch('/api/shoot_all', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ w: state.w, h: state.h, scale: 1 })
+    }).then(r => r.json());
+    pollOutputs(6);
+  } catch (e) { setStatus(`❌ ${e.message}`, 'err'); btn.disabled = false; btn.textContent = '全部截图'; }
+}
+function pollOutputs(times) {
+  if (times <= 0) { $('btnShootAll').disabled = false; $('btnShootAll').textContent = '全部截图'; loadOutputs(); return; }
+  setTimeout(async () => {
+    await loadOutputs();
+    pollOutputs(times - 1);
+  }, 5000);
+}
+
+/* ---------- 输出列表 ---------- */
+async function loadOutputs() {
+  // output/ 不在 static 下, 通过 reveal API 无法列目录; 简单方案: 由 server 提供目录列表
+  const r = await fetch('/api/outputs').then(r => r.json()).catch(() => ({ outputs: [] }));
+  const list = r.outputs || [];
+  if (!list.length) { $('outList').innerHTML = '<div class="empty">还没有截图</div>'; return; }
+  $('outList').innerHTML = list.map(o =>
+    `<div class="out-item" data-p="${o.path}">
+       <div class="name">${o.name}</div>
+       <div class="meta">${o.kb} KB · 点击在 Finder 定位</div>
+     </div>`).join('');
+  document.querySelectorAll('.out-item').forEach(el => el.onclick = () => {
+    fetch('/api/reveal?path=' + encodeURIComponent(el.dataset.p));
+  });
+}
+function addOutItem(path, name) {
+  $('outList').querySelector('.empty')?.remove();
+  const div = document.createElement('div');
+  div.className = 'out-item';
+  div.innerHTML = `<div class="name">${name}</div><div class="meta">点击在 Finder 定位</div>`;
+  div.onclick = () => fetch('/api/reveal?path=' + encodeURIComponent(path));
+  $('outList').prepend(div);
+}
+$('btnShoot').onclick = shoot;
+$('btnShootAll').onclick = shootAll;
+$('btnRefresh').onclick = () => { loadCards(); setStatus('已刷新', 'ok'); };
+
+function setStatus(msg, cls) { const s = $('status'); s.textContent = msg; s.className = cls || ''; }
+
+/* ---------- 启动 ---------- */
+renderChips();
+setSize(1080, 1440);
+loadCards();
+loadOutputs();
+window.addEventListener('resize', () => {});
+</script>
+</body>
+</html>
