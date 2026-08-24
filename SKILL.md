@@ -51,6 +51,9 @@ description: 内容→多平台社媒卡片出图。做小红书/抖音/X/公众
 - **内容贴边**：距画布边 ≥40px（check-overflow 的默认 margin），否则视觉上像被裁
 - **测试数据污染**：编辑器/测试改过卡片后要恢复原件（`/api/backup` 或 `cards/.backups/`），别把测试文案交付出去
 - **quality-check 浅底误报**：米白/浅色底卡必须传 `--bg`，否则四角检查把设计底色当白边报 WARN
+- **quality-check 底部条带误报（更隐蔽）**：浅底卡带深色吸底结论框时，底部条带方差检查会报 `底部条带杂色(方差XXXX, 可能截字)` 的 WARN。这是误报——结论框是圆角且 body 留了 ~56px 底边距，所以真正画布最底 56px 仍是纯净设计底色。确认方法：check-overflow 通过（内容底线 ≤ 高且 ≥ 安全边距）即权威；再用像素抽检最底 56px 均值≈底色即可，不必理会该 WARN。不要因为 WARN 就去削内容。
+- **check-overflow 只收单个 target**：参数为单个目录或单个文件，传多个文件（`cards/a.html cards/b.html`）会报 `unrecognized arguments`。批量检查把同批卡片放子目录（如 `cards/steer/`）后传目录；出图同理 `python3 shooter.py cards/steer/ --auto -o output/steer`。
+- **改完记得 commit**：本 skill 软链到 github.com/limboinf/cardshot 仓库，编辑 SKILL.md / 卡片 / 脚本后需 `git commit` 推送（memory: 改skill=改仓库+commit）。
 
 ## 目录
 ```
