@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>AI与专家断层 · 小红书 05 企业雷② 复杂度雪球</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; background:#faf6ef; color:#2b2620; display:flex; flex-direction:column; padding:60px 72px 56px; }
+  .tag { align-self:flex-start; background:#ffe9c7; color:#a0620a; border-radius:999px; padding:10px 26px; font-size:26px; font-weight:700; letter-spacing:2px; margin-bottom:24px; }
+  h1 { font-size:62px; font-weight:800; line-height:1.24; letter-spacing:-1px; }
+  h1 .hl { background:linear-gradient(transparent 62%, #ffd591 62%); }
+  .sub { font-size:27px; color:#8a7f6e; margin:18px 0 30px; line-height:1.5; }
+  .snowball { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+  .ball { flex:1; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:14px; }
+  .ball .k { font-weight:800; line-height:1.25; }
+  .ball .d { line-height:1.3; margin-top:6px; }
+  .b1 { width:200px; height:200px; background:#fff; box-shadow:0 4px 14px rgba(120,90,40,.08); }
+  .b1 .k { font-size:26px; color:#2b2620; } .b1 .d { font-size:22px; color:#8a7f6e; }
+  .b2 { width:240px; height:240px; background:#ffe9c7; }
+  .b2 .k { font-size:28px; color:#a0620a; } .b2 .d { font-size:22px; color:#a0620a; }
+  .b3 { width:290px; height:290px; background:#c0392b; }
+  .b3 .k { font-size:32px; color:#fff; } .b3 .d { font-size:23px; color:#ffd9d4; }
+  .stages { display:flex; flex-direction:column; gap:13px; margin-bottom:26px; }
+  .row { display:flex; align-items:center; gap:16px; background:#fff; border-radius:16px; padding:15px 22px; box-shadow:0 4px 14px rgba(120,90,40,.08); }
+  .row .no { width:48px; height:48px; border-radius:13px; background:#c0392b; color:#fff; font-size:25px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .row .mech { font-size:25px; color:#4a4238; flex:1; line-height:1.38; }
+  .row .mech b { color:#d4570e; }
+  .quote { background:#2b2620; border-radius:18px; padding:24px 30px; margin-bottom:26px; }
+  .quote .q { font-size:26px; color:#fff; line-height:1.55; }
+  .quote .q b { color:#ffd591; }
+  .quote .who { font-size:23px; color:#b3a893; margin-top:10px; }
+  .conclusion { margin-top:auto; background:#2b2620; color:#fff; border-radius:22px; padding:28px 34px; font-size:29px; line-height:1.6; border:3px solid #ffd591; }
+  .conclusion b { color:#ffd591; }
+  .conclusion .t { font-size:24px; color:#b3a893; margin-bottom:8px; letter-spacing:3px; }
+</style>
+</head>
+<body>
+  <div class="tag">企业暗雷② · 复杂度雪球</div>
+  <h1>生成越快<br><span class="hl">技术债</span>滚得越快</h1>
+  <div class="sub">代码量指数增长，理解总量却在归零——这个剪刀差就是明天的架构瓶颈</div>
+  <div class="snowball">
+    <div class="ball b1"><div class="k">AI 出码<br>一天千行</div><div class="d">边际成本≈0</div></div>
+    <div class="ball b2"><div class="k">理解跟不上<br>只能再问 AI</div><div class="d">修 A 坏 B 循环</div></div>
+    <div class="ball b3"><div class="k">没人敢动的<br>黑箱系统</div><div class="d">重构？重写？</div></div>
+  </div>
+  <div class="stages">
+    <div class="row"><div class="no">1</div><div class="mech"><b>重复造轮子成灾</b>：没有全局视野的 agent 各写各的，同一个功能长出五套实现，维护面翻倍</div></div>
+    <div class="row"><div class="no">2</div><div class="mech"><b>调试依赖症</b>：bug 是 AI 引入的，也只能靠 AI 修——作者观察到学生被 AI 的错误困住、<b>再靠 AI 脱困</b>的死循环</div></div>
+    <div class="row"><div class="no">3</div><div class="mech"><b>模式≠判断</b>：LLM 靠训练数据里的模式插值，但“全新的系统故障”<b>没法插值出来</b>——Chollet：软件工程是适应性的新问题求解</div></div>
+  </div>
+  <div class="quote">
+    <div class="q">“我给你看并行跑几百个任务？我就给你看<b>烂得整整齐齐的代码</b>，百分之百。”</div>
+    <div class="who">—— David Cramer，Sentry 联合创始人</div>
+  </div>
+  <div class="conclusion">
+    <div class="t">本 质</div>
+    万亿美金赌的是“这些知识不再重要”——而 no-code 运动当年<b>也是这么说的</b>
+  </div>
+</body>
+</html>
