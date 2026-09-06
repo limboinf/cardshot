@@ -28,7 +28,7 @@ description: 内容→多平台社媒卡片出图。做小红书/抖音/X/公众
 - 零依赖：Python 标准库 + Chrome/Chromium/Edge（quality-check 和 --grid 需 Pillow）
 
 ## 标准流程（五步）
-1. **写卡**：每平台一个 HTML 放 `cards/`，命名 `{topic}-{platform}.html`。必须带 `<meta name="card-size" content="WxH">`（`--auto` 靠它识别）+ `body{width/height 固定; overflow:hidden}`。风格按平台分治——**写前必读 `references/platform-conventions.md`**（各平台配色语言/信息密度/结构套路/字号下限）
+1. **写卡**：每平台一个 HTML 放 `cards/`，命名 `{topic}-{platform}.html`。必须带 `<meta name="card-size" content="WxH">`（`--auto` 靠它识别）+ `body{width/height 固定; overflow:hidden}`。风格按平台分治——**写前必读 `references/platform-conventions.md`**（各平台配色语言/信息密度/结构套路/字号下限）；视觉风格选型见 **`references/style-library.md`**（11 套实测风格 + 封面/内容页分工约定）
 2. **溢出检测**：`python3 scripts/check-overflow.py cards/` — 全 OK 才出图；报 OVERFLOW 修布局再检
 3. **出图**：`scripts/shoot.sh auto`（主路径）或 `presets xhs douyin`；不要自己另拼 Chrome 命令
 4. **像素质检**：`python3 scripts/quality-check.py output/*.png --bg <底色hex>`；浅底卡必须传 `--bg` 否则误报。有视觉模型则加目检，没有则 DOM + 像素即兜底

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Memphis 内容页 · 六阶段</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; background:#fffdf6; color:#191919; display:flex; flex-direction:column; padding:64px 72px 60px; }
+  .head { display:flex; align-items:center; justify-content:space-between; margin-bottom:34px; }
+  h2 { font-size:50px; font-weight:900; letter-spacing:1px; }
+  h2 .hi { color:#ef476f; }
+  .pg { font-size:20px; font-weight:800; letter-spacing:3px; color:#8a857a; }
+  .zag { height:16px; background:repeating-linear-gradient(90deg,#191919 0 18px,transparent 18px 36px); margin-bottom:36px; }
+  .list { display:flex; flex-direction:column; gap:18px; }
+  .row { display:flex; align-items:center; gap:20px; border:3px solid #191919; border-radius:20px; padding:16px 26px; background:#fff; }
+  .row:nth-child(1) { background:#ffd166; } .row:nth-child(3) { background:#d0f4f7; } .row:nth-child(5) { background:#ffe0ec; }
+  .row .no { width:52px; height:52px; border-radius:50%; background:#191919; color:#fff; font-size:25px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .row .name { font-size:28px; font-weight:900; width:196px; flex-shrink:0; }
+  .row .name small { display:block; font-size:19px; color:#5f5b52; font-weight:700; }
+  .row .mech { font-size:23px; color:#3a372f; line-height:1.4; flex:1; }
+  .row .art { font-size:19px; font-weight:800; color:#118ab2; flex-shrink:0; font-family:ui-monospace,Menlo,monospace; }
+  .concl { margin-top:auto; border:3px solid #191919; border-radius:24px; background:#06d6a0; padding:26px 32px; box-shadow:8px 8px 0 #ffd166; }
+  .concl .t { font-size:20px; font-weight:900; letter-spacing:4px; color:#0b4f3c; margin-bottom:8px; }
+  .concl p { font-size:27px; line-height:1.55; font-weight:800; color:#0b3a2d; }
+  .concl b { color:#ef476f; }
+</style>
+</head>
+<body>
+  <div class="head"><h2>六阶段<span class="hi">一图流</span></h2><div class="pg">PAGE 02</div></div>
+  <div class="zag"></div>
+  <div class="list">
+    <div class="row"><div class="no">1</div><div class="name">Plan<small>需求</small></div><div class="mech">有想法的人直接跟 Claude 聊，不等 PM 写文档</div><div class="art">intent.md</div></div>
+    <div class="row"><div class="no">2</div><div class="name">Design<small>设计</small></div><div class="mech">需求+设计压成一次会话，政策当场生效</div><div class="art">spec.md</div></div>
+    <div class="row"><div class="no">3</div><div class="name">Build<small>开发</small></div><div class="mech">先出计划再动手，机构知识写进文件</div><div class="art">plan.md</div></div>
+    <div class="row"><div class="no">4</div><div class="name">Test<small>测试</small></div><div class="mech">跑完测试才算完成，evals 进 CI</div><div class="art">evals/</div></div>
+    <div class="row"><div class="no">5</div><div class="name">Deploy<small>发布</small></div><div class="mech">Agent 干到生产闸口为止，一步不越</div><div class="art">PR+评审</div></div>
+    <div class="row"><div class="no">6</div><div class="name">Maintain<small>维护</small></div><div class="mech">确定性监控触发，诊断写回需求</div><div class="art">→ intent</div></div>
+  </div>
+  <div class="concl">
+    <div class="t">一 句 话</div>
+    <p>流水线变成<b>自动触发的闭环</b>，人只守在闸口做判断</p>
+  </div>
+</body>
+</html>

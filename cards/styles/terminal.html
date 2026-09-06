@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Terminal 风格样卡 · SDLC 六阶段</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:ui-monospace,"SF Mono",Menlo,monospace; background:#0a0e14; color:#c9d1d9; display:flex; flex-direction:column; padding:56px 64px; }
+  .win { border:1px solid #1f2733; border-radius:14px; background:#0d1117; flex:1; display:flex; flex-direction:column; overflow:hidden; }
+  .chrome { display:flex; align-items:center; gap:10px; padding:18px 24px; background:#11161f; border-bottom:1px solid #1f2733; }
+  .dot { width:16px; height:16px; border-radius:50%; }
+  .d1 { background:#ff5f57; } .d2 { background:#febc2e; } .d3 { background:#28c840; }
+  .title { margin-left:14px; font-size:22px; color:#586a85; }
+  .screen { padding:36px 44px 40px; display:flex; flex-direction:column; flex:1; }
+  .prompt { font-size:24px; color:#3fb950; margin-bottom:14px; }
+  .prompt .path { color:#586a85; }
+  h1 { font-size:52px; font-weight:700; line-height:1.3; color:#e6edf3; margin-bottom:10px; }
+  h1 .ok { color:#3fb950; }
+  h1 .warn { color:#e3b341; }
+  .sub { font-size:24px; color:#586a85; margin-bottom:30px; }
+  .comment { font-size:23px; color:#586a85; margin-bottom:26px; }
+  .stages { display:flex; flex-direction:column; gap:12px; }
+  .row { display:flex; align-items:baseline; gap:18px; font-size:25px; line-height:1.5; }
+  .row .no { color:#8b949e; width:44px; flex-shrink:0; text-align:right; }
+  .row .name { color:#79c0ff; font-weight:700; width:210px; flex-shrink:0; }
+  .row .mech { color:#c9d1d9; flex:1; }
+  .row .art { color:#d2a8ff; flex-shrink:0; }
+  .conclusion { margin-top:auto; border:1px solid #3fb950; border-radius:10px; background:rgba(63,185,80,.08); padding:24px 28px; font-size:25px; line-height:1.6; color:#e6edf3; }
+  .conclusion .t { font-size:22px; color:#3fb950; margin-bottom:8px; }
+  .conclusion b { color:#e3b341; }
+  .cursor { display:inline-block; width:14px; height:28px; background:#3fb950; vertical-align:-4px; margin-top:18px; }
+</style>
+</head>
+<body>
+  <div class="win">
+    <div class="chrome">
+      <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+      <div class="title">limbo@anthropic — sdlc.md — zsh</div>
+    </div>
+    <div class="screen">
+      <div class="prompt"><span class="path">~/notes</span> ❯ cat ai-native-sdlc.md</div>
+      <h1>AI 写代码快到飞起，<br>先崩掉的是<span class="warn">流程</span><span class="ok">_</span></h1>
+      <div class="sub"># AI-Native SDLC Playbook · 六阶段改造</div>
+      <div class="comment">/* Anthropic 内部真实跑法，2026.8 */</div>
+      <div class="stages">
+        <div class="row"><div class="no">01</div><div class="name">Plan 需求</div><div class="mech">有想法的人直接跟 Claude 聊，不等 PM 文档</div><div class="art">intent.md</div></div>
+        <div class="row"><div class="no">02</div><div class="name">Design 设计</div><div class="mech">需求+设计压成一次会话，政策当场生效</div><div class="art">spec.md</div></div>
+        <div class="row"><div class="no">03</div><div class="name">Build 开发</div><div class="mech">先出计划再动手，机构知识写进文件</div><div class="art">plan.md</div></div>
+        <div class="row"><div class="no">04</div><div class="name">Test 测试</div><div class="mech">跑完测试才算完成，evals 进 CI</div><div class="art">evals/</div></div>
+        <div class="row"><div class="no">05</div><div class="name">Deploy 发布</div><div class="mech">Agent 干到生产闸口为止，一步不越</div><div class="art">PR+review</div></div>
+        <div class="row"><div class="no">06</div><div class="name">Maintain 维护</div><div class="mech">确定性监控触发，诊断写回需求</div><div class="art">→ intent</div></div>
+      </div>
+      <div class="conclusion">
+        <div class="t">$ git log -1 --format=%s</div>
+        SDLC 从线性流水线变成<b>自动触发的闭环</b>，人只守在闸口做判断<span class="ok">✓</span>
+      </div>
+      <div class="cursor"></div>
+    </div>
+  </div>
+</body>
+</html>

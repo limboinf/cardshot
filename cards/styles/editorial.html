@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Editorial 杂志编辑风样卡 · SDLC 六阶段</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; background:#f7f4ee; color:#1a1a1a; display:flex; flex-direction:column; padding:60px 76px 56px; }
+  .serif { font-family:"Songti SC","STSong","Noto Serif SC",serif; }
+  .masthead { display:flex; align-items:baseline; justify-content:space-between; border-bottom:3px solid #1a1a1a; padding-bottom:16px; margin-bottom:8px; }
+  .masthead .brand { font-size:30px; font-weight:900; letter-spacing:10px; }
+  .masthead .meta { font-size:20px; color:#6b6558; letter-spacing:2px; }
+  .kicker { margin:26px 0 18px; font-size:22px; letter-spacing:6px; color:#c8321e; font-weight:700; }
+  h1 { font-size:72px; font-weight:900; line-height:1.3; letter-spacing:2px; margin-bottom:20px; }
+  h1 em { font-style:normal; color:#c8321e; border-bottom:6px solid #c8321e; padding-bottom:2px; }
+  .lede { font-size:25px; color:#6b6558; line-height:1.7; margin-bottom:34px; }
+  .rule { border-top:1px solid #1a1a1a; margin-bottom:30px; }
+  .stages { display:grid; grid-template-columns:1fr 1fr; gap:26px 40px; }
+  .item { border-top:1px solid #c9c2b2; padding-top:16px; }
+  .item .no { font-size:22px; color:#c8321e; font-weight:900; letter-spacing:2px; margin-bottom:8px; }
+  .item .name { font-size:30px; font-weight:900; margin-bottom:8px; }
+  .item .name span { font-size:20px; color:#8a8272; font-weight:400; margin-left:10px; letter-spacing:3px; }
+  .item .mech { font-size:23px; line-height:1.55; color:#3a3630; }
+  .conclusion { margin-top:auto; border-left:8px solid #c8321e; padding:8px 0 8px 30px; }
+  .conclusion .t { font-size:20px; letter-spacing:5px; color:#8a8272; margin-bottom:10px; }
+  .conclusion .quote { font-size:30px; line-height:1.65; font-weight:700; }
+  .conclusion .quote b { color:#c8321e; }
+  .foot { display:flex; justify-content:space-between; margin-top:26px; border-top:1px solid #c9c2b2; padding-top:14px; font-size:19px; color:#8a8272; letter-spacing:2px; }
+</style>
+</head>
+<body>
+  <div class="masthead">
+    <div class="brand serif">工程手记</div>
+    <div class="meta serif">VOL.01 · 二〇二六年八月</div>
+  </div>
+  <div class="kicker serif">Anthropic 官方 · AI-Native SDLC Playbook</div>
+  <h1 class="serif">AI 写代码快到飞起，<br>先崩掉的是<em>流程</em></h1>
+  <div class="lede serif">软件开发六阶段被重新接线：从线性流水线，到自动触发的闭环。以下为 Anthropic 内部真实跑法。</div>
+  <div class="rule"></div>
+  <div class="stages">
+    <div class="item"><div class="no serif">Ⅰ</div><div class="name serif">Plan<span>需求</span></div><div class="mech">有想法的人直接跟 Claude 聊，不排队等 PM 写文档，产物是 intent.md</div></div>
+    <div class="item"><div class="no serif">Ⅱ</div><div class="name serif">Design<span>设计</span></div><div class="mech">需求与设计压成一次会话，政策当场生效，产物是 spec.md</div></div>
+    <div class="item"><div class="no serif">Ⅲ</div><div class="name serif">Build<span>开发</span></div><div class="mech">先出计划再动手，机构知识写进文件，产物是 plan.md</div></div>
+    <div class="item"><div class="no serif">Ⅳ</div><div class="name serif">Test<span>测试</span></div><div class="mech">跑完测试才算完成，evals 进 CI，不许口头宣布胜利</div></div>
+    <div class="item"><div class="no serif">Ⅴ</div><div class="name serif">Deploy<span>发布</span></div><div class="mech">Agent 干到生产闸口为止，一步不越，闸口由人来守</div></div>
+    <div class="item"><div class="no serif">Ⅵ</div><div class="name serif">Maintain<span>维护</span></div><div class="mech">确定性监控触发，诊断写回需求，形成新 intent 的闭环</div></div>
+  </div>
+  <div class="conclusion">
+    <div class="t serif">一句话</div>
+    <div class="quote serif">流程不再是一条线，而是一个<b>自动触发的闭环</b>；人从执行者，变成守在闸口的判断者。</div>
+  </div>
+  <div class="foot"><span>ENGINEERING NOTES</span><span>ARTICLE · 2026.8.21</span></div>
+</body>
+</html>

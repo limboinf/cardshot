@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Bento 内容页 · 六阶段</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; background:#f3f1ec; color:#17181a; display:flex; flex-direction:column; gap:22px; padding:56px 60px; }
+  .cell { border-radius:26px; }
+  .head { display:flex; align-items:center; justify-content:space-between; padding:22px 32px; background:#17181a; color:#fff; }
+  .head h2 { font-size:32px; font-weight:900; letter-spacing:1px; }
+  .head h2 .accent { color:#ffd43b; }
+  .head .pg { font-size:20px; color:#9aa0a8; letter-spacing:2px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; flex:1; }
+  .card { background:#fff; padding:28px 30px; display:flex; flex-direction:column; }
+  .card .no { font-size:22px; font-weight:900; color:#ff5c38; letter-spacing:2px; margin-bottom:12px; }
+  .card .name { font-size:34px; font-weight:900; margin-bottom:10px; }
+  .card .name small { font-size:21px; color:#9a958a; font-weight:600; margin-left:10px; }
+  .card .mech { font-size:23px; line-height:1.5; color:#5c5f66; }
+  .card .art { margin-top:auto; padding-top:14px; font-size:20px; font-weight:700; color:#17181a; font-family:ui-monospace,Menlo,monospace; }
+  .c1 { background:#ffd43b; } .c1 .mech, .c4 .mech { color:#4a4433; }
+  .c6 { background:#17181a; color:#fff; } .c6 .mech { color:#b9bec7; }
+  .c6 .art { color:#8be28f; }
+  .concl { padding:24px 34px; background:#8be28f; display:flex; align-items:center; gap:24px; }
+  .concl .t { font-size:20px; font-weight:900; letter-spacing:3px; color:#1d5c2a; writing-mode:vertical-rl; }
+  .concl p { font-size:26px; line-height:1.55; font-weight:700; color:#143a1c; }
+  .concl b { color:#ff5c38; }
+</style>
+</head>
+<body>
+  <div class="head cell">
+    <h2>六阶段<span class="accent">一图流</span></h2>
+    <div class="pg">PAGE 02 / OVERVIEW</div>
+  </div>
+  <div class="grid">
+    <div class="card cell c1"><div class="no">01</div><div class="name">Plan<small>需求</small></div><div class="mech">有想法的人直接跟 Claude 聊，不等 PM 排队写文档</div><div class="art">intent.md</div></div>
+    <div class="card cell"><div class="no">02</div><div class="name">Design<small>设计</small></div><div class="mech">需求+设计压成一次会话，政策当场生效</div><div class="art">spec.md</div></div>
+    <div class="card cell"><div class="no">03</div><div class="name">Build<small>开发</small></div><div class="mech">先出计划再动手，机构知识写进文件</div><div class="art">plan.md</div></div>
+    <div class="card cell c4" style="background:#ffd43b"><div class="no">04</div><div class="name">Test<small>测试</small></div><div class="mech">跑完测试才算完成，evals 进 CI</div><div class="art">evals/</div></div>
+    <div class="card cell"><div class="no">05</div><div class="name">Deploy<small>发布</small></div><div class="mech">Agent 干到生产闸口为止，一步不越</div><div class="art">PR+评审</div></div>
+    <div class="card cell c6"><div class="no">06</div><div class="name">Maintain<small>维护</small></div><div class="mech">确定性监控触发，诊断写回需求</div><div class="art">→ intent</div></div>
+  </div>
+  <div class="concl cell">
+    <div class="t">一句话</div>
+    <p>线性流水线变成<b>自动触发的闭环</b>，人只守在闸口做判断</p>
+  </div>
+</body>
+</html>
