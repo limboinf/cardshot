@@ -21,7 +21,7 @@ STYLES = [
     ("bento", "Bento 便当盒"),
     ("swiss", "Swiss 瑞士网格"),
     ("memphis", "Memphis 孟菲斯"),
-    ("deco", "Art Deco 装饰艺术"),
+    ("doodle", "Doodle 手绘"),
 ]
 
 KINDS = ["cover", "page"]  # 每个风格固定两页: 封面 + 内容页
