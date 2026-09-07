@@ -72,6 +72,7 @@ python3 server.py    # 自动开浏览器 → http://localhost:8766
 ```
 
 - 左侧卡片列表，中间实时预览，顶部比例 chip 一键切换（3:4 / 9:16 / 1:1 / 16:9 / 2.35:1 / 自定义）
+- **风格库 Dashboard**：http://localhost:8766/gallery — `cards/styles*` 下所有风格样卡的实时缩放预览墙，按组浏览，单张/整组一键截图（也可从 WebUI 顶栏「🎨 风格库」进入）
 - **内置代码编辑器**（⌘E）：改 HTML 停手 900ms 自动保存，预览实时刷新；⌘S 手动保存；首次修改自动备份原件（`cards/.backups/`），一键恢复
 - **新建卡片**：自带 1080×1440 暗色模板
 - 「截图」当前张 / 「全部截图」批量，图片落 `output/`
@@ -91,6 +92,7 @@ python3 server.py    # 自动开浏览器 → http://localhost:8766
 | 端点 | 说明 |
 |---|---|
 | `GET /api/cards` | 卡片列表 |
+| `GET /api/styles` | 风格库分组列表（cards/styles* 子目录） |
 | `POST /api/shoot {file,w,h,scale}` | 截单张 |
 | `POST /api/shoot_all {w,h,scale}` | 整目录批量 |
 | `GET /api/source?f=` | 读卡片源码 |

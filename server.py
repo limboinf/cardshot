@@ -71,6 +71,21 @@ class Handler(SimpleHTTPRequestHandler):
             files = sorted([f.name for f in CARDS_DIR.glob("*.html")])
             self._json({"cards": files})
 
+        elif path == "/api/styles":
+            # 风格库: cards/styles* 子目录下的样卡 (相对 cards/ 的路径, 供 /cards/ /api/shoot 直接使用)
+            labels = {
+                "styles": "第一轮样卡 · 单张密集版（同一内容横向对比）",
+                "styles2": "第二轮样卡 · 封面 + 内容页成套",
+            }
+            groups = []
+            for d in sorted(CARDS_DIR.glob("styles*")):
+                if not d.is_dir():
+                    continue
+                files = sorted(f"{d.name}/{f.name}" for f in d.glob("*.html"))
+                if files:
+                    groups.append({"dir": d.name, "label": labels.get(d.name, d.name), "cards": files})
+            self._json({"groups": groups})
+
         elif path == "/api/open":
             # 在浏览器新标签打开卡片原件 (给 AI 调试或手动微调)
             name = qs.get("f", [""])[0]
@@ -164,9 +179,13 @@ class Handler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
 
         else:
-            # 静态文件: / -> static/index.html, 其余从 static/ 出
+            # 静态文件: / -> static/index.html, /gallery -> static/gallery.html, 其余从 static/ 出
             if path == "/":
                 path = "/index.html"
+            elif path == "/gallery":
+                path = "/gallery.html"
+            if path != self.path:
+                self.path = path  # super().do_GET() 读的是 self.path
             self.directory = str(STATIC_DIR)
             super().do_GET()
 
