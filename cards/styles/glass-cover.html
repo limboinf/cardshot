@@ -14,10 +14,12 @@
   .tag .dot { width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg,#a78bfa,#22d3ee); }
   .en { font-size:26px; letter-spacing:10px; color:#aab2d5; font-weight:600; margin-bottom:24px; }
   h1 { font-size:96px; font-weight:800; line-height:1.24; letter-spacing:-1px; }
-  h1 .grad { background:linear-gradient(90deg,#a78bfa 0%,#22d3ee 60%,#f472b6 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .sub { margin-top:30px; font-size:28px; color:#aab2d5; line-height:1.6; }
+  h1 .grad { background:linear-gradient(90deg,#7dd3fc,#22d3ee); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub { margin-top:28px; font-size:28px; color:#aab2d5; line-height:1.6; }
+  .stages { margin-top:44px; display:flex; gap:12px; }
+  .stages .pill { flex:1; text-align:center; font-size:19px; font-weight:700; letter-spacing:1px; color:#c8cfec; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:999px; padding:12px 0; backdrop-filter:blur(20px); font-family:ui-monospace,Menlo,monospace; }
   .stats { margin-top:auto; display:flex; gap:20px; }
-  .stat { flex:1; border-radius:22px; padding:28px 30px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); backdrop-filter:blur(20px); }
+  .stat { flex:1; border-radius:22px; padding:28px 30px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); box-shadow:inset 0 1px 0 rgba(255,255,255,.30), 0 12px 40px rgba(8,10,30,.35); backdrop-filter:blur(20px); }
   .stat b { font-size:64px; font-weight:800; background:linear-gradient(135deg,#a78bfa,#22d3ee); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .stat span { display:block; margin-top:8px; font-size:22px; color:#aab2d5; font-weight:600; }
   .foot { margin-top:30px; text-align:center; font-size:21px; color:#8b93b8; letter-spacing:6px; }
@@ -28,6 +30,9 @@
   <div class="en">AI-NATIVE SDLC</div>
   <h1>AI 写代码快到飞起<br>先崩掉的是<span class="grad">流程</span></h1>
   <div class="sub">软件开发六阶段改造 · 一图流拆解</div>
+  <div class="stages">
+    <div class="pill">01 PLAN</div><div class="pill">02 DESIGN</div><div class="pill">03 BUILD</div><div class="pill">04 TEST</div><div class="pill">05 SHIP</div><div class="pill">06 LOOP</div>
+  </div>
   <div class="stats">
     <div class="stat"><b>6</b><span>个阶段重构</span></div>
     <div class="stat"><b>1</b><span>个自动闭环</span></div>

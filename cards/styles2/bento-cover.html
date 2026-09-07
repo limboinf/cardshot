@@ -19,10 +19,11 @@
   h1 .accent { color:#ffd43b; }
   .sub { margin-top:30px; font-size:28px; color:#b9bec7; line-height:1.5; }
   .stats { display:flex; gap:24px; flex:1; }
-  .stat { flex:1; padding:36px 34px; display:flex; flex-direction:column; justify-content:flex-end; }
-  .stat b { font-size:88px; font-weight:900; line-height:1; letter-spacing:-2px; }
-  .stat span { font-size:24px; font-weight:700; margin-top:14px; color:#5c5f66; }
-  .s1 { background:#ffd43b; } .s2 { background:#8be28f; } .s3 { background:#fff; color:#ff5c38; }
+  .stat { flex:1; padding:34px 30px; display:flex; flex-direction:column; justify-content:center; }
+  .stat .cap { font-size:22px; font-weight:800; margin-bottom:16px; color:#17181a; opacity:.62; }
+  .stat b { font-size:110px; font-weight:900; line-height:1; letter-spacing:-3px; }
+  .stat span { font-size:25px; font-weight:800; margin-top:16px; color:#5c5f66; }
+  .s1 { background:#ffd43b; } .s2 { background:#8be28f; } .s3 { background:#fff; color:#ff5c38; border:1px solid #e2ded6; }
   .s3 span { color:#5c5f66; }
   .foot { background:transparent; text-align:center; font-size:22px; color:#9a958a; letter-spacing:6px; font-weight:600; }
 </style>
@@ -38,9 +39,9 @@
     <div class="sub">Anthropic 六阶段工作流 · 一份调研拆成一图流</div>
   </div>
   <div class="stats">
-    <div class="stat cell s1"><b>6</b><span>个阶段重构</span></div>
-    <div class="stat cell s2"><b>1</b><span>个自动闭环</span></div>
-    <div class="stat cell s3"><b>0</b><span>份排队文档</span></div>
+    <div class="stat cell s1"><div class="cap">SPEC → SHIP</div><b>6</b><span>个阶段重构</span></div>
+    <div class="stat cell s2"><div class="cap">自动触发</div><b>1</b><span>个闭环</span></div>
+    <div class="stat cell s3"><div class="cap">直接跟 AI 聊</div><b>0</b><span>份排队文档</span></div>
   </div>
   <div class="foot">SWIPE →</div>
 </body>

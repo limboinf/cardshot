@@ -6,33 +6,40 @@
 <title>Art Deco 封面 · AI-Native SDLC</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1080px; height:1440px; overflow:hidden; font-family:"Songti SC","STSong","Noto Serif SC",serif; background:linear-gradient(160deg,#0f241d 0%,#123128 55%,#0c1c16 100%); color:#f2ead8; display:flex; flex-direction:column; align-items:center; text-align:center; padding:96px 90px; position:relative; }
-  .frame { position:absolute; inset:48px; border:2px solid rgba(212,175,55,.55); pointer-events:none; }
-  .frame::before { content:""; position:absolute; inset:10px; border:1px solid rgba(212,175,55,.35); }
-  .sun { width:200px; height:100px; margin:24px auto 0; background:repeating-conic-gradient(from 270deg at 50% 100%, rgba(212,175,55,.9) 0 4deg, transparent 4deg 12deg); border-radius:200px 200px 0 0; }
-  .en { margin-top:44px; font-size:24px; letter-spacing:14px; color:#d4af37; font-weight:700; }
-  .diamond { display:flex; align-items:center; gap:18px; margin:36px 0; }
-  .diamond .ln { width:150px; height:1px; background:rgba(212,175,55,.7); }
-  .diamond .dm { width:14px; height:14px; background:#d4af37; transform:rotate(45deg); }
-  h1 { font-size:82px; font-weight:900; line-height:1.5; letter-spacing:8px; }
-  h1 .gold { color:#d4af37; }
-  .sub { margin-top:38px; font-size:26px; color:#b8b29a; letter-spacing:5px; line-height:1.8; }
-  .foot { margin-top:auto; display:flex; flex-direction:column; align-items:center; gap:20px; }
-  .foot .fans { display:flex; gap:14px; }
-  .foot .fan { width:8px; height:44px; background:linear-gradient(180deg,#d4af37,rgba(212,175,55,.25)); }
-  .foot .cap { font-size:19px; letter-spacing:8px; color:#8f8a75; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:"Songti SC","STSong","Noto Serif SC",serif; background:linear-gradient(160deg,#0f241d 0%,#123128 55%,#0c1c16 100%); color:#f2ead8; display:flex; flex-direction:column; align-items:center; text-align:center; padding:96px 90px 88px; position:relative; }
+  .frame { position:absolute; inset:48px; border:2px solid rgba(230,197,88,.55); pointer-events:none; }
+  .frame::before { content:""; position:absolute; inset:10px; border:1px solid rgba(230,197,88,.35); }
+  .sun { width:200px; height:100px; margin:20px auto 0; background:repeating-conic-gradient(from 270deg at 50% 100%, rgba(230,197,88,.9) 0 4deg, transparent 4deg 12deg); border-radius:200px 200px 0 0; }
+  .en { margin-top:38px; font-size:23px; letter-spacing:12px; color:#e6c558; font-weight:700; }
+  .diamond { display:flex; align-items:center; gap:18px; margin:32px 0; }
+  .diamond .ln { width:150px; height:1px; background:rgba(230,197,88,.7); }
+  .diamond .dm { width:14px; height:14px; background:#e6c558; transform:rotate(45deg); }
+  h1 { font-size:84px; font-weight:900; line-height:1.5; letter-spacing:6px; color:#f7f1e0; }
+  h1 .gold { color:#e6c558; letter-spacing:26px; margin-right:-26px; }
+  .sub { margin-top:32px; font-size:25px; color:#c2bca4; letter-spacing:4px; line-height:1.8; }
+  .chain { margin-top:auto; display:flex; align-items:center; margin-bottom:44px; }
+  .chain .ln { width:110px; border-top:1px solid rgba(230,197,88,.55); }
+  .chain .dm { width:11px; height:11px; background:rgba(230,197,88,.85); transform:rotate(45deg); margin:0 10px; }
+  .mid { display:flex; flex-direction:column; align-items:center; }
+  .bars { display:flex; gap:16px; margin-bottom:34px; }
+  .bars .bar { width:12px; height:64px; background:linear-gradient(180deg,#e6c558,rgba(230,197,88,.25)); }
+  .bars .bar:nth-child(2n) { height:88px; }
+  .foot .cap { font-size:19px; letter-spacing:8px; color:#98937c; }
 </style>
 </head>
 <body>
   <div class="frame"></div>
   <div class="sun"></div>
-  <div class="en">AI-NATIVE SDLC</div>
+  <div class="en">AI-NATIVE SDLC · PLAYBOOK</div>
   <div class="diamond"><div class="ln"></div><div class="dm"></div><div class="ln"></div></div>
-  <h1>AI 时代<br>开发流程的<span class="gold">六重变革</span></h1>
-  <div class="sub">Anthropic 官方 Playbook<br>从线性流水线 · 到自动触发的闭环</div>
-  <div class="foot">
-    <div class="fans"><div class="fan"></div><div class="fan"></div><div class="fan"></div><div class="fan"></div><div class="fan"></div></div>
-    <div class="cap">ANTHROPIC ENGINEERING · 2026</div>
+  <h1>AI 写代码快到飞起<br>先崩掉的是<br><span class="gold">流　程</span></h1>
+  <div class="sub">Anthropic 官方 · 六阶段改造一图流<br>从线性流水线 · 到自动触发的闭环</div>
+  <div class="chain">
+    <div class="dm"></div><div class="ln"></div><div class="dm"></div><div class="ln"></div><div class="dm"></div><div class="ln"></div><div class="dm"></div><div class="ln"></div><div class="dm"></div><div class="ln"></div><div class="dm"></div>
+  </div>
+  <div class="mid">
+    <div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+    <div class="foot"><div class="cap">ANTHROPIC ENGINEERING · 2026</div></div>
   </div>
 </body>
 </html>

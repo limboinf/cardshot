@@ -6,20 +6,28 @@
 <title>Memphis 封面 · AI-Native SDLC</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1080px; height:1440px; overflow:hidden; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; background:#fffdf6; color:#191919; display:flex; flex-direction:column; padding:80px 76px; position:relative; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; background:#fffdf6; color:#191919; display:flex; flex-direction:column; padding:72px 72px 64px; position:relative; }
   .deco { position:absolute; }
-  .circle { width:120px; height:120px; border-radius:50%; border:6px solid #191919; background:#ffd166; top:96px; right:84px; }
-  .tri { width:0; height:0; border-left:52px solid transparent; border-right:52px solid transparent; border-bottom:90px solid #ef476f; top:640px; right:88px; transform:rotate(14deg); }
-  .ring { width:88px; height:88px; border-radius:50%; border:14px solid #06d6a0; bottom:420px; left:70px; }
-  .dotsbox { width:220px; height:130px; background:radial-gradient(circle,#191919 4px,transparent 4.5px); background-size:26px 26px; bottom:150px; right:84px; opacity:.8; }
-  .zig { height:22px; background:repeating-linear-gradient(135deg,#118ab2 0 14px,transparent 14px 28px); top:790px; left:76px; width:180px; }
-  .top { display:inline-flex; align-self:flex-start; background:#118ab2; color:#fff; font-size:24px; font-weight:800; padding:14px 30px; border-radius:999px; letter-spacing:2px; margin-bottom:64px; }
-  h1 { font-size:96px; font-weight:900; line-height:1.22; letter-spacing:-1px; margin-bottom:34px; }
-  h1 .mk { background:linear-gradient(transparent 58%, #ffd166 58%); }
+  .circle { width:120px; height:120px; border-radius:50%; border:6px solid #191919; background:#ffd166; top:92px; right:80px; }
+  .tri { width:0; height:0; border-left:46px solid transparent; border-right:46px solid transparent; border-bottom:80px solid #ef476f; top:700px; right:100px; transform:rotate(45deg); }
+  .ring { width:84px; height:84px; border-radius:50%; border:16px solid #06d6a0; bottom:300px; right:88px; }
+  .dotsbox { width:170px; height:110px; background:radial-gradient(circle,#191919 4px,transparent 4.5px); background-size:26px 26px; top:690px; left:80px; opacity:.75; }
+  .zig { height:20px; width:200px; background:repeating-linear-gradient(135deg,#118ab2 0 14px,transparent 14px 28px); bottom:430px; left:76px; }
+  .star { font-size:60px; font-weight:900; color:#118ab2; bottom:250px; left:250px; }
+  .semi { width:120px; height:60px; background:#ef476f; border:5px solid #191919; border-radius:120px 120px 0 0; bottom:64px; right:200px; }
+  .cross { position:absolute; font-size:46px; font-weight:900; color:#ef476f; bottom:440px; right:110px; }
+  .top { display:inline-flex; align-self:flex-start; background:#118ab2; color:#fff; font-size:24px; font-weight:800; padding:14px 30px; border-radius:999px; letter-spacing:2px; margin-bottom:52px; }
+  h1 { font-size:92px; font-weight:900; line-height:1.24; letter-spacing:-1px; margin-bottom:26px; }
   h1 .hi { color:#ef476f; }
-  .sub { font-size:27px; color:#5f5b52; line-height:1.6; max-width:780px; }
-  .bottom { margin-top:auto; display:flex; align-items:center; gap:22px; }
-  .btn { background:#191919; color:#fff; font-size:25px; font-weight:800; padding:18px 40px; border-radius:999px; box-shadow:6px 6px 0 #06d6a0; letter-spacing:2px; }
+  .chip3 { display:inline-block; background:#191919; color:#fff; font-size:56px; font-weight:900; padding:12px 34px; box-shadow:8px 8px 0 #ffd166; margin-bottom:30px; }
+  .sub { font-size:26px; color:#5f5b52; line-height:1.6; }
+  .seq { margin-top:auto; display:flex; gap:14px; margin-bottom:34px; }
+  .seq .cell { flex:1; border:3px solid #191919; border-radius:14px; text-align:center; padding:14px 0 10px; background:#fff; }
+  .seq .cell:nth-child(1) { background:#ffd166; } .seq .cell:nth-child(3) { background:#d0f4f7; } .seq .cell:nth-child(5) { background:#ffe0ec; }
+  .seq .cell b { display:block; font-size:28px; font-weight:900; }
+  .seq .cell span { font-size:17px; font-weight:800; color:#5f5b52; letter-spacing:1px; }
+  .bottom { display:flex; align-items:center; gap:22px; }
+  .btn { background:#191919; color:#fff; font-size:26px; font-weight:800; padding:18px 42px; border-radius:999px; box-shadow:6px 6px 0 #06d6a0; letter-spacing:2px; }
   .foot { font-size:21px; font-weight:700; letter-spacing:3px; color:#8a857a; }
 </style>
 </head>
@@ -29,9 +37,21 @@
   <div class="deco ring"></div>
   <div class="deco dotsbox"></div>
   <div class="deco zig"></div>
+  <div class="deco star">✳</div>
+  <div class="deco semi"></div>
+  <div class="deco cross">✚</div>
   <div class="top">Anthropic 官方 · 2026.8</div>
-  <h1>AI 写代码快到飞起<br>先崩掉的是<span class="hi">流程</span><br><span class="mk">六阶段一图流</span></h1>
-  <div class="sub">《AI-Native SDLC Playbook》拆解：从线性流水线，到自动触发的闭环</div>
+  <h1>AI 写代码快到飞起<br>先崩掉的是<span class="hi">流程</span></h1>
+  <div><span class="chip3">六阶段一图流</span></div>
+  <div class="sub">Anthropic 官方 Playbook 拆解：从线性流水线，到自动触发的闭环</div>
+  <div class="seq">
+    <div class="cell"><b>S1</b><span>PLAN</span></div>
+    <div class="cell"><b>S2</b><span>SPEC</span></div>
+    <div class="cell"><b>S3</b><span>BUILD</span></div>
+    <div class="cell"><b>S4</b><span>TEST</span></div>
+    <div class="cell"><b>S5</b><span>SHIP</span></div>
+    <div class="cell"><b>S6</b><span>LOOP</span></div>
+  </div>
   <div class="bottom">
     <div class="btn">左滑开拆 →</div>
     <div class="foot">AI-NATIVE SDLC · VOL.01</div>
