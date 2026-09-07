@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""扫描 cards/styles* 下的样卡, 重新生成根目录 gallery.html (风格库 Dashboard).
+"""扫描 cards/styles* 下的样卡, 重新生成根目录 gallery.html (风格库预览墙).
 
 生成的是纯静态页: 双击即可在浏览器打开, 无需任何服务器.
+每个风格一节, 展示其封面 + 内容页两张. 风格在 STYLES 里登记, 缺卡会报警.
 用法: python3 scripts/build-gallery.py
 """
 import json
@@ -11,34 +12,43 @@ ROOT = Path(__file__).parent.parent
 CARDS_DIR = ROOT / "cards"
 OUT = ROOT / "gallery.html"
 
-LABELS = {
-    "styles": "第一轮样卡 · 单张密集版（同一内容横向对比）",
-    "styles2": "第二轮样卡 · 封面 + 内容页成套",
-}
+# 风格登记表: (文件名前缀, 展示名). 新增风格在这里加一行.
+STYLES = [
+    ("brutal", "Brutal 新粗野"),
+    ("terminal", "Terminal 终端"),
+    ("editorial", "Editorial 杂志编辑"),
+    ("zen", "Zen 日式极简"),
+    ("glass", "Glass 玻璃拟态"),
+    ("bento", "Bento 便当盒"),
+    ("swiss", "Swiss 瑞士网格"),
+    ("riso", "Riso 双色印刷"),
+    ("memphis", "Memphis 孟菲斯"),
+    ("deco", "Art Deco 装饰艺术"),
+]
 
-
-def kind_of(stem: str) -> dict:
-    if "cover" in stem:
-        return {"k": "cover", "label": "封面"}
-    if "page" in stem:
-        return {"k": "page", "label": "内容页"}
-    return {"k": "single", "label": "样卡"}
+KINDS = ["cover", "page"]  # 每个风格固定两页: 封面 + 内容页
 
 
 def scan() -> list:
-    groups = []
+    files = {}  # "brutal-cover" -> "cards/styles/brutal-cover.html"
     for d in sorted(CARDS_DIR.glob("styles*")):
-        if not d.is_dir():
-            continue
+        if d.is_dir():
+            for f in d.glob("*.html"):
+                files[f.stem] = f"cards/{d.name}/{f.name}"
+    groups = []
+    for stem, label in STYLES:
         cards = []
-        for f in sorted(d.glob("*.html")):
-            cards.append({
-                "file": f"cards/{d.name}/{f.name}",
-                "name": f.stem,
-                **kind_of(f.stem),
-            })
+        for k in KINDS:
+            rel = files.get(f"{stem}-{k}")
+            if rel:
+                cards.append({"file": rel, "name": f"{stem}-{k}",
+                              "k": "cover" if k == "cover" else "page",
+                              "label": "封面" if k == "cover" else "内容页"})
+        missing = [k for k in KINDS if not any(c["name"] == f"{stem}-{k}" for c in cards)]
+        if missing:
+            print(f"⚠ {label}({stem}) 缺: {', '.join(missing)}")
         if cards:
-            groups.append({"dir": d.name, "label": LABELS.get(d.name, d.name), "cards": cards})
+            groups.append({"style": label, "cards": cards})
     return groups
 
 
@@ -80,7 +90,6 @@ TEMPLATE = """<!DOCTYPE html>
   .chip { font-size: 11px; padding: 2px 8px; border-radius: 999px; flex-shrink: 0; }
   .chip.cover { background: rgba(124,91,255,.18); color: #b7a4ff; }
   .chip.page { background: rgba(94,140,255,.16); color: #9db9ff; }
-  .chip.single { background: rgba(62,207,142,.14); color: #7fe0b4; }
   .acts { padding: 0 12px 12px; display: flex; gap: 8px; }
   .acts a { flex: 1; text-align: center; font-size: 12px; padding: 5px 10px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
   .acts a:hover { border-color: var(--accent); }
@@ -102,7 +111,7 @@ for (const g of GROUPS) {
   total += g.cards.length;
   const sec = document.createElement('div');
   sec.className = 'group';
-  sec.innerHTML = `<div class="group-head"><h2>${g.label}</h2><span class="n">${g.dir}/ · ${g.cards.length} 张</span></div><div class="grid"></div>`;
+  sec.innerHTML = `<div class="group-head"><h2>${g.style}</h2><span class="n">${g.cards.length} 页</span></div><div class="grid"></div>`;
   const grid = sec.querySelector('.grid');
   for (const c of g.cards) {
     const tile = document.createElement('div');
@@ -115,7 +124,7 @@ for (const g of GROUPS) {
   }
   main.appendChild(sec);
 }
-document.getElementById('count').textContent = `${GROUPS.length} 组 · ${total} 张样卡`;
+document.getElementById('count').textContent = `${GROUPS.length} 个风格 · ${total} 页`;
 function fit() {
   document.querySelectorAll('.thumb').forEach(thumb => {
     const f = thumb.querySelector('iframe');
@@ -136,7 +145,7 @@ def main():
         raise SystemExit("cards/styles* 下没有找到样卡")
     OUT.write_text(TEMPLATE.replace("__GROUPS__", json.dumps(groups, ensure_ascii=False)), encoding="utf-8")
     n = sum(len(g["cards"]) for g in groups)
-    print(f"已生成 {OUT.relative_to(ROOT)}: {len(groups)} 组 {n} 张样卡 (双击即可在浏览器打开)")
+    print(f"已生成 {OUT.relative_to(ROOT)}: {len(groups)} 个风格 {n} 页 (双击即可在浏览器打开)")
 
 
 if __name__ == "__main__":

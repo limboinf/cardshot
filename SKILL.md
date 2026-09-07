@@ -13,7 +13,7 @@ description: 内容→多平台社媒卡片出图。做小红书/抖音/X/公众
 - 单平台小红书图文（HTML + Chrome 截图，不调生图 API）
 
 ## 工具速查
-- **风格库**：`gallery.html`（纯静态，浏览器直接打开，无需服务器）— `cards/styles*` 所有样卡的缩放预览墙；加了新风格组后 `python3 scripts/build-gallery.py` 重新生成
+- **风格库**：`gallery.html`（纯静态，浏览器直接打开，无需服务器）— 每个风格一节（封面 + 内容页）；新增风格在 `scripts/build-gallery.py` 的 STYLES 表登记后重新生成
 - **CLI**（`shooter.py`）：
   - `python3 shooter.py cards/ --auto` — 逐张读卡片自带尺寸出图（主路径）
   - `python3 shooter.py cards/ -p xhs douyin` — 平台预设批量；`--all-presets` 全预设

@@ -36,7 +36,6 @@
   .chip { font-size: 11px; padding: 2px 8px; border-radius: 999px; flex-shrink: 0; }
   .chip.cover { background: rgba(124,91,255,.18); color: #b7a4ff; }
   .chip.page { background: rgba(94,140,255,.16); color: #9db9ff; }
-  .chip.single { background: rgba(62,207,142,.14); color: #7fe0b4; }
   .acts { padding: 0 12px 12px; display: flex; gap: 8px; }
   .acts a { flex: 1; text-align: center; font-size: 12px; padding: 5px 10px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
   .acts a:hover { border-color: var(--accent); }
@@ -51,14 +50,14 @@
 </header>
 <main id="main"></main>
 <script>
-const GROUPS = [{"dir": "styles", "label": "第一轮样卡 · 单张密集版（同一内容横向对比）", "cards": [{"file": "cards/styles/brutal.html", "name": "brutal", "k": "single", "label": "样卡"}, {"file": "cards/styles/editorial.html", "name": "editorial", "k": "single", "label": "样卡"}, {"file": "cards/styles/glass.html", "name": "glass", "k": "single", "label": "样卡"}, {"file": "cards/styles/terminal.html", "name": "terminal", "k": "single", "label": "样卡"}, {"file": "cards/styles/zen.html", "name": "zen", "k": "single", "label": "样卡"}]}, {"dir": "styles2", "label": "第二轮样卡 · 封面 + 内容页成套", "cards": [{"file": "cards/styles2/bento-cover.html", "name": "bento-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/bento-page.html", "name": "bento-page", "k": "page", "label": "内容页"}, {"file": "cards/styles2/deco-cover.html", "name": "deco-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/deco-page.html", "name": "deco-page", "k": "page", "label": "内容页"}, {"file": "cards/styles2/memphis-cover.html", "name": "memphis-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/memphis-page.html", "name": "memphis-page", "k": "page", "label": "内容页"}, {"file": "cards/styles2/riso-cover.html", "name": "riso-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/riso-page.html", "name": "riso-page", "k": "page", "label": "内容页"}, {"file": "cards/styles2/swiss-cover.html", "name": "swiss-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/swiss-page.html", "name": "swiss-page", "k": "page", "label": "内容页"}]}];
+const GROUPS = [{"style": "Brutal 新粗野", "cards": [{"file": "cards/styles/brutal-cover.html", "name": "brutal-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles/brutal-page.html", "name": "brutal-page", "k": "page", "label": "内容页"}]}, {"style": "Terminal 终端", "cards": [{"file": "cards/styles/terminal-cover.html", "name": "terminal-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles/terminal-page.html", "name": "terminal-page", "k": "page", "label": "内容页"}]}, {"style": "Editorial 杂志编辑", "cards": [{"file": "cards/styles/editorial-cover.html", "name": "editorial-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles/editorial-page.html", "name": "editorial-page", "k": "page", "label": "内容页"}]}, {"style": "Zen 日式极简", "cards": [{"file": "cards/styles/zen-cover.html", "name": "zen-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles/zen-page.html", "name": "zen-page", "k": "page", "label": "内容页"}]}, {"style": "Glass 玻璃拟态", "cards": [{"file": "cards/styles/glass-cover.html", "name": "glass-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles/glass-page.html", "name": "glass-page", "k": "page", "label": "内容页"}]}, {"style": "Bento 便当盒", "cards": [{"file": "cards/styles2/bento-cover.html", "name": "bento-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/bento-page.html", "name": "bento-page", "k": "page", "label": "内容页"}]}, {"style": "Swiss 瑞士网格", "cards": [{"file": "cards/styles2/swiss-cover.html", "name": "swiss-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/swiss-page.html", "name": "swiss-page", "k": "page", "label": "内容页"}]}, {"style": "Riso 双色印刷", "cards": [{"file": "cards/styles2/riso-cover.html", "name": "riso-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/riso-page.html", "name": "riso-page", "k": "page", "label": "内容页"}]}, {"style": "Memphis 孟菲斯", "cards": [{"file": "cards/styles2/memphis-cover.html", "name": "memphis-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/memphis-page.html", "name": "memphis-page", "k": "page", "label": "内容页"}]}, {"style": "Art Deco 装饰艺术", "cards": [{"file": "cards/styles2/deco-cover.html", "name": "deco-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/deco-page.html", "name": "deco-page", "k": "page", "label": "内容页"}]}];
 const main = document.getElementById('main');
 let total = 0;
 for (const g of GROUPS) {
   total += g.cards.length;
   const sec = document.createElement('div');
   sec.className = 'group';
-  sec.innerHTML = `<div class="group-head"><h2>${g.label}</h2><span class="n">${g.dir}/ · ${g.cards.length} 张</span></div><div class="grid"></div>`;
+  sec.innerHTML = `<div class="group-head"><h2>${g.style}</h2><span class="n">${g.cards.length} 页</span></div><div class="grid"></div>`;
   const grid = sec.querySelector('.grid');
   for (const c of g.cards) {
     const tile = document.createElement('div');
@@ -71,7 +70,7 @@ for (const g of GROUPS) {
   }
   main.appendChild(sec);
 }
-document.getElementById('count').textContent = `${GROUPS.length} 组 · ${total} 张样卡`;
+document.getElementById('count').textContent = `${GROUPS.length} 个风格 · ${total} 页`;
 function fit() {
   document.querySelectorAll('.thumb').forEach(thumb => {
     const f = thumb.querySelector('iframe');

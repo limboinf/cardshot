@@ -69,9 +69,9 @@ python3 shooter.py cards/ --grid 2x3                  # 6 图拼 2 列长图
 
 `gallery.html` 是纯静态预览墙（不依赖任何服务器，浏览器直接打开）：
 
-- `cards/styles*` 下所有风格样卡的实时缩放预览，按组浏览，封面/内容页打标
+- `cards/styles*` 下所有风格样卡的实时缩放预览，每个风格一节（封面 + 内容页）
 - 每张卡可点「↗ 原件」全尺寸打开
-- 新增风格组（如 `cards/styles3/`）后重新生成：`python3 scripts/build-gallery.py`
+- 新增风格后在 `scripts/build-gallery.py` 的 STYLES 表登记，再重新生成：`python3 scripts/build-gallery.py`
 - 风格 token 与选型参考 `references/style-library.md`
 
 ## 给 AI 的写卡约定

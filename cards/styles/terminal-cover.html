@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Terminal 封面 · AI-Native SDLC</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:ui-monospace,"SF Mono",Menlo,monospace; background:#0a0e14; color:#c9d1d9; display:flex; flex-direction:column; padding:64px 64px; }
+  .win { border:1px solid #1f2733; border-radius:14px; background:#0d1117; flex:1; display:flex; flex-direction:column; overflow:hidden; }
+  .chrome { display:flex; align-items:center; gap:10px; padding:18px 24px; background:#11161f; border-bottom:1px solid #1f2733; }
+  .dot { width:16px; height:16px; border-radius:50%; }
+  .d1 { background:#ff5f57; } .d2 { background:#febc2e; } .d3 { background:#28c840; }
+  .title { margin-left:14px; font-size:22px; color:#586a85; }
+  .screen { padding:56px 60px; display:flex; flex-direction:column; flex:1; }
+  .prompt { font-size:26px; color:#3fb950; margin-bottom:40px; }
+  .prompt .path { color:#586a85; }
+  .comment { font-size:24px; color:#586a85; margin-bottom:22px; }
+  h1 { font-size:88px; font-weight:700; line-height:1.22; color:#e6edf3; letter-spacing:2px; }
+  h1 .ok { color:#3fb950; }
+  h1 .warn { color:#e3b341; }
+  .sub { margin-top:36px; font-size:26px; color:#8b949e; line-height:1.7; }
+  .sub .g { color:#3fb950; } .sub .b { color:#79c0ff; }
+  .out { margin-top:auto; border-left:3px solid #3fb950; padding-left:24px; font-size:24px; line-height:1.8; color:#8b949e; }
+  .out b { color:#e6edf3; }
+  .cursor { display:inline-block; width:16px; height:32px; background:#3fb950; vertical-align:-6px; margin-top:26px; }
+</style>
+</head>
+<body>
+  <div class="win">
+    <div class="chrome">
+      <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+      <div class="title">limbo@anthropic — zsh</div>
+    </div>
+    <div class="screen">
+      <div class="prompt"><span class="path">~/notes</span> ❯ ./ai-native-sdlc --six-stages</div>
+      <div class="comment">/* Anthropic 官方 Playbook · 2026.8 */</div>
+      <h1>AI-NATIVE<br>SDLC<span class="ok">_</span></h1>
+      <div class="sub"><span class="g">✓</span> AI 写代码快到飞起<br><span class="warn">!</span> 先崩掉的是<span class="warn">流程</span><br><span class="b">→</span> 六阶段改造 · 一图流拆解</div>
+      <div class="out">STATUS: <b>6 stages / 1 loop</b><br>SOURCE: anthropic/engineering</div>
+      <div class="cursor"></div>
+    </div>
+  </div>
+</body>
+</html>
