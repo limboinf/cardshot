@@ -1,18 +1,18 @@
 # cardshot — HTML 卡片截图工作室
 
-**AI 生成 HTML 卡片 → 一键出各平台尺寸 PNG。** 本地 WebUI + CLI 双模式，零依赖（Python 标准库 + 你机器上已有的 Chrome）。同时是一个可复用的 **Agent Skill**（本仓库自带 `SKILL.md`，见下）。
+**AI 生成 HTML 卡片 → 一键出各平台尺寸 PNG。** CLI 出图 + 零依赖风格库预览页，零依赖（Python 标准库 + 你机器上已有的 Chrome）。同时是一个可复用的 **Agent Skill**（本仓库自带 `SKILL.md`，见下）。
 
-核心流程：AI（Claude / Hermes / 任意 LLM）按你的风格约定生成一批 HTML 知识卡片放进 `cards/` → 你在 WebUI 里预览、切比例、用内置代码编辑器实时微调 → CLI 或网页按钮批量出图。**不生成内容，只负责“网页 → 图”的最后一公里。**
+核心流程：AI（Claude / Hermes / 任意 LLM）按风格约定生成一批 HTML 知识卡片放进 `cards/` → 用 `gallery.html`（双击即开，无需服务器）预览所有风格 → CLI 批量出图。**不生成内容，只负责”网页 → 图”的最后一公里。**
 
 ```
-AI 写卡 → cards/*.html → WebUI 预览/编辑 → shooter.py → output/*.png → 发小红书/抖音/X/公众号
+AI 写卡 → cards/*.html → gallery.html 预览 → shooter.py → output/*.png → 发小红书/抖音/X/公众号
 ```
 
 ## 快速开始
 
 ```bash
 cd ~/work/GitHub/cardshot
-python3 server.py                # WebUI: http://localhost:8766
+open gallery.html                # 风格库预览墙 (纯静态, 双击即开)
 ```
 
 CLI 直接出图（不开界面）：
@@ -65,18 +65,14 @@ python3 shooter.py cards/ --grid 2x3                  # 6 图拼 2 列长图
 - **高清印刷**：`--scale 2`（1080 宽卡 → 2160px 输出）
 - **多图并一图**：`--grid 2x3` 拼长图，省平台九宫格手拼
 
-## WebUI
+## 风格库
 
-```bash
-python3 server.py    # 自动开浏览器 → http://localhost:8766
-```
+`gallery.html` 是纯静态预览墙（不依赖任何服务器，浏览器直接打开）：
 
-- 左侧卡片列表，中间实时预览，顶部比例 chip 一键切换（3:4 / 9:16 / 1:1 / 16:9 / 2.35:1 / 自定义）
-- **风格库 Dashboard**：http://localhost:8766/gallery — `cards/styles*` 下所有风格样卡的实时缩放预览墙，按组浏览，单张/整组一键截图（也可从 WebUI 顶栏「🎨 风格库」进入）
-- **内置代码编辑器**（⌘E）：改 HTML 停手 900ms 自动保存，预览实时刷新；⌘S 手动保存；首次修改自动备份原件（`cards/.backups/`），一键恢复
-- **新建卡片**：自带 1080×1440 暗色模板
-- 「截图」当前张 / 「全部截图」批量，图片落 `output/`
-- 缩放滑杆 25%–100% 检查细节，输出分辨率 = 画布 × 倍率
+- `cards/styles*` 下所有风格样卡的实时缩放预览，按组浏览，封面/内容页打标
+- 每张卡可点「↗ 原件」全尺寸打开
+- 新增风格组（如 `cards/styles3/`）后重新生成：`python3 scripts/build-gallery.py`
+- 风格 token 与选型参考 `references/style-library.md`
 
 ## 给 AI 的写卡约定
 
@@ -87,30 +83,16 @@ python3 server.py    # 自动开浏览器 → http://localhost:8766
 
 要点：所有样式内联在 `<style>`；不引外链字体/图片（headless 截图不等待网络）；深浅底自定，但内容别贴边（留 ≥40px 边距，防溢出裁切）。
 
-## API（供 AI / 脚本调用）
-
-| 端点 | 说明 |
-|---|---|
-| `GET /api/cards` | 卡片列表 |
-| `GET /api/styles` | 风格库分组列表（cards/styles* 子目录） |
-| `POST /api/shoot {file,w,h,scale}` | 截单张 |
-| `POST /api/shoot_all {w,h,scale}` | 整目录批量 |
-| `GET /api/source?f=` | 读卡片源码 |
-| `POST /api/save {file,content}` | 保存卡片（首次自动备份原件） |
-| `GET /api/backup?f=` | 读首次修改前的原件 |
-| `GET /api/outputs` | 输出列表 |
-
 ## 目录结构
 
 ```
 cardshot/
-├── server.py        # WebUI 服务 (stdlib, 零依赖)
+├── gallery.html     # 风格库预览墙 (纯静态, 浏览器直接打开)
 ├── shooter.py       # 截图核心 + CLI (headless Chrome)
-├── static/index.html# WebUI 前端
 ├── SKILL.md         # Agent Skill 入口 (见下节)
-├── references/      # 平台规范: 配色/信息密度/结构套路 (skill 引用文件)
-├── scripts/         # check-overflow / shoot / quality-check (skill 脚本)
-├── cards/           # AI 生成的 HTML 卡片 (含 seedance 5 卡范例)
+├── references/      # 平台规范 + 风格库 (skill 引用文件)
+├── scripts/         # check-overflow / shoot / quality-check / build-gallery
+├── cards/           # AI 生成的 HTML 卡片 (含风格样卡 styles*/)
 └── output/          # PNG 输出 (gitignore)
 ```
 
@@ -144,5 +126,5 @@ ln -s ~/cardshot ~/.hermes/skills/creative/cardshot
 - 6 张卡 × `--auto` 全自动出图（各按自带尺寸）✓
 - 指定预设批量 `-p xhs douyin` ✓
 - 网格拼接 `--grid 1x1` ✓
-- WebUI 端到端：编辑器改码 → 自动保存 → 预览刷新 → 截图落盘 ✓
+- 风格库 gallery.html 双击直开（file://），15 张样卡实时预览 ✓
 - 2x/4x 高清 `--scale` ✓

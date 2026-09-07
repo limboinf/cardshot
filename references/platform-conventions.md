@@ -51,7 +51,6 @@ strip = img.crop((0, int(h*0.95), w, h))           # 底条均值≈背景色=�
 
 ## 出图命令（走 cardshot，不另拼 Chrome）
 ```bash
-curl -s -X POST http://localhost:8766/api/shoot -H 'Content-Type: application/json' \
-  -d '{"file":"seedance-xhs.html","w":1080,"h":1440,"scale":1}'
+python3 shooter.py cards/seedance-xhs.html --auto --scale 2
 ```
 高清版 scale=2（输出 2160×2880）。文件名自动 `{stem}_{w}x{h}.png` 落 output/。

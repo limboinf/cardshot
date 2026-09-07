@@ -1,0 +1,143 @@
+#!/usr/bin/env python3
+"""扫描 cards/styles* 下的样卡, 重新生成根目录 gallery.html (风格库 Dashboard).
+
+生成的是纯静态页: 双击即可在浏览器打开, 无需任何服务器.
+用法: python3 scripts/build-gallery.py
+"""
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).parent.parent
+CARDS_DIR = ROOT / "cards"
+OUT = ROOT / "gallery.html"
+
+LABELS = {
+    "styles": "第一轮样卡 · 单张密集版（同一内容横向对比）",
+    "styles2": "第二轮样卡 · 封面 + 内容页成套",
+}
+
+
+def kind_of(stem: str) -> dict:
+    if "cover" in stem:
+        return {"k": "cover", "label": "封面"}
+    if "page" in stem:
+        return {"k": "page", "label": "内容页"}
+    return {"k": "single", "label": "样卡"}
+
+
+def scan() -> list:
+    groups = []
+    for d in sorted(CARDS_DIR.glob("styles*")):
+        if not d.is_dir():
+            continue
+        cards = []
+        for f in sorted(d.glob("*.html")):
+            cards.append({
+                "file": f"cards/{d.name}/{f.name}",
+                "name": f.stem,
+                **kind_of(f.stem),
+            })
+        if cards:
+            groups.append({"dir": d.name, "label": LABELS.get(d.name, d.name), "cards": cards})
+    return groups
+
+
+TEMPLATE = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cardshot — 风格库</title>
+<style>
+  :root {
+    --bg: #0f1115; --panel: #171a21; --panel2: #1d212b; --line: #2a2f3c;
+    --text: #e8eaf0; --muted: #8b93a7; --accent: #5b8cff; --accent2: #7c5bff; --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  header {
+    display: flex; align-items: center; gap: 14px; padding: 12px 20px;
+    background: var(--panel); border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .logo { font-weight: 700; font-size: 15px; }
+  .logo span { color: var(--accent); }
+  .count { font-size: 13px; color: var(--muted); }
+  .spacer { flex: 1; }
+  .cmd { font-size: 12px; color: var(--muted); background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-family: ui-monospace, Menlo, monospace; }
+  main { max-width: 1440px; margin: 0 auto; padding: 24px 20px 60px; }
+  .group { margin-bottom: 44px; }
+  .group-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .group-head h2 { font-size: 17px; font-weight: 700; }
+  .group-head .n { font-size: 13px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(252px, 1fr)); gap: 18px; }
+  .tile { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: border-color .15s; }
+  .tile:hover { border-color: var(--accent); }
+  .thumb { position: relative; width: 100%; aspect-ratio: 3 / 4; background: #22262f; overflow: hidden; }
+  .thumb iframe { border: 0; pointer-events: none; transform-origin: 0 0; position: absolute; top: 0; left: 0; width: 1080px; height: 1440px; background: #fff; }
+  .meta { padding: 10px 12px; display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--line); }
+  .meta .name { font-size: 13px; font-weight: 600; word-break: break-all; }
+  .chip { font-size: 11px; padding: 2px 8px; border-radius: 999px; flex-shrink: 0; }
+  .chip.cover { background: rgba(124,91,255,.18); color: #b7a4ff; }
+  .chip.page { background: rgba(94,140,255,.16); color: #9db9ff; }
+  .chip.single { background: rgba(62,207,142,.14); color: #7fe0b4; }
+  .acts { padding: 0 12px 12px; display: flex; gap: 8px; }
+  .acts a { flex: 1; text-align: center; font-size: 12px; padding: 5px 10px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
+  .acts a:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🎨 风格<span>库</span></div>
+  <div class="count" id="count"></div>
+  <div class="spacer"></div>
+  <div class="cmd">出图: python3 shooter.py cards/styles2/ --auto</div>
+</header>
+<main id="main"></main>
+<script>
+const GROUPS = __GROUPS__;
+const main = document.getElementById('main');
+let total = 0;
+for (const g of GROUPS) {
+  total += g.cards.length;
+  const sec = document.createElement('div');
+  sec.className = 'group';
+  sec.innerHTML = `<div class="group-head"><h2>${g.label}</h2><span class="n">${g.dir}/ · ${g.cards.length} 张</span></div><div class="grid"></div>`;
+  const grid = sec.querySelector('.grid');
+  for (const c of g.cards) {
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.innerHTML = `
+      <div class="thumb"><iframe loading="lazy" src="${c.file}" scrolling="no"></iframe></div>
+      <div class="meta"><span class="chip ${c.k}">${c.label}</span><span class="name">${c.name}</span></div>
+      <div class="acts"><a href="${c.file}" target="_blank">↗ 原件</a></div>`;
+    grid.appendChild(tile);
+  }
+  main.appendChild(sec);
+}
+document.getElementById('count').textContent = `${GROUPS.length} 组 · ${total} 张样卡`;
+function fit() {
+  document.querySelectorAll('.thumb').forEach(thumb => {
+    const f = thumb.querySelector('iframe');
+    if (f) f.style.transform = `scale(${thumb.clientWidth / 1080})`;
+  });
+}
+window.addEventListener('resize', fit);
+fit();
+</script>
+</body>
+</html>
+"""
+
+
+def main():
+    groups = scan()
+    if not groups:
+        raise SystemExit("cards/styles* 下没有找到样卡")
+    OUT.write_text(TEMPLATE.replace("__GROUPS__", json.dumps(groups, ensure_ascii=False)), encoding="utf-8")
+    n = sum(len(g["cards"]) for g in groups)
+    print(f"已生成 {OUT.relative_to(ROOT)}: {len(groups)} 组 {n} 张样卡 (双击即可在浏览器打开)")
+
+
+if __name__ == "__main__":
+    main()
