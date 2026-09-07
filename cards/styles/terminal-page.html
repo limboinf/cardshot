@@ -3,33 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="card-size" content="1080x1440">
-<title>Terminal 风格样卡 · SDLC 六阶段</title>
+<title>Terminal 内容页 · SDLC 六阶段</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1080px; height:1440px; overflow:hidden; font-family:ui-monospace,"SF Mono",Menlo,monospace; background:#0a0e14; color:#c9d1d9; display:flex; flex-direction:column; padding:56px 64px; }
-  .win { border:1px solid #1f2733; border-radius:14px; background:#0d1117; flex:1; display:flex; flex-direction:column; overflow:hidden; }
-  .chrome { display:flex; align-items:center; gap:10px; padding:18px 24px; background:#11161f; border-bottom:1px solid #1f2733; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:ui-monospace,"SF Mono",Menlo,monospace; background:#eef1f5; color:#24292f; display:flex; flex-direction:column; padding:56px 64px; }
+  .win { border:1px solid #d0d7de; border-radius:14px; background:#ffffff; flex:1; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 24px 60px rgba(31,35,40,.10); }
+  .chrome { display:flex; align-items:center; gap:10px; padding:18px 24px; background:#f0f2f4; border-bottom:1px solid #d0d7de; }
   .dot { width:16px; height:16px; border-radius:50%; }
   .d1 { background:#ff5f57; } .d2 { background:#febc2e; } .d3 { background:#28c840; }
-  .title { margin-left:14px; font-size:22px; color:#586a85; }
-  .screen { padding:36px 44px 40px; display:flex; flex-direction:column; flex:1; }
-  .prompt { font-size:24px; color:#3fb950; margin-bottom:14px; }
-  .prompt .path { color:#586a85; }
-  h1 { font-size:52px; font-weight:700; line-height:1.3; color:#e6edf3; margin-bottom:10px; }
-  h1 .ok { color:#3fb950; }
-  h1 .warn { color:#e3b341; }
-  .sub { font-size:24px; color:#586a85; margin-bottom:30px; }
-  .comment { font-size:23px; color:#586a85; margin-bottom:26px; }
+  .title { margin-left:14px; font-size:22px; color:#57606a; }
+  .screen { padding:36px 44px 40px 56px; display:flex; flex-direction:column; flex:1; }
+  .prompt { font-size:24px; color:#1a7f37; margin-bottom:14px; }
+  .prompt .path { color:#57606a; }
+  h1 { font-size:52px; font-weight:700; line-height:1.3; color:#1f2328; margin-bottom:10px; }
+  h1 .ok { color:#1a7f37; }
+  h1 .warn { color:#bf8700; }
+  .sub { font-size:24px; color:#57606a; margin-bottom:30px; }
+  .comment { font-size:23px; color:#6e7781; margin-bottom:26px; }
   .stages { display:flex; flex-direction:column; gap:12px; }
   .row { display:flex; align-items:baseline; gap:18px; font-size:25px; line-height:1.5; }
-  .row .no { color:#8b949e; width:44px; flex-shrink:0; text-align:right; }
-  .row .name { color:#79c0ff; font-weight:700; width:210px; flex-shrink:0; }
-  .row .mech { color:#c9d1d9; flex:1; }
-  .row .art { color:#d2a8ff; flex-shrink:0; }
-  .conclusion { margin-top:auto; border:1px solid #3fb950; border-radius:10px; background:rgba(63,185,80,.08); padding:24px 28px; font-size:25px; line-height:1.6; color:#e6edf3; }
-  .conclusion .t { font-size:22px; color:#3fb950; margin-bottom:8px; }
-  .conclusion b { color:#e3b341; }
-  .cursor { display:inline-block; width:14px; height:28px; background:#3fb950; vertical-align:-4px; margin-top:18px; }
+  .row .no { color:#57606a; width:44px; flex-shrink:0; text-align:right; }
+  .row .name { color:#0550ae; font-weight:700; width:210px; flex-shrink:0; }
+  .row .mech { color:#424a53; flex:1; }
+  .row .art { color:#8250df; flex-shrink:0; }
+  .conclusion { margin-top:auto; border:1px solid #1a7f37; border-radius:10px; background:rgba(26,127,80,.08); padding:24px 28px; font-size:25px; line-height:1.6; color:#1f2328; }
+  .conclusion .t { font-size:22px; color:#1a7f37; margin-bottom:8px; }
+  .conclusion b { color:#bf8700; }
+  .cursor { display:inline-block; width:14px; height:28px; background:#1a7f37; vertical-align:-4px; margin-top:18px; }
 </style>
 </head>
 <body>

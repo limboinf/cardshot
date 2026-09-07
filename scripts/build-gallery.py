@@ -18,10 +18,8 @@ STYLES = [
     ("terminal", "Terminal 终端"),
     ("editorial", "Editorial 杂志编辑"),
     ("zen", "Zen 日式极简"),
-    ("glass", "Glass 玻璃拟态"),
     ("bento", "Bento 便当盒"),
     ("swiss", "Swiss 瑞士网格"),
-    ("riso", "Riso 双色印刷"),
     ("memphis", "Memphis 孟菲斯"),
     ("deco", "Art Deco 装饰艺术"),
 ]

@@ -1,21 +1,26 @@
 # 风格库（小红书 3:4 知识卡片 · 1080×1440 样卡实测）
 
-共 10 套成对风格（每套 `cards/styles*/{name}-cover.html` 封面 + `{name}-page.html` 内容页），另有原版暖米白荧光笔风格。写新卡时：选定风格 → 参照样卡 token（底色/强调色/字体/圆角/边框）与结构骨架 → 写完必跑 `scripts/check-overflow.py`。预览墙 `gallery.html` 由 `scripts/build-gallery.py` 扫描生成，新风格需在脚本的 STYLES 表登记。
+共 8 套成对风格（每套 `cards/styles*/{name}-cover.html` 封面 + `{name}-page.html` 内容页），另有原版暖米白荧光笔风格。写新卡时：选定风格 → 参照样卡 token（底色/强调色/字体/圆角/边框）与结构骨架 → 写完必跑 `scripts/check-overflow.py`。预览墙 `gallery.html` 由 `scripts/build-gallery.py` 扫描生成，新风格需在脚本的 STYLES 表登记。
 
-## 10 套风格总表
+## 封面统一约定（2026.9 审查后定稿）
+
+- 大标题 90–116px、900 字重，位置略偏左但不贴边（左侧留白比右侧多 ~30-40px，微居中）
+- 中文钩子「AI 写代码快到飞起，先崩掉的是流程」为主视觉，英文/风格术语只能做辅助元素
+- 下半屏必须有内容型装饰承接（阶段序列/目录/数据格/水印），不允许大面积死区
+- CTA 统一「左滑开拆 →」；背书统一「Anthropic 官方 · 2026.8」
+
+## 8 套风格总表
 
 | 风格 | 底色 | 强调色 | 关键元素 |
 |---|---|---|---|
 | Brutal 新粗野 | #f2efe9 | 黄 #ffd02f / 粉 #ff5d8f / 蓝 #4d9de0 | 4px 黑框、硬阴影、撞色块、mono 点缀 |
-| Terminal 终端 | #0a0e14 | 绿 #3fb950 / 蓝 #79c0ff / 紫 #d2a8ff | 全等宽、窗口 chrome、prompt、光标 |
-| Editorial 杂志编辑 | #f7f4ee | 朱红 #c8321e | 宋体大标题、报头、细规则线、罗马数字 |
-| Zen 日式极简 | #f4f2ed | 朱红 #c73e3a | 细线框、竖排侧注、印章、大留白 |
-| Glass 玻璃拟态 | 深紫渐变+光晕 | 紫罗兰→青渐变 | 磨砂卡(rgba白+backdrop-blur)、渐变字、大数字格 |
-| Bento 便当盒 | #f3f1ec | 黄 #ffd43b / 绿 #8be28f / 橙 #ff5c38 / 黑卡 | 大圆角模块、大数字统计格、深色 hero 格 |
-| Swiss 瑞士网格 | #ffffff | 红 #e0311d / 黑 | 大号无衬线、红色方块、十字标记、粗规则线 |
-| Riso 双色印刷 | 纸感 #fbf6ea | 蓝 #1d3fa3 / 荧光粉 #ff4d6d | 半调网点、套版错位字(text-shadow)、双色条 |
-| Memphis 孟菲斯 | #fffdf6 | 黄 #ffd166 / 粉 #ef476f / 青 #06d6a0 / 蓝 #118ab2 | 几何贴纸、黑框彩底行、之齿分隔 |
-| Art Deco 装饰艺术 | 墨绿渐变 #0f241d | 金 #d4af37 / 象牙 #f2ead8 | 双线金框、扇形放射、菱形分隔、衬线居中 |
+| Terminal 终端（浅白） | #eef1f5 窗外 / #fff 窗内 | 绿 #1a7f37 / 蓝 #0550ae / 紫 #8250df / 琥珀 #bf8700 | 等宽、窗口 chrome、prompt、代码块 |
+| Editorial 杂志编辑 | #f7f4ee | 朱红 #c8321e | 宋体大标题、报头、细规则线、目录栏 |
+| Zen 日式极简 | #f4f2ed | 朱红 #c73e3a | 细线框、竖排侧注、印章、「環」字水印 |
+| Bento 便当盒 | #f3f1ec | 黄 #ffd43b / 绿 #8be28f / 黑卡 | 大圆角模块、黑色大 hero 卡突出主体 |
+| Swiss 瑞士网格 | #ffffff | 红 #e0311d / 黑 | 大号无衬线、红方块、十字标记、描边数字 |
+| Memphis 孟菲斯 | #fffdf6 | 黄 #ffd166 / 粉 #ef476f / 青 #06d6a0 / 蓝 #118ab2 | 几何贴纸按网格布点、黑框彩底行、S1-S6 色块串 |
+| Art Deco 装饰艺术 | 墨绿渐变 #0f241d | 金 #e6c558 / 象牙 #f2ead8 | 双线金框、扇形放射、菱形链、衬线居中 |
 
 原版风格（暖米白荧光笔：#faf6ef 底 / #ffd591 荧光标记 / #d4570e 强调橙）见 `cards/sdlc-xhs-01.html`。
 

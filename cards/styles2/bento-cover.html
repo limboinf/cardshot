@@ -13,19 +13,12 @@
   .kick .dot { width:14px; height:14px; border-radius:50%; background:#ff5c38; }
   .idx { width:150px; background:#17181a; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; }
   .idx b { font-size:44px; } .idx span { font-size:18px; color:#9aa0a8; letter-spacing:3px; }
-  .hero { background:#17181a; color:#fff; padding:70px 60px; display:flex; flex-direction:column; justify-content:center; }
-  .hero .en { font-size:24px; letter-spacing:8px; color:#8be28f; font-weight:700; margin-bottom:28px; }
-  h1 { font-size:96px; font-weight:900; line-height:1.16; letter-spacing:-2px; }
+  .hero { flex:1; background:#17181a; color:#fff; padding:80px 76px; display:flex; flex-direction:column; justify-content:center; }
+  .hero .en { font-size:26px; letter-spacing:10px; color:#8be28f; font-weight:700; margin-bottom:32px; }
+  h1 { font-size:104px; font-weight:900; line-height:1.22; letter-spacing:-1px; }
   h1 .accent { color:#ffd43b; }
-  .sub { margin-top:30px; font-size:28px; color:#b9bec7; line-height:1.5; }
-  .stats { display:flex; gap:24px; flex:1; }
-  .stat { flex:1; padding:34px 30px; display:flex; flex-direction:column; justify-content:center; }
-  .stat .cap { font-size:22px; font-weight:800; margin-bottom:16px; color:#17181a; opacity:.62; }
-  .stat b { font-size:110px; font-weight:900; line-height:1; letter-spacing:-3px; }
-  .stat span { font-size:25px; font-weight:800; margin-top:16px; color:#5c5f66; }
-  .s1 { background:#ffd43b; } .s2 { background:#8be28f; } .s3 { background:#fff; color:#ff5c38; border:1px solid #e2ded6; }
-  .s3 span { color:#5c5f66; }
-  .foot { background:transparent; text-align:center; font-size:22px; color:#9a958a; letter-spacing:6px; font-weight:600; }
+  .sub { margin-top:36px; font-size:32px; color:#b9bec7; line-height:1.5; }
+  .foot { background:transparent; text-align:center; font-size:24px; color:#9a958a; letter-spacing:6px; font-weight:700; }
 </style>
 </head>
 <body>
@@ -35,13 +28,8 @@
   </div>
   <div class="hero cell">
     <div class="en">AI-NATIVE SDLC</div>
-    <h1>AI 写代码快到飞起<br>先崩掉的是<span class="accent">流程</span></h1>
+    <h1>AI 写代码<br>快到飞起<br>先崩掉的是<span class="accent">流程</span></h1>
     <div class="sub">Anthropic 六阶段工作流 · 一份调研拆成一图流</div>
-  </div>
-  <div class="stats">
-    <div class="stat cell s1"><div class="cap">SPEC → SHIP</div><b>6</b><span>个阶段重构</span></div>
-    <div class="stat cell s2"><div class="cap">自动触发</div><b>1</b><span>个闭环</span></div>
-    <div class="stat cell s3"><div class="cap">直接跟 AI 聊</div><b>0</b><span>份排队文档</span></div>
   </div>
   <div class="foot">SWIPE →</div>
 </body>
