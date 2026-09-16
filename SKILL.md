@@ -17,7 +17,7 @@ description: 内容→多平台社媒卡片出图。做小红书/抖音/X/公众
 ## 设计入口
 - **内容驱动规范**：先写内容契约，再定信息拓扑、风格、封面 brief 和内容页 outline
 - **风格库**：`gallery.html`（纯静态，浏览器直接打开，无需服务器）— 每个风格一节（封面 + 内容页）；新增风格在 `scripts/build-gallery.py` 的 STYLES 表登记后重新生成
-- **风格匹配**：`references/style-library.md` — 当前 6 套样卡的语义适配、承载边界和 token
+- **风格匹配**：`references/style-library.md` — 当前 3 套样卡的语义适配、承载边界和 token
 - **平台规范**：`references/platform-conventions.md` — 尺寸、字号、密度和验收口径
 
 ## 工具速查
