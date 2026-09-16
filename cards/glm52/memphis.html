@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>GLM 5.2 开源实测 · Memphis</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; background:#fffdf6; color:#191919; display:flex; flex-direction:column; padding:72px 64px 64px 92px; position:relative; }
+  .deco { position:absolute; }
+  .circle { width:120px; height:120px; border-radius:50%; border:6px solid #191919; background:#ffd166; top:92px; right:80px; }
+  .tri { width:0; height:0; border-left:46px solid transparent; border-right:46px solid transparent; border-bottom:80px solid #ef476f; top:760px; right:100px; transform:rotate(45deg); }
+  .ring { width:84px; height:84px; border-radius:50%; border:16px solid #06d6a0; bottom:300px; right:88px; }
+  .dotsbox { width:170px; height:110px; background:radial-gradient(circle,#191919 4px,transparent 4.5px); background-size:26px 26px; top:800px; left:80px; opacity:.75; }
+  .zig { height:20px; width:200px; background:repeating-linear-gradient(135deg,#118ab2 0 14px,transparent 14px 28px); bottom:430px; left:76px; }
+  .star { font-size:60px; font-weight:900; color:#118ab2; bottom:250px; left:250px; }
+  .semi { width:120px; height:60px; background:#ef476f; border:5px solid #191919; border-radius:120px 120px 0 0; bottom:64px; right:200px; }
+  .cross { position:absolute; font-size:46px; font-weight:900; color:#ef476f; bottom:440px; right:110px; }
+  .top { display:inline-flex; align-self:flex-start; background:#118ab2; color:#fff; font-size:24px; font-weight:800; padding:14px 30px; border-radius:999px; letter-spacing:2px; margin-bottom:48px; }
+  h1 { font-size:110px; font-weight:900; line-height:1.2; letter-spacing:-1px; margin-bottom:24px; }
+  h1 .hi { color:#ef476f; }
+  .chip3 { display:inline-block; background:#191919; color:#fff; font-size:52px; font-weight:900; padding:12px 34px; box-shadow:8px 8px 0 #ffd166; margin-bottom:26px; }
+  .sub { font-size:30px; color:#5f5b52; line-height:1.55; max-width:850px; }
+  .seq { margin-top:auto; display:flex; gap:14px; margin-bottom:34px; }
+  .seq .cell { flex:1; border:3px solid #191919; border-radius:14px; text-align:center; padding:16px 0 12px; background:#fff; }
+  .seq .cell:nth-child(1) { background:#ffd166; } .seq .cell:nth-child(3) { background:#d0f4f7; } .seq .cell:nth-child(3) b { color:#118ab2; }
+  .seq .cell:nth-child(3) span { color:#118ab2; }
+  .seq .cell b { display:block; font-size:28px; font-weight:900; }
+  .seq .cell span { font-size:18px; font-weight:800; color:#5f5b52; letter-spacing:1px; white-space:nowrap; }
+  .bottom { display:flex; align-items:center; gap:22px; }
+  .btn { background:#191919; color:#fff; font-size:26px; font-weight:800; padding:18px 42px; border-radius:999px; box-shadow:6px 6px 0 #06d6a0; letter-spacing:2px; }
+  .foot { font-size:21px; font-weight:700; letter-spacing:3px; color:#8a857a; }
+</style>
+</head>
+<body>
+  <div class="deco circle"></div>
+  <div class="deco tri"></div>
+  <div class="deco ring"></div>
+  <div class="deco dotsbox"></div>
+  <div class="deco zig"></div>
+  <div class="deco star">✳</div>
+  <div class="deco semi"></div>
+  <div class="deco cross">✚</div>
+  <div class="top">GLM 5.2 · 开源实测</div>
+  <h1>拿两个复杂任务<br>试了一下 <span class="hi">GLM 5.2</span></h1>
+  <div><span class="chip3">基准排到最前面</span></div>
+  <div class="sub">好几个第三方基准声称它超过 Claude Opus 4.8<br>今天正式开源，直接实测</div>
+  <div class="seq">
+    <div class="cell"><b>01</b><span>百万上下文</span></div>
+    <div class="cell"><b>02</b><span>思考等级</span></div>
+    <div class="cell"><b>03</b><span>计算 −2.9×</span></div>
+    <div class="cell"><b>04</b><span>长程稳定</span></div>
+  </div>
+  <div class="bottom">
+    <div class="btn">左滑开拆 →</div>
+    <div class="foot">GLM 5.2 · VOL.01</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>GLM 5.2 开源实测 · Terminal</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:ui-monospace,"SF Mono",Menlo,monospace; background:#eef1f5; color:#24292f; display:flex; flex-direction:column; padding:64px; }
+  .win { border:1px solid #d0d7de; border-radius:14px; background:#ffffff; flex:1; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 24px 60px rgba(31,35,40,.12); }
+  .chrome { position:relative; display:flex; align-items:center; gap:10px; padding:18px 24px; background:#f0f2f4; border-bottom:1px solid #d0d7de; }
+  .dot { width:16px; height:16px; border-radius:50%; }
+  .d1 { background:#ff5f57; } .d2 { background:#febc2e; } .d3 { background:#28c840; }
+  .chrome .title { position:absolute; left:50%; transform:translateX(-50%); font-size:21px; color:#57606a; }
+  .screen { padding:52px 52px 46px 68px; display:flex; flex-direction:column; flex:1; }
+  .prompt { font-size:26px; color:#1a7f37; margin-bottom:36px; }
+  .prompt .path { color:#57606a; }
+  h1 { font-size:92px; font-weight:700; line-height:1.34; color:#1f2328; }
+  h1 .mk { background:rgba(191,135,0,.14); border-bottom:8px solid #bf8700; padding-bottom:2px; }
+  h1 .warn { color:#bf8700; }
+  .sub { margin-top:30px; font-size:30px; color:#57606a; }
+  .sub .g { color:#1a7f37; font-weight:700; }
+  .log { margin-top:52px; border:1px solid #d0d7de; border-radius:12px; background:#f6f8fa; padding:30px; flex:1; display:flex; flex-direction:column; justify-content:space-evenly; }
+  .log .cap { font-size:21px; color:#1a7f37; }
+  .log .row { display:flex; align-items:baseline; font-size:28px; line-height:1.6; white-space:nowrap; }
+  .log .row .t { color:#8c959f; width:120px; flex-shrink:0; }
+  .log .row .k { color:#0550ae; font-weight:700; width:250px; flex-shrink:0; }
+  .log .row .v { color:#24292f; flex:1; }
+  .log .row .v .ok { color:#1a7f37; font-weight:700; }
+  .out { margin-top:36px; border-left:3px solid #1a7f37; padding-left:22px; font-size:24px; line-height:1.8; color:#57606a; }
+  .out b { color:#1f2328; }
+  .cursor { display:inline-block; width:15px; height:30px; background:#1a7f37; vertical-align:-5px; margin-top:20px; }
+</style>
+</head>
+<body>
+  <div class="win">
+    <div class="chrome">
+      <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+      <div class="title">glm-5.2 — hands-on</div>
+    </div>
+    <div class="screen">
+      <div class="prompt"><span class="path">~/bench</span> ❯ ./run --model glm-5.2 --tasks 2</div>
+      <h1>拿两个复杂任务<br>试了一下 <span class="mk"><span class="warn">GLM 5.2</span></span></h1>
+      <div class="sub"><span class="g">✓</span> 第三方基准 · 全部把它排到最前面</div>
+      <div class="log">
+        <div class="cap">$ tail -f bench.log</div>
+        <div class="row"><span class="t">[01]</span><span class="k">context</span><span class="v">100 万上下文 · 稳定可用 <span class="ok">✓</span></span></div>
+        <div class="row"><span class="t">[02]</span><span class="k">thinking</span><span class="v">多思考等级 · 平衡速度与延迟</span></div>
+        <div class="row"><span class="t">[03]</span><span class="k">compute</span><span class="v">每 token 计算量 <span class="ok">−2.9×</span></span></div>
+        <div class="row"><span class="t">[04]</span><span class="k">longrun</span><span class="v">长程任务稳定性 · 显著提升 <span class="ok">✓</span></span></div>
+      </div>
+      <div class="out">STATUS: <b>正式开源</b> · 左滑看两个任务 →</div>
+      <div class="cursor"></div>
+    </div>
+  </div>
+</body>
+</html>

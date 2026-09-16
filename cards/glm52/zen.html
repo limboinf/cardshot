@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>GLM 5.2 开源实测 · Zen</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1440px; overflow:hidden; background:#f4f2ed; color:#33322e; display:flex; flex-direction:column; align-items:center; text-align:center; padding:110px 80px 88px; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; position:relative; }
+  .frame { position:absolute; inset:44px; border:1px solid #d8d3c6; pointer-events:none; }
+  .side { position:absolute; top:130px; right:58px; writing-mode:vertical-rl; font-size:19px; letter-spacing:12px; color:#a39c8a; }
+  .en { font-size:22px; letter-spacing:8px; color:#8f887a; }
+  h1 { margin-top:140px; font-size:104px; font-weight:800; line-height:1.42; letter-spacing:1px; color:#2e2d29; }
+  h1 .r { color:#c73e3a; }
+  .line { width:56px; border-top:2px solid #c73e3a; margin:50px auto 44px; }
+  .sub { font-size:38px; color:#6b6558; letter-spacing:4px; line-height:1.9; }
+  .sub b { color:#2e2d29; font-weight:800; font-size:41px; }
+  .marks { margin-top:auto; display:flex; align-items:center; justify-content:center; }
+  .marks .it { display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .marks .nd { width:12px; height:12px; border:1.5px solid #b9b2a0; border-radius:50%; background:#f4f2ed; }
+  .marks .nd.hot { border-color:#c73e3a; background:#c73e3a; }
+  .marks .lb { font-size:20px; letter-spacing:2px; color:#6b6558; white-space:nowrap; }
+  .marks .ln { width:44px; border-top:1px solid #c9c2b2; margin:0 18px 34px; }
+  .foot { margin-top:auto; font-size:17px; letter-spacing:6px; color:#a39c8a; }
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+  <div class="side">GLM 五点二 · 开源日实测</div>
+  <div class="en">GLM 5.2 · OPEN SOURCE · HANDS-ON</div>
+  <h1>拿两个复杂任务<br>试了一下 <span class="r">GLM 5.2</span></h1>
+  <div class="line"></div>
+  <div class="sub"><b>第三方基准，全排到最前面</b><br>超过 Claude Opus 4.8，今天见真章</div>
+  <div class="marks">
+    <div class="it"><div class="nd hot"></div><div class="lb">100 万上下文</div></div>
+    <div class="ln"></div>
+    <div class="it"><div class="nd"></div><div class="lb">多思考等级</div></div>
+    <div class="ln"></div>
+    <div class="it"><div class="nd"></div><div class="lb">计算 −2.9×</div></div>
+    <div class="ln"></div>
+    <div class="it"><div class="nd hot"></div><div class="lb">长程稳定</div></div>
+  </div>
+  <div class="foot">GLM 5.2 · HANDS-ON · 01 / 08</div>
+</body>
+</html>
