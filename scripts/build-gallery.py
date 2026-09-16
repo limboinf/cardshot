@@ -14,11 +14,9 @@ OUT = ROOT / "gallery.html"
 
 # 风格登记表: (文件名前缀, 展示名). 新增风格在这里加一行.
 STYLES = [
-    ("brutal", "Brutal 新粗野"),
     ("terminal", "Terminal 终端"),
     ("editorial", "Editorial 杂志编辑"),
     ("zen", "Zen 日式极简"),
-    ("bento", "Bento 便当盒"),
     ("swiss", "Swiss 瑞士网格"),
     ("memphis", "Memphis 孟菲斯"),
     ("doodle", "Doodle 手绘"),
