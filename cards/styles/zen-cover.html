@@ -4,31 +4,31 @@
 <meta charset="UTF-8">
 <meta name="card-size" content="1080x1440">
 <title>Zen 封面 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1080px; height:1440px; overflow:hidden; background:#f4f2ed; color:#33322e; display:flex; flex-direction:column; align-items:center; text-align:center; padding:110px 100px 88px; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; position:relative; }
+  :root { --sans:"Inter","Noto Sans SC",-apple-system,sans-serif; --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,sans-serif; }
+  body { width:1080px; height:1440px; overflow:hidden; background:#f4f2ed; color:#33322e; display:flex; flex-direction:column; align-items:center; text-align:center; padding:110px 80px 88px; font-family:var(--sans-zh); position:relative; }
   .frame { position:absolute; inset:44px; border:1px solid #d8d3c6; pointer-events:none; }
-  .side { position:absolute; top:130px; right:80px; writing-mode:vertical-rl; font-size:19px; letter-spacing:12px; color:#a39c8a; }
-  .seal { width:76px; height:76px; background:#c73e3a; color:#f4f2ed; font-size:29px; font-weight:700; display:flex; align-items:center; justify-content:center; letter-spacing:2px; line-height:1.1; text-align:center; margin-bottom:56px; }
-  .en { font-size:20px; letter-spacing:8px; color:#8f887a; }
-  .mark { position:absolute; bottom:56px; left:50%; transform:translateX(-50%); font-size:430px; font-weight:900; line-height:1; color:rgba(60,58,50,.05); font-family:"Songti SC","STSong",serif; pointer-events:none; }
-  h1 { margin-top:auto; font-size:92px; font-weight:800; line-height:1.5; letter-spacing:3px; color:#2e2d29; }
+  .side { position:absolute; top:130px; right:58px; writing-mode:vertical-rl; font-size:19px; letter-spacing:12px; color:#a39c8a; }
+  .en { font-size:22px; letter-spacing:8px; color:#8f887a; font-family:var(--sans); }
+  h1 { margin-top:140px; font-size:106px; font-weight:300; line-height:1.4; letter-spacing:1px; color:#2e2d29; }
   h1 .r { color:#c73e3a; }
   .line { width:56px; border-top:2px solid #c73e3a; margin:50px auto 44px; }
-  .sub { font-size:28px; color:#6b6558; letter-spacing:4px; line-height:2; }
-  .sub b { color:#2e2d29; font-weight:800; font-size:30px; }
-  .nodes { margin-top:64px; display:flex; align-items:center; }
+  .sub { font-size:38px; color:#6b6558; letter-spacing:4px; line-height:1.9; }
+  .sub b { color:#2e2d29; font-weight:500; font-size:41px; }
+  .nodes { margin-top:auto; display:flex; align-items:center; }
   .nodes .nd { width:12px; height:12px; border:1.5px solid #b9b2a0; border-radius:50%; background:#f4f2ed; flex-shrink:0; }
   .nodes .nd.hot { border-color:#c73e3a; background:#c73e3a; }
   .nodes .ln { width:52px; border-top:1px solid #c9c2b2; }
-  .foot { margin-top:auto; font-size:17px; letter-spacing:6px; color:#a39c8a; }
+  .foot { margin-top:auto; font-size:17px; letter-spacing:6px; color:#a39c8a; font-family:var(--sans); }
 </style>
 </head>
 <body>
   <div class="frame"></div>
-  <div class="mark">環</div>
   <div class="side">Anthropic 官方 · 二〇二六年八月</div>
-  <div class="seal">閉環</div>
   <div class="en">AI-NATIVE SDLC · PLAYBOOK</div>
   <h1>AI 写代码快到飞起<br>先崩掉的是<span class="r">流程</span></h1>
   <div class="line"></div>

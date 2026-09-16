@@ -54,7 +54,7 @@ description: 内容→多平台社媒卡片出图。做小红书/抖音/X/公众
 
 ## 坑（都踩过）
 - **Chrome 双重放大**：`--window-size` 永远用 CSS 像素，倍率只交给 `--force-device-scale-factor`；两者都乘 → 4x 尺寸错误
-- **卡片必须自包含**：内联 CSS、无外链字体/图片（headless 截图不等网络），字体用 system 栈
+- **卡片必须自包含**：内联 CSS、无外链图片；字体走 Google Fonts 白名单（Noto Serif SC / Playfair Display / Noto Sans SC / Inter / IBM Plex Mono，见 `references/style-library.md` 字体体系表），`<head>` 加载链接后必须保留 system 字体栈兜底（断网/离线自动降级）。shooter 的 `--virtual-time-budget=8000` 会等字体加载，截图字体异常先查网络
 - **内容贴边**：距画布边 ≥40px（check-overflow 的默认 margin），否则视觉上像被裁
 - **测试数据污染**：测试改过卡片后要恢复原件（`cards/.backups/`），别把测试文案交付出去
 - **quality-check 浅底误报**：米白/浅色底卡必须传 `--bg`，否则四角检查把设计底色当白边报 WARN

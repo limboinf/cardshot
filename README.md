@@ -81,7 +81,7 @@ python3 shooter.py cards/ --grid 2x3                  # 6 图拼 2 列长图
 1. `<meta name="card-size" content="1080x1440">`（推荐，`--auto` 直接识别）
 2. `body { width: 1080px; height: 1440px; }`（CSS 固定宽高，也能被识别）
 
-要点：所有样式内联在 `<style>`；不引外链字体/图片（headless 截图不等待网络）；深浅底自定，但内容别贴边（留 ≥40px 边距，防溢出裁切）。
+要点：所有样式内联在 `<style>`；不引外链图片；字体用 Google Fonts 白名单（Noto Serif SC / Playfair Display / Noto Sans SC / Inter / IBM Plex Mono，`<head>` 加载后保留 system 栈兜底，shooter 截图会等字体加载，详见 `references/style-library.md` 字体体系）；深浅底自定，但内容别贴边（留 ≥40px 边距，防溢出裁切）。
 
 ## 目录结构
 

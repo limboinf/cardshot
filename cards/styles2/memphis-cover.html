@@ -4,9 +4,13 @@
 <meta charset="UTF-8">
 <meta name="card-size" content="1080x1440">
 <title>Memphis 封面 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;700;800;900&family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1080px; height:1440px; overflow:hidden; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; background:#fffdf6; color:#191919; display:flex; flex-direction:column; padding:72px 64px 64px 92px; position:relative; }
+  :root { --sans:"Inter","Noto Sans SC","PingFang SC",-apple-system,sans-serif; --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:var(--sans); background:#fffdf6; color:#191919; display:flex; flex-direction:column; padding:72px 64px 64px 92px; position:relative; }
   .deco { position:absolute; }
   .circle { width:120px; height:120px; border-radius:50%; border:6px solid #191919; background:#ffd166; top:92px; right:80px; }
   .tri { width:0; height:0; border-left:46px solid transparent; border-right:46px solid transparent; border-bottom:80px solid #ef476f; top:700px; right:100px; transform:rotate(45deg); }
@@ -17,10 +21,10 @@
   .semi { width:120px; height:60px; background:#ef476f; border:5px solid #191919; border-radius:120px 120px 0 0; bottom:64px; right:200px; }
   .cross { position:absolute; font-size:46px; font-weight:900; color:#ef476f; bottom:440px; right:110px; }
   .top { display:inline-flex; align-self:flex-start; background:#118ab2; color:#fff; font-size:24px; font-weight:800; padding:14px 30px; border-radius:999px; letter-spacing:2px; margin-bottom:52px; }
-  h1 { font-size:98px; font-weight:900; line-height:1.24; letter-spacing:-1px; margin-bottom:26px; }
+  h1 { font-size:112px; font-weight:900; line-height:1.2; letter-spacing:-1px; margin-bottom:24px; }
   h1 .hi { color:#ef476f; }
-  .chip3 { display:inline-block; background:#191919; color:#fff; font-size:56px; font-weight:900; padding:12px 34px; box-shadow:8px 8px 0 #ffd166; margin-bottom:30px; }
-  .sub { font-size:26px; color:#5f5b52; line-height:1.6; }
+  .chip3 { display:inline-block; background:#191919; color:#fff; font-size:56px; font-weight:900; padding:12px 34px; box-shadow:8px 8px 0 #ffd166; margin-bottom:26px; }
+  .sub { font-size:31px; color:#5f5b52; line-height:1.55; }
   .seq { margin-top:auto; display:flex; gap:14px; margin-bottom:34px; }
   .seq .cell { flex:1; border:3px solid #191919; border-radius:14px; text-align:center; padding:14px 0 10px; background:#fff; }
   .seq .cell:nth-child(1) { background:#ffd166; } .seq .cell:nth-child(3) { background:#d0f4f7; } .seq .cell:nth-child(5) { background:#ffe0ec; }

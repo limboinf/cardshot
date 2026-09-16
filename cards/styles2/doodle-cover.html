@@ -4,23 +4,27 @@
 <meta charset="UTF-8">
 <meta name="card-size" content="1080x1440">
 <title>Doodle 手绘封面 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;800;900&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1080px; height:1440px; overflow:hidden; font-family:"PingFang SC",-apple-system,"Helvetica Neue",sans-serif; color:#3b3a36; display:flex; flex-direction:column; padding:80px 84px 72px; position:relative; background:
+  :root { --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,"Helvetica Neue",sans-serif; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:var(--sans-zh); color:#3b3a36; display:flex; flex-direction:column; padding:80px 84px 72px; position:relative; background:
     radial-gradient(900px 600px at 80% 0%, rgba(210,180,120,.14), transparent 60%),
     radial-gradient(700px 500px at 0% 100%, rgba(210,180,120,.12), transparent 60%),
     repeating-linear-gradient(105deg, rgba(120,100,60,.035) 0 2px, transparent 2px 6px),
     repeating-linear-gradient(12deg, rgba(120,100,60,.03) 0 1px, transparent 1px 5px),
     #f9f3e6; }
-  .kai { font-family:"Kaiti SC","STKaiti","PingFang SC",serif; }
+  .kai { font-family:"Kaiti SC","STKaiti","Noto Serif SC","PingFang SC",serif; }
   .frame { position:absolute; inset:44px; border:2px dashed rgba(59,58,54,.45); border-radius:18px 8px 22px 10px; pointer-events:none; }
   .tape { position:absolute; width:190px; height:44px; background:rgba(244,214,120,.65); border-left:2px dashed rgba(59,58,54,.18); border-right:2px dashed rgba(59,58,54,.18); }
   .head { display:flex; align-items:center; justify-content:space-between; margin-bottom:64px; }
   .tag { display:inline-block; background:#fffdf6; border:3px solid #3b3a36; border-radius:255px 15px 225px 15px / 15px 225px 15px 255px; padding:14px 30px; font-size:25px; font-weight:800; transform:rotate(-1.2deg); }
   .star { font-size:52px; color:#d95763; transform:rotate(8deg); }
-  h1 { font-size:100px; font-weight:700; line-height:1.42; letter-spacing:2px; margin-left:14px; }
+  h1 { font-size:115px; font-weight:700; line-height:1.30; letter-spacing:2px; margin-left:14px; }
   h1 .mk { color:#3b3a36; text-decoration:underline wavy #d95763 7px; text-underline-offset:16px; }
-  .sub { margin-top:40px; font-size:28px; color:#6b6558; margin-left:18px; }
+  .sub { margin-top:36px; font-size:34px; color:#6b6558; margin-left:18px; }
   .sub .arrow { color:#4a69bd; font-weight:800; }
   .note { margin:52px 0 0 22px; display:inline-block; font-size:33px; font-weight:800; background:linear-gradient(transparent 55%, rgba(247,215,116,.9) 55%); padding:4px 10px; transform:rotate(-1deg); }
   .scribble { margin:64px 0 0 96px; display:inline-block; border:3px solid #d95763; border-radius:15px 225px 15px 255px / 225px 15px 255px 15px; padding:16px 30px; font-size:28px; font-weight:800; color:#d95763; transform:rotate(1.2deg); background:rgba(255,253,246,.7); }

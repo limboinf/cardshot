@@ -4,29 +4,32 @@
 <meta charset="UTF-8">
 <meta name="card-size" content="1080x1440">
 <title>Terminal 内容页 · SDLC 六阶段</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1080px; height:1440px; overflow:hidden; font-family:ui-monospace,"SF Mono",Menlo,monospace; background:#eef1f5; color:#24292f; display:flex; flex-direction:column; padding:56px 64px; }
+  :root { --mono:"IBM Plex Mono","Noto Sans SC",ui-monospace,"SF Mono",Menlo,monospace; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:var(--mono); background:#eef1f5; color:#24292f; display:flex; flex-direction:column; padding:56px 64px; }
   .win { border:1px solid #d0d7de; border-radius:14px; background:#ffffff; flex:1; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 24px 60px rgba(31,35,40,.10); }
   .chrome { display:flex; align-items:center; gap:10px; padding:18px 24px; background:#f0f2f4; border-bottom:1px solid #d0d7de; }
   .dot { width:16px; height:16px; border-radius:50%; }
   .d1 { background:#ff5f57; } .d2 { background:#febc2e; } .d3 { background:#28c840; }
-  .title { margin-left:14px; font-size:22px; color:#57606a; }
-  .screen { padding:36px 44px 40px 56px; display:flex; flex-direction:column; flex:1; }
-  .prompt { font-size:24px; color:#1a7f37; margin-bottom:14px; }
+  .screen { padding:44px 48px 44px 60px; display:flex; flex-direction:column; flex:1; }
+  .prompt { font-size:24px; color:#1a7f37; margin-bottom:22px; }
   .prompt .path { color:#57606a; }
-  h1 { font-size:52px; font-weight:700; line-height:1.3; color:#1f2328; margin-bottom:10px; }
+  h1 { font-size:52px; font-weight:700; line-height:1.3; color:#1f2328; margin-bottom:14px; }
   h1 .ok { color:#1a7f37; }
   h1 .warn { color:#bf8700; }
-  .sub { font-size:24px; color:#57606a; margin-bottom:30px; }
-  .comment { font-size:23px; color:#6e7781; margin-bottom:26px; }
-  .stages { display:flex; flex-direction:column; gap:12px; }
-  .row { display:flex; align-items:baseline; gap:18px; font-size:25px; line-height:1.5; }
+  .sub { font-size:24px; color:#57606a; margin-bottom:18px; }
+  .comment { font-size:23px; color:#6e7781; margin-bottom:36px; }
+  .stages { flex:1; display:flex; flex-direction:column; justify-content:space-evenly; margin:10px 0 26px; }
+  .row { display:flex; align-items:baseline; gap:18px; font-size:26px; line-height:1.55; }
   .row .no { color:#57606a; width:44px; flex-shrink:0; text-align:right; }
   .row .name { color:#0550ae; font-weight:700; width:210px; flex-shrink:0; }
   .row .mech { color:#424a53; flex:1; }
   .row .art { color:#8250df; flex-shrink:0; }
-  .conclusion { margin-top:auto; border:1px solid #1a7f37; border-radius:10px; background:rgba(26,127,80,.08); padding:24px 28px; font-size:25px; line-height:1.6; color:#1f2328; }
+  .conclusion { margin-top:auto; border:1px solid #1a7f37; border-radius:10px; background:rgba(26,127,80,.08); padding:26px 30px; font-size:26px; line-height:1.6; color:#1f2328; }
   .conclusion .t { font-size:22px; color:#1a7f37; margin-bottom:8px; }
   .conclusion b { color:#bf8700; }
   .cursor { display:inline-block; width:14px; height:28px; background:#1a7f37; vertical-align:-4px; margin-top:18px; }
@@ -36,7 +39,6 @@
   <div class="win">
     <div class="chrome">
       <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
-      <div class="title">limbo@anthropic — sdlc.md — zsh</div>
     </div>
     <div class="screen">
       <div class="prompt"><span class="path">~/notes</span> ❯ cat ai-native-sdlc.md</div>
@@ -44,12 +46,12 @@
       <div class="sub"># AI-Native SDLC Playbook · 六阶段改造</div>
       <div class="comment">/* Anthropic 内部真实跑法，2026.8 */</div>
       <div class="stages">
-        <div class="row"><div class="no">01</div><div class="name">Plan 需求</div><div class="mech">有想法的人直接跟 Claude 聊，不等 PM 文档</div><div class="art">intent.md</div></div>
-        <div class="row"><div class="no">02</div><div class="name">Design 设计</div><div class="mech">需求+设计压成一次会话，政策当场生效</div><div class="art">spec.md</div></div>
-        <div class="row"><div class="no">03</div><div class="name">Build 开发</div><div class="mech">先出计划再动手，机构知识写进文件</div><div class="art">plan.md</div></div>
-        <div class="row"><div class="no">04</div><div class="name">Test 测试</div><div class="mech">跑完测试才算完成，evals 进 CI</div><div class="art">evals/</div></div>
-        <div class="row"><div class="no">05</div><div class="name">Deploy 发布</div><div class="mech">Agent 干到生产闸口为止，一步不越</div><div class="art">PR+review</div></div>
-        <div class="row"><div class="no">06</div><div class="name">Maintain 维护</div><div class="mech">确定性监控触发，诊断写回需求</div><div class="art">→ intent</div></div>
+        <div class="row"><div class="no">01</div><div class="name">Plan 需求</div><div class="mech">有想法的人直接跟 Claude 聊</div><div class="art">intent.md</div></div>
+        <div class="row"><div class="no">02</div><div class="name">Design 设计</div><div class="mech">需求+设计压成一次会话</div><div class="art">spec.md</div></div>
+        <div class="row"><div class="no">03</div><div class="name">Build 开发</div><div class="mech">先出计划再动手，知识写进文件</div><div class="art">plan.md</div></div>
+        <div class="row"><div class="no">04</div><div class="name">Test 测试</div><div class="mech">跑完测试才算完成</div><div class="art">evals/</div></div>
+        <div class="row"><div class="no">05</div><div class="name">Deploy 发布</div><div class="mech">Agent 只到生产闸口为止</div><div class="art">PR+review</div></div>
+        <div class="row"><div class="no">06</div><div class="name">Maintain 维护</div><div class="mech">监控触发，诊断写回需求</div><div class="art">→ intent</div></div>
       </div>
       <div class="conclusion">
         <div class="t">$ git log -1 --format=%s</div>
