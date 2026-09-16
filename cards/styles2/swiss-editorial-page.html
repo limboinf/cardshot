@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Swiss Editorial 内容页 · 六阶段</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --sans:"Inter","Noto Sans SC",-apple-system,sans-serif;
+    --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --ink:#111213; --sub:#333333; --mute:#666666; --faint:#999999;
+    --paper:#F4F4F2; --line:#DDDAD4; --blue:#1230B5;
+  }
+  body { width:1080px; height:1440px; overflow:hidden; background:var(--paper); color:var(--ink); display:flex; flex-direction:column; padding:64px 80px 56px; font-family:var(--sans-zh); }
+  .head { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:16px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:19px; color:var(--ink); letter-spacing:1px; }
+  .head .r { color:var(--faint); }
+  .label { margin:44px 0 0; font-size:21px; font-weight:600; letter-spacing:7px; color:var(--blue); font-family:var(--sans); }
+  h2 { margin:22px 0 0; font-size:58px; font-weight:300; letter-spacing:0; color:var(--ink); font-family:var(--sans); }
+  .dash { width:80px; height:4px; background:var(--blue); margin:26px 0 34px; }
+  .list { display:flex; flex-direction:column; }
+  .row { display:flex; align-items:baseline; gap:26px; padding:23px 0; border-bottom:1px solid #E9E7E1; }
+  .row:first-child { border-top:1px solid var(--line); }
+  .row .no { font-family:var(--mono); font-size:20px; color:var(--faint); width:52px; flex-shrink:0; }
+  .row .name { font-size:28px; font-weight:500; color:var(--ink); width:238px; flex-shrink:0; font-family:var(--sans); }
+  .row .name small { font-size:18px; color:var(--faint); font-weight:400; margin-left:10px; letter-spacing:2px; }
+  .row .mech { font-size:23px; color:var(--mute); line-height:1.55; flex:1; }
+  .row .art { font-family:var(--mono); font-size:19px; color:var(--ink); background:#ECEAE5; padding:6px 14px; flex-shrink:0; }
+  .concl { margin-top:auto; background:var(--blue); padding:30px 34px; }
+  .concl .t { font-family:var(--mono); font-size:19px; color:rgba(255,255,255,.6); letter-spacing:3px; margin-bottom:10px; }
+  .concl .txt { font-size:29px; font-weight:500; line-height:1.6; color:#fff; font-family:var(--sans); }
+  .foot { margin-top:24px; display:flex; justify-content:space-between; font-family:var(--mono); font-size:18px; color:var(--faint); letter-spacing:2px; }
+</style>
+</head>
+<body>
+  <div class="head"><span>AI-NATIVE SDLC · PLAYBOOK</span><span class="r">PAGE 02</span></div>
+  <div class="label">六阶段 · SIX STAGES</div>
+  <h2>六阶段一图流</h2>
+  <div class="dash"></div>
+  <div class="list">
+    <div class="row"><div class="no">01</div><div class="name">Plan<small>需求</small></div><div class="mech">有想法的人直接跟 Claude 聊，不等 PM 排队写文档</div><div class="art">intent.md</div></div>
+    <div class="row"><div class="no">02</div><div class="name">Design<small>设计</small></div><div class="mech">需求+设计压成一次会话，政策当场生效</div><div class="art">spec.md</div></div>
+    <div class="row"><div class="no">03</div><div class="name">Build<small>开发</small></div><div class="mech">先出计划再动手，机构知识写进文件</div><div class="art">plan.md</div></div>
+    <div class="row"><div class="no">04</div><div class="name">Test<small>测试</small></div><div class="mech">跑完测试才算完成，evals 进 CI</div><div class="art">evals/</div></div>
+    <div class="row"><div class="no">05</div><div class="name">Deploy<small>发布</small></div><div class="mech">Agent 干到生产闸口为止，一步不越</div><div class="art">PR+评审</div></div>
+    <div class="row"><div class="no">06</div><div class="name">Maintain<small>维护</small></div><div class="mech">确定性监控触发，诊断写回需求</div><div class="art">→ intent</div></div>
+  </div>
+  <div class="concl">
+    <div class="t">TL;DR</div>
+    <div class="txt">流程不再是一条线，而是一个自动触发的闭环；人从执行者，变成守在闸口的判断者。</div>
+  </div>
+  <div class="foot"><span>ENGINEERING NOTES</span><span>ANTHROPIC 2026.8</span></div>
+</body>
+</html>

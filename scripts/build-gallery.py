@@ -17,6 +17,7 @@ STYLES = [
     ("editorial", "Editorial 杂志编辑"),
     ("zen", "Zen 日式极简"),
     ("swiss", "Swiss 瑞士网格"),
+    ("swiss-editorial", "Swiss Editorial 轻瑞士"),
 ]
 
 KINDS = ["cover", "page"]  # 每个风格固定两页: 封面 + 内容页
