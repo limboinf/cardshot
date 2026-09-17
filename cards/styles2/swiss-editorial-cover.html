@@ -14,21 +14,21 @@
     --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
     --ink:#111213; --sub:#333333; --mute:#666666; --faint:#999999;
-    --paper:#F4F4F2; --line:#DDDAD4; --blue:#1230B5;
+    --paper:#F4F4F2; --line:#DDDAD4; --accent:#4E7A52;
   }
   body { width:1080px; height:1440px; overflow:hidden; background:var(--paper); color:var(--ink); display:flex; flex-direction:column; padding:72px 80px 60px; font-family:var(--sans-zh); }
   .head { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:18px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:20px; color:var(--ink); letter-spacing:1px; }
   .head .r { color:var(--faint); }
-  .label { margin:64px 0 0; font-size:22px; font-weight:600; letter-spacing:7px; color:var(--blue); font-family:var(--sans); }
+  .label { margin:64px 0 0; font-size:22px; font-weight:600; letter-spacing:7px; color:var(--accent); font-family:var(--sans); }
   h1 { margin:30px 0 0; font-size:100px; font-weight:300; line-height:1.32; letter-spacing:0; color:var(--ink); font-family:var(--sans); }
-  .dash { width:80px; height:4px; background:var(--blue); margin:38px 0 0; }
+  .dash { width:80px; height:4px; background:var(--accent); margin:38px 0 0; }
   .lede { margin:36px 0 0; font-size:30px; line-height:1.8; color:var(--sub); max-width:860px; }
   .grid { margin-top:auto; margin-bottom:44px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
   .cell { background:#ECEAE5; padding:26px 30px 24px; }
   .cell .no { font-family:var(--mono); font-size:18px; color:var(--faint); margin-bottom:14px; letter-spacing:2px; }
   .cell .k { font-size:27px; font-weight:500; color:var(--ink); font-family:var(--sans); }
   .cell .d { margin-top:8px; font-size:20px; line-height:1.5; color:var(--mute); }
-  .cell.inv { background:var(--blue); }
+  .cell.inv { background:var(--accent); }
   .cell.inv .no { color:rgba(255,255,255,.55); }
   .cell.inv .k { color:#fff; }
   .cell.inv .d { color:rgba(255,255,255,.82); }

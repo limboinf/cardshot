@@ -18,7 +18,7 @@
 | Editorial 杂志编辑 | #f7f4ee | 朱红 #c8321e | Noto Serif SC 衬线大标题、Playfair 英文点缀、报头、细规则线、目录栏 |
 | Zen 日式极简 | #f4f2ed | 朱红 #c73e3a | 细线框、竖排侧注、印章、「環」字水印 |
 | Swiss 瑞士网格 | #ffffff | 红 #e0311d / 黑 | 大号无衬线、红方块、十字标记、描边数字 |
-| Swiss Editorial 轻瑞士 | 米白 #F4F4F2 | 克莱因蓝 #1230B5（全卡限 3 处） | 细字重 300 大标题、mono 眉头/编号规格感、细规则线、2×2 等大格一格反色、大留白 |
+| Swiss Editorial 轻瑞士 | 米白 #F4F4F2 | 苔绿 #4E7A52（全卡限 3 处） | 细字重 300 大标题、mono 眉头/编号规格感、细规则线、2×2 等大格一格反色、大留白 |
 
 原版风格（暖米白荧光笔：#faf6ef 底 / #ffd591 荧光标记 / #d4570e 强调橙）见 `cards/sdlc-xhs-01.html`。
 
@@ -30,7 +30,7 @@
 |---|---|---|---|---|
 | Editorial | `--serif-zh` Noto Serif SC（Songti 兜底）+ `--serif-en` Playfair Display（英文点缀） | Noto Serif SC | `--mono` IBM Plex Mono（页码/期号/脚注） | 越大越轻：封面 h1 500 |
 | Swiss | `--sans` Inter（拉丁优先） | `--sans-zh` Noto Sans SC | IBM Plex Mono（顶部条/序列/产物 tag） | 越大越轻：h1 300、大数字 200、条目名 600 |
-| Swiss Editorial | `--sans` Inter 300 大标题 + 克莱因蓝标签/短下划线 | `--sans-zh` Noto Sans SC | IBM Plex Mono（眉头/编号/规格格） | 越大越轻：h1 300、条目 500；蓝色全卡限 3 处 |
+| Swiss Editorial | `--sans` Inter 300 大标题 + 苔绿 #4E7A52 标签/短下划线 | `--sans-zh` Noto Sans SC | IBM Plex Mono（眉头/编号/规格格） | 越大越轻：h1 300、条目 500；强调色全卡限 3 处 |
 | Zen | `--sans` Inter（英文行） | `--sans-zh` Noto Sans SC | — | 越大越轻：封面 h1 300 |
 
 - 「越大越轻」作用于全部风格：字号越大字重越轻，避免 900 重字重标题把封面压成"信息图横幅"；缩略图若发虚，向上回调一档（200→300→400）。
