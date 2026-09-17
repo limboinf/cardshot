@@ -69,7 +69,7 @@ python3 shooter.py cards/ --grid 2x3                  # 6 图拼 2 列长图
 
 `gallery.html` 是纯静态预览墙（不依赖任何服务器，浏览器直接打开）：
 
-- `cards/styles*` 下所有风格样卡的实时缩放预览，每个风格一节（封面 + 内容页）
+- `templates/` 下所有风格样卡的实时缩放预览，每个风格一节（封面 + 内容页 + 结尾页）
 - 每张卡可点「↗ 原件」全尺寸打开
 - 新增风格后在 `scripts/build-gallery.py` 的 STYLES 表登记，再重新生成：`python3 scripts/build-gallery.py`
 - 风格 token 与选型参考 `references/style-library.md`
@@ -81,7 +81,7 @@ python3 shooter.py cards/ --grid 2x3                  # 6 图拼 2 列长图
 1. `<meta name="card-size" content="1080x1440">`（推荐，`--auto` 直接识别）
 2. `body { width: 1080px; height: 1440px; }`（CSS 固定宽高，也能被识别）
 
-要点：所有样式内联在 `<style>`；不引外链图片；字体用 Google Fonts 白名单（Noto Serif SC / Playfair Display / Noto Sans SC / Inter / IBM Plex Mono，`<head>` 加载后保留 system 栈兜底，shooter 截图会等字体加载，详见 `references/style-library.md` 字体体系）；深浅底自定，但内容别贴边（留 ≥40px 边距，防溢出裁切）。
+要点：所有样式内联在 `<style>`；不引外链图片；字体用 Google Fonts 白名单（Noto Serif SC / Playfair Display / Noto Sans SC / Inter / IBM Plex Mono，`<head>` 加载后保留 system 栈兜底，shooter 截图会等字体加载，详见 `references/style-library.md` 字体体系）；深浅底自定，但内容别贴边（留 ≥40px 边距，防溢出裁切）。小红书卡字号走手机优先尺（正文 ≥31px、条目名 42px、封面 h1 130–150px，每页 ≤4–5 条），见 `references/style-library.md`。
 
 ## 目录结构
 
@@ -92,7 +92,8 @@ cardshot/
 ├── SKILL.md         # Agent Skill 入口 (见下节)
 ├── references/      # 平台规范 + 风格库 (skill 引用文件)
 ├── scripts/         # check-overflow / shoot / quality-check / build-gallery
-├── cards/           # AI 生成的 HTML 卡片 (含风格样卡 styles*/)
+├── cards/           # AI 生成的 HTML 卡片 (项目卡片)
+├── templates/       # 风格样卡：4 套 × 封面/内容页/结尾页 (gallery 数据源)
 └── output/          # PNG 输出 (gitignore)
 ```
 
@@ -126,5 +127,5 @@ ln -s ~/cardshot ~/.hermes/skills/creative/cardshot
 - 6 张卡 × `--auto` 全自动出图（各按自带尺寸）✓
 - 指定预设批量 `-p xhs douyin` ✓
 - 网格拼接 `--grid 1x1` ✓
-- 风格库 gallery.html 双击直开（file://），15 张样卡实时预览 ✓
+- 风格库 gallery.html 双击直开（file://），12 张样卡实时预览 ✓
 - 2x/4x 高清 `--scale` ✓

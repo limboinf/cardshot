@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Swiss Editorial 封面 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --sans:"Inter","Noto Sans SC",-apple-system,sans-serif;
+    --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --ink:#111213; --sub:#333333; --mute:#666666; --faint:#999999;
+    --paper:#F4F4F2; --line:#DDDAD4; --accent:#4E7A52;
+  }
+  body { width:1080px; height:1440px; overflow:hidden; background:var(--paper); color:var(--ink); display:flex; flex-direction:column; padding:56px 80px 48px; font-family:var(--sans-zh); }
+  .head { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:16px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:20px; color:var(--ink); letter-spacing:1px; }
+  .head .r { color:var(--faint); }
+  .label { margin-top:36px; font-size:24px; font-weight:600; letter-spacing:7px; color:var(--accent); font-family:var(--sans); }
+  h1 { margin-top:20px; font-size:130px; font-weight:300; line-height:1.2; letter-spacing:0; color:var(--ink); font-family:var(--sans); }
+  h1 b { font-weight:500; }
+  .dash { width:80px; height:4px; background:var(--accent); margin-top:28px; }
+  .lede { margin-top:24px; font-size:36px; line-height:1.7; color:var(--sub); max-width:760px; text-wrap:balance; }
+  .specs { margin-top:auto; border-top:1px solid var(--line); }
+  .srow { display:flex; align-items:baseline; gap:44px; padding:18px 0; border-bottom:1px solid var(--line); }
+  .srow .n { width:150px; flex-shrink:0; font-size:96px; font-weight:200; line-height:1; color:var(--ink); font-family:var(--sans); }
+  .srow .n .g { color:var(--accent); }
+  .srow .k { font-size:32px; font-weight:500; color:var(--ink); letter-spacing:1px; }
+  .foot { margin-top:18px; border-top:1px solid var(--line); padding-top:16px; display:flex; justify-content:space-between; font-family:var(--mono); font-size:20px; color:var(--faint); letter-spacing:2px; }
+  .foot .go { color:var(--ink); }
+</style>
+</head>
+<body>
+  <div class="head"><div>AI-NATIVE SDLC · PLAYBOOK</div><div class="r">01</div></div>
+  <div class="label">拆解 · SIX STAGES</div>
+  <h1>AI 写代码<br>快到飞起，<br>先崩掉的是<b>流程</b></h1>
+  <div class="dash"></div>
+  <div class="lede">六阶段被重新接线：从线性流水线，到自动触发的闭环。</div>
+  <div class="specs">
+    <div class="srow"><div class="n">6</div><div class="k">个阶段 · PLAN → LOOP</div></div>
+    <div class="srow"><div class="n"><span class="g">1</span></div><div class="k">个闭环 · 监控触发，诊断写回</div></div>
+    <div class="srow"><div class="n">0</div><div class="k">份排队文档 · 直接跟 Claude 聊</div></div>
+  </div>
+  <div class="foot"><div>ANTHROPIC OFFICIAL</div><div class="go">左滑开拆 →</div></div>
+</body>
+</html>

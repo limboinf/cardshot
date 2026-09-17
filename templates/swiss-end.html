@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Swiss 结尾页 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@200;300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --sans:"Inter","Noto Sans SC",-apple-system,sans-serif; --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,sans-serif; --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:var(--sans-zh); background:#FFFFFF; color:#111; display:flex; flex-direction:column; padding:64px 60px 56px; }
+  .top { display:flex; justify-content:space-between; align-items:baseline; font-size:22px; font-weight:500; letter-spacing:3px; color:#6B6B6B; font-family:var(--mono); }
+  .mid { flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .endsq { width:200px; height:200px; background:#E0311D; display:flex; align-items:flex-end; padding:18px 20px; }
+  .endsq .t { font-size:28px; font-weight:500; letter-spacing:4px; color:#fff; font-family:var(--mono); }
+  .statement { margin-top:56px; font-size:68px; font-weight:300; line-height:1.4; letter-spacing:0; font-family:var(--sans); text-wrap:balance; }
+  .statement b { color:#E0311D; font-weight:400; }
+  .src { margin-top:36px; font-size:24px; color:#6B6B6B; letter-spacing:2px; font-family:var(--mono); }
+  .seq { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-top:auto; }
+  .seq .cell { background:#111; color:#fff; padding:16px 0 14px; text-align:center; }
+  .seq .cell.hot { background:#E0311D; }
+  .seq .cell b { display:block; font-size:36px; font-weight:600; font-family:var(--sans); }
+  .seq .cell span { display:block; margin-top:4px; font-size:20px; font-weight:500; letter-spacing:2px; font-family:var(--mono); }
+  .bar { height:14px; background:#E0311D; margin-top:28px; }
+  .foot { display:flex; justify-content:space-between; margin-top:20px; font-size:22px; font-weight:500; letter-spacing:3px; color:#111; font-family:var(--mono); }
+</style>
+</head>
+<body>
+  <div class="top"><div>AI-NATIVE SDLC</div><div>03</div></div>
+  <div class="mid">
+    <div class="endsq"><div class="t">END</div></div>
+    <div class="statement">流程不再是一条线，而是一个<b>自动触发的闭环</b>。人从执行者，变成守在闸口的<b>判断者</b>。</div>
+    <div class="src">来源 · Anthropic Engineering · AI-Native SDLC Playbook</div>
+  </div>
+  <div class="seq">
+    <div class="cell"><b>01</b><span>PLAN</span></div>
+    <div class="cell"><b>02</b><span>SPEC</span></div>
+    <div class="cell"><b>03</b><span>BUILD</span></div>
+    <div class="cell"><b>04</b><span>TEST</span></div>
+    <div class="cell"><b>05</b><span>SHIP</span></div>
+    <div class="cell hot"><b>06</b><span>LOOP</span></div>
+  </div>
+  <div class="bar"></div>
+  <div class="foot"><div>收藏这组图 · 下一期拆「闸口」→</div><div>ENGINEERING</div></div>
+</body>
+</html>

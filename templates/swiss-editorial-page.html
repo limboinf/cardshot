@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Swiss Editorial 内容页 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --sans:"Inter","Noto Sans SC",-apple-system,sans-serif;
+    --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --ink:#111213; --sub:#333333; --mute:#666666; --faint:#999999;
+    --paper:#F4F4F2; --line:#DDDAD4; --accent:#4E7A52;
+  }
+  body { width:1080px; height:1440px; overflow:hidden; background:var(--paper); color:var(--ink); display:flex; flex-direction:column; padding:64px 80px 52px; font-family:var(--sans-zh); }
+  .head { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:16px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:20px; color:var(--ink); letter-spacing:1px; }
+  .head .r { color:var(--faint); }
+  .label { margin-top:44px; font-size:22px; font-weight:600; letter-spacing:6px; color:var(--accent); font-family:var(--sans); }
+  h2 { margin-top:22px; font-size:64px; font-weight:300; line-height:1.3; letter-spacing:0; color:var(--ink); font-family:var(--sans); }
+  .dash { width:80px; height:4px; background:var(--accent); margin-top:30px; }
+  .rows { margin-top:38px; border-top:1px solid var(--line); flex:1; display:flex; flex-direction:column; }
+  .row { display:flex; align-items:center; gap:36px; padding:34px 0; border-bottom:1px solid var(--line); flex:1; }
+  .row .no { width:64px; flex-shrink:0; font-size:22px; color:var(--faint); font-family:var(--mono); padding-top:14px; }
+  .row .name { width:220px; flex-shrink:0; font-size:42px; font-weight:500; font-family:var(--sans); }
+  .row .name .zh { font-size:22px; font-weight:400; color:var(--faint); margin-left:12px; letter-spacing:3px; }
+  .row .txt { flex:1; }
+  .row .mech { font-size:32px; line-height:1.55; color:var(--mute); text-wrap:balance; }
+  .row .out { margin-top:10px; font-size:22px; color:var(--ink); font-family:var(--mono); }
+  .conclusion { margin-top:40px; border-top:1px solid var(--ink); padding-top:22px; }
+  .conclusion .t { font-size:20px; letter-spacing:4px; color:var(--accent); font-family:var(--mono); }
+  .conclusion .txt { margin-top:12px; font-size:36px; font-weight:500; line-height:1.55; color:var(--ink); }
+  .foot { display:flex; justify-content:space-between; margin-top:26px; font-size:20px; color:var(--faint); letter-spacing:2px; font-family:var(--mono); }
+</style>
+</head>
+<body>
+  <div class="head"><div>AI-NATIVE SDLC · PLAYBOOK</div><div class="r">02</div></div>
+  <div class="label">Ⅰ — Ⅲ · 从需求到开发</div>
+  <h2>前三步，压成一次会话</h2>
+  <div class="dash"></div>
+  <div class="rows">
+    <div class="row">
+      <div class="no">01</div>
+      <div class="name">Plan<span class="zh">需求</span></div>
+      <div class="txt"><div class="mech">有想法的人直接跟 Claude 聊，不排队等 PM 写文档</div><div class="out">→ intent.md</div></div>
+    </div>
+    <div class="row">
+      <div class="no">02</div>
+      <div class="name">Design<span class="zh">设计</span></div>
+      <div class="txt"><div class="mech">需求与设计压成一次会话，政策当场生效</div><div class="out">→ spec.md</div></div>
+    </div>
+    <div class="row">
+      <div class="no">03</div>
+      <div class="name">Build<span class="zh">开发</span></div>
+      <div class="txt"><div class="mech">先出计划再动手，机构知识写进文件</div><div class="out">→ plan.md</div></div>
+    </div>
+  </div>
+  <div class="conclusion">
+    <div class="t">TL;DR</div>
+    <div class="txt">三步的产物都是一份 .md：产品 owner 和 agent 读的是同一份文件。</div>
+  </div>
+  <div class="foot"><div>ENGINEERING NOTES</div><div>下一页 · Ⅳ → Ⅵ</div></div>
+</body>
+</html>

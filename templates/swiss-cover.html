@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Swiss 封面 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@200;300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --sans:"Inter","Noto Sans SC",-apple-system,sans-serif; --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,sans-serif; --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:var(--sans-zh); background:#FFFFFF; color:#111; display:flex; flex-direction:column; padding:64px 60px 56px; position:relative; }
+  .cross { position:absolute; font-size:34px; font-weight:300; color:#C9C9C9; }
+  .top { display:flex; justify-content:space-between; align-items:baseline; font-size:24px; font-weight:500; letter-spacing:3px; font-family:var(--mono); }
+  .top .no { color:#E0311D; }
+  h1 { margin-top:44px; font-size:136px; font-weight:300; line-height:1.2; letter-spacing:-1px; font-family:var(--sans); }
+  h1 .r { color:#E0311D; }
+  .sub { margin-top:56px; font-size:36px; color:#3D3D3D; line-height:1.6; max-width:860px; text-wrap:balance; }
+  .bignum { margin-top:auto; text-align:right; font-size:360px; font-weight:200; line-height:.88; letter-spacing:4px; color:transparent; -webkit-text-stroke:4px #E0311D; font-family:var(--sans); }
+  .seq { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-top:20px; }
+  .seq .cell { border:3px solid #111; padding:16px 0 14px; text-align:center; background:#fff; color:#111; }
+  .seq .cell.hot { background:#E0311D; border-color:#E0311D; color:#fff; }
+  .seq .cell b { display:block; font-size:36px; font-weight:600; font-family:var(--sans); }
+  .seq .cell span { display:block; margin-top:4px; font-size:20px; font-weight:500; letter-spacing:2px; font-family:var(--mono); }
+  .bar { height:14px; background:#E0311D; margin-top:22px; }
+  .foot { display:flex; justify-content:space-between; margin-top:20px; font-size:22px; font-weight:500; letter-spacing:3px; color:#111; font-family:var(--mono); }
+</style>
+</head>
+<body>
+  <div class="cross" style="top:56px; left:46%;">+</div>
+  <div class="cross" style="top:44%; right:64px;">+</div>
+  <div class="top"><div>ANTHROPIC · PLAYBOOK</div><div class="no">01</div></div>
+  <h1>AI 写代码<br>快到飞起，<br>先崩掉的是<span class="r">流程</span></h1>
+  <div class="sub">六阶段被重新接线：从线性流水线，到自动触发的闭环。</div>
+  <div class="bignum">06</div>
+  <div class="seq">
+    <div class="cell hot"><b>01</b><span>PLAN</span></div>
+    <div class="cell"><b>02</b><span>SPEC</span></div>
+    <div class="cell"><b>03</b><span>BUILD</span></div>
+    <div class="cell"><b>04</b><span>TEST</span></div>
+    <div class="cell"><b>05</b><span>SHIP</span></div>
+    <div class="cell"><b>06</b><span>LOOP</span></div>
+  </div>
+  <div class="bar"></div>
+  <div class="foot"><div>ENGINEERING</div><div>VOL.01 / 左滑开拆 →</div></div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Editorial 内容页 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;700;900&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --serif-zh:"Noto Serif SC","Songti SC","STSong",serif; --serif-en:"Playfair Display","Noto Serif SC",serif; --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace; }
+  body { width:1080px; height:1440px; overflow:hidden; background:#F7F4EE; color:#1A1A1A; display:flex; flex-direction:column; padding:64px 84px 56px; font-family:var(--serif-zh); }
+  .masthead { display:flex; align-items:baseline; justify-content:space-between; border-bottom:3px solid #1A1A1A; padding-bottom:18px; }
+  .masthead .brand { font-size:32px; font-weight:900; letter-spacing:10px; }
+  .masthead .no { font-size:24px; letter-spacing:2px; font-family:var(--mono); }
+  .kicker { margin-top:40px; font-size:24px; letter-spacing:5px; color:#C8321E; font-weight:500; font-family:var(--mono); }
+  h2 { margin-top:22px; font-size:68px; font-weight:500; line-height:1.3; letter-spacing:2px; }
+  .rule { border-top:1px solid #1A1A1A; margin-top:30px; }
+  .item { display:flex; align-items:center; gap:34px; padding:30px 0; border-bottom:1px solid #C9C2B2; flex:1; }
+  .item .num { width:96px; flex-shrink:0; font-size:44px; color:#C8321E; font-family:var(--serif-en); line-height:1.2; }
+  .item .body { flex:1; }
+  .item .name { font-size:42px; font-weight:700; }
+  .item .name .zh { font-size:26px; font-weight:400; color:#6B6558; margin-left:14px; letter-spacing:3px; }
+  .item .mech { margin-top:12px; font-size:32px; line-height:1.55; color:#3A3630; text-wrap:balance; }
+  .item .out { margin-top:12px; font-size:24px; color:#C8321E; font-family:var(--mono); }
+  .conclusion { margin-top:40px; border-top:3px solid #1A1A1A; padding-top:26px; }
+  .conclusion .t { font-size:22px; letter-spacing:5px; color:#6B6558; }
+  .conclusion .quote { margin-top:12px; font-size:36px; line-height:1.55; font-weight:700; }
+  .conclusion .quote b { color:#C8321E; }
+  .foot { display:flex; justify-content:space-between; margin-top:26px; font-size:22px; color:#6B6558; letter-spacing:3px; font-family:var(--mono); }
+  .foot .next { color:#C8321E; }
+</style>
+</head>
+<body>
+  <div class="masthead"><div class="brand">工程手记</div><div class="no">02</div></div>
+  <div class="kicker">Ⅰ — Ⅲ · 从需求到开发</div>
+  <h2>前三步，压成一次会话</h2>
+  <div class="rule"></div>
+  <div class="item">
+    <div class="num">Ⅰ</div>
+    <div class="body">
+      <div class="name">Plan<span class="zh">需求</span></div>
+      <div class="mech">有想法的人直接跟 Claude 聊，不排队等 PM 写文档</div>
+      <div class="out">→ intent.md</div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="num">Ⅱ</div>
+    <div class="body">
+      <div class="name">Design<span class="zh">设计</span></div>
+      <div class="mech">需求与设计压成一次会话，政策当场生效</div>
+      <div class="out">→ spec.md</div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="num">Ⅲ</div>
+    <div class="body">
+      <div class="name">Build<span class="zh">开发</span></div>
+      <div class="mech">先出计划再动手，机构知识写进文件</div>
+      <div class="out">→ plan.md</div>
+    </div>
+  </div>
+  <div class="conclusion">
+    <div class="t">一句话</div>
+    <div class="quote">三步的产物都是一份 .md：产品 owner 和 agent 读的是<b>同一份文件</b>。</div>
+  </div>
+  <div class="foot"><div>ENGINEERING NOTES</div><div class="next">下一页 · Ⅳ Test → Ⅵ Maintain</div></div>
+</body>
+</html>

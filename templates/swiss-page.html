@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<title>Swiss 内容页 · AI-Native SDLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@200;300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --sans:"Inter","Noto Sans SC",-apple-system,sans-serif; --sans-zh:"Noto Sans SC","PingFang SC",-apple-system,sans-serif; --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace; }
+  body { width:1080px; height:1440px; overflow:hidden; font-family:var(--sans-zh); background:#FFFFFF; color:#111; display:flex; flex-direction:column; padding:64px 60px 56px; }
+  .top { display:flex; justify-content:space-between; align-items:baseline; font-size:22px; font-weight:500; letter-spacing:3px; color:#6B6B6B; font-family:var(--mono); }
+  h2 { margin-top:52px; font-size:72px; font-weight:400; letter-spacing:1px; font-family:var(--sans); }
+  h2 .r { color:#E0311D; }
+  .rule { border-top:6px solid #111; margin-top:34px; }
+  .rows { margin-top:36px; flex:1; display:flex; flex-direction:column; }
+  .row { display:flex; align-items:center; gap:36px; padding:34px 0; border-bottom:1px solid #D9D9D9; flex:1; }
+  .row .num { width:120px; flex-shrink:0; font-size:72px; font-weight:200; color:#E0311D; font-family:var(--sans); line-height:1; }
+  .row .body { flex:1; }
+  .row .name { font-size:42px; font-weight:600; font-family:var(--sans); }
+  .row .name .zh { font-size:22px; font-weight:400; color:#6B6B6B; margin-left:14px; letter-spacing:3px; font-family:var(--mono); }
+  .row .mech { margin-top:12px; font-size:32px; line-height:1.55; color:#3D3D3D; text-wrap:balance; }
+  .row .out { margin-top:12px; font-size:24px; color:#111; font-family:var(--mono); }
+  .conclusion { margin-top:40px; }
+  .conclusion .bar { width:120px; height:8px; background:#E0311D; margin-bottom:26px; }
+  .conclusion .txt { font-size:36px; font-weight:500; line-height:1.55; }
+  .foot { display:flex; justify-content:space-between; margin-top:34px; border-top:1px solid #111; padding-top:18px; font-size:22px; font-weight:500; letter-spacing:3px; color:#111; font-family:var(--mono); }
+  .foot .r { color:#E0311D; }
+</style>
+</head>
+<body>
+  <div class="top"><div>AI-NATIVE SDLC</div><div>02</div></div>
+  <h2><span class="r">/</span> 前三步，压成一次会话</h2>
+  <div class="rule"></div>
+  <div class="rows">
+    <div class="row">
+      <div class="num">01</div>
+      <div class="body">
+        <div class="name">Plan<span class="zh">需求</span></div>
+        <div class="mech">有想法的人直接跟 Claude 聊，不排队等 PM 写文档</div>
+        <div class="out">→ intent.md</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="num">02</div>
+      <div class="body">
+        <div class="name">Design<span class="zh">设计</span></div>
+        <div class="mech">需求与设计压成一次会话，政策当场生效</div>
+        <div class="out">→ spec.md</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="num">03</div>
+      <div class="body">
+        <div class="name">Build<span class="zh">开发</span></div>
+        <div class="mech">先出计划再动手，机构知识写进文件</div>
+        <div class="out">→ plan.md</div>
+      </div>
+    </div>
+  </div>
+  <div class="conclusion">
+    <div class="bar"></div>
+    <div class="txt">三步的产物都是一份 .md：产品 owner 和 agent 读的是同一份文件。</div>
+  </div>
+  <div class="foot"><div>NEXT · 04 TEST → 06 LOOP</div><div class="r">ANTHROPIC</div></div>
+</body>
+</html>
