@@ -166,7 +166,7 @@
 </head>
 <body>
   <div class="top"><span>PROBE 01 · PUNCTUATION CHECK</span><span>03</span></div>
-  <h2><span class="num">/</span> 探针 01：看破假 Claude</h2>
+  <h2><span class="num">/</span> 探针 01：看破假 Claude 4</h2>
   <div class="rule"></div>
 
   <div class="prompt-card">
@@ -187,7 +187,7 @@
       </div>
       <div class="col-title">输出半角直引号 " "</div>
       <div class="col-desc">
-        真 Claude 3.5 分词器底层对直引号 <code>" "</code> 有强偏好。即使要求写中文对话，官方模型依然顽固打出英文半角直引号。
+        真 Claude 4（Sonnet/Opus）分词器底层对直引号 <code>" "</code> 偏好极强。即使要求中文对话，依然顽固打出英文半角直引号。
       </div>
     </div>
 
@@ -198,7 +198,7 @@
       </div>
       <div class="col-title">输出中文弯引号 “ ”</div>
       <div class="col-desc">
-        国内开源模型（如 Qwen/DeepSeek）或 GPT-4o 换皮，后端默认输出全角弯引号 <code>“ ”</code>，底层习惯极难消除。
+        开源小模型或早期模型套壳换皮，后端分词习惯默认输出全角弯引号 <code>“ ”</code>，外层提示词极难消除。
       </div>
     </div>
   </div>
@@ -207,6 +207,6 @@
     <b>判定原理</b>：Anthropic 官方训练集的分词惯性是底层基因，外层伪造的 System Prompt 根本压制不住。
   </div>
 
-  <div class="foot"><span>耗时：10 秒 ｜ 适用：专测 Claude 3.5 系列</span><span class="red">LIMBO.PY</span></div>
+  <div class="foot"><span>耗时：10 秒 ｜ 适用：专测 Claude 4 家族</span><span class="red">LIMBO.PY</span></div>
 </body>
 </html>

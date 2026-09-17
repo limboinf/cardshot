@@ -137,7 +137,7 @@
         <div class="trap-tag">DYNAMIC ROUTE</div>
       </div>
       <div class="trap-desc">
-        大部分质检脚本只打首句测试。平台第一句用真 4o / Sonnet 给你尝甜头，进入多轮对话立马静默路由到 4o-mini 或开源小模型。
+        大部分质检脚本只打首句测试。平台第一句用真 Claude 4 / GPT-5 给你尝甜头，进入多轮对话立马静默路由到开源蒸馏版或小参数模型。
       </div>
     </div>
 
@@ -153,11 +153,11 @@
 
     <div class="trap-card">
       <div class="trap-head">
-        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">03</span>标称 200k 窗口，超 8k 静默丢弃</div>
+        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">03</span>标称 1M 窗口，超 64k 静默丢弃</div>
         <div class="trap-tag">SILENT TRUNCATE</div>
       </div>
       <div class="trap-desc">
-        长文本显存计算极其昂贵。很多中转站超 8k 直接丢弃前面上下文，导致模型聊着聊着突然失忆，并非模型本身问题。
+        百万级长文本显存开销极大。很多中转站超 64k/128k 直接丢弃前面上下文，导致模型聊着聊着突然失忆，却按 1M 扣费。
       </div>
     </div>
   </div>

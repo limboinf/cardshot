@@ -194,7 +194,7 @@
 </head>
 <body>
   <div class="top"><span>PROBE 05 · CONTEXT TRUNCATION</span><span>07</span></div>
-  <h2><span class="num">/</span> 探针 05：测上下文是否被砍</h2>
+  <h2><span class="num">/</span> 探针 05：测 1M 上下文是否被砍</h2>
   <div class="rule"></div>
 
   <div class="steps-box">
@@ -202,21 +202,21 @@
       <div class="step-id">STEP 01</div>
       <div class="step-txt">
         <b>首句埋暗号</b>
-        <span>第一句话发送：<code>【测试暗号：阿珍爱上阿强9527】记住这个暗号。</code></span>
+        <span>第一句话发送：<code>【测试暗号：NEO-2026-X9527】牢记这个暗号。</code></span>
       </div>
     </div>
     <div class="step-row">
       <div class="step-id">STEP 02</div>
       <div class="step-txt">
         <b>灌入长文本</b>
-        <span>连续粘贴两万字的文章、开源项目文档或长代码。</span>
+        <span>连续灌入十万字的技术长文、开源项目代码或标准文档。</span>
       </div>
     </div>
     <div class="step-row">
       <div class="step-id">STEP 03</div>
       <div class="step-txt">
         <b>末尾查暗号</b>
-        <span>最后一问：<code>我第一句话留的暗号是什么？</code></span>
+        <span>最后一问：<code>文档开头我留的暗号是什么？</code></span>
       </div>
     </div>
   </div>
@@ -229,7 +229,7 @@
       </div>
       <div class="col-title">秒回精准暗号</div>
       <div class="col-desc">
-        真实上下文窗口覆盖完整数据量，中间未发生任何隐式截断或缓存丢弃。
+        真实 1M 上下文窗口覆盖完整数据量，中间未发生任何隐式截断或缓存丢弃。
       </div>
     </div>
 
@@ -238,9 +238,9 @@
         <span>COUNTERFEIT</span>
         <span>偷砍静默截断</span>
       </div>
-      <div class="col-title">不到一万字就失忆胡编</div>
+      <div class="col-title">超过几万字就失忆胡编</div>
       <div class="col-desc">
-        宣称支持 128k 却连两万字都记不住，说明后台为了省算力，把窗口硬砍成了 8k-16k。
+        宣称支持 1M/2M 上下文，但超过 64k 直接丢弃前文，却依然按超长 Token 扣费。
       </div>
     </div>
   </div>
@@ -249,6 +249,6 @@
     <b>行业事实</b>：长文本显存开销极大，静默截断是三方中转商最隐蔽的降本手段。
   </div>
 
-  <div class="foot"><span>耗时：1 分钟 ｜ 适用：测 128k / 200k 真实窗口</span><span class="red">LIMBO.PY</span></div>
+  <div class="foot"><span>耗时：1 分钟 ｜ 适用：测 500K / 1M / 2M 真实窗口</span><span class="red">LIMBO.PY</span></div>
 </body>
 </html>

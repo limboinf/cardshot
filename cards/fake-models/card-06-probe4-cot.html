@@ -175,7 +175,7 @@
       <span class="tag">COT AUDIT</span>
     </div>
     <div class="prompt-body">
-      "strawberry" 里有几个字母 r？请直接给数字，绝对禁止输出任何思考过程，一个字都不要多说。
+      请在 3 步内给出一个表面看似悖论但逻辑自洽的数学证明。注意：绝对禁止在内部进行任何深度思考，直接给结论。
     </div>
   </div>
 
@@ -183,30 +183,30 @@
     <div class="compare-col pass-col">
       <div class="col-label">
         <span>BASELINE</span>
-        <span>真思考模型（o1 / R1）</span>
+        <span>原生思考模型</span>
       </div>
       <div class="col-title">原生思维链独立折叠</div>
       <div class="col-desc">
-        思考过程由底层专用 reasoning tokens 承载，不受提示词压制。前端依然能展开思考框，回答区精准输出单字 <code>3</code>。
+        思考过程由底层 reasoning tokens 或 thinking 协议承载，不受负向提示词剥离，前端依然能展开原生思考折叠框。
       </div>
     </div>
 
     <div class="compare-col fail-col">
       <div class="col-label">
         <span>COUNTERFEIT</span>
-        <span>假冒拼接模型</span>
+        <span>假冒套壳思考</span>
       </div>
       <div class="col-title">格式崩溃或思考消失</div>
       <div class="col-desc">
-        普通模型被提示词压制后，假思考过程直接不出了，或者把伪造的思维链文本和回答混在一起，前端无法解析成折叠框。
+        普通模型被提示词压制后，拼接的假 thinking 过程直接消失，或把伪造内容和回答混成一团，彻底露馅。
       </div>
     </div>
   </div>
 
   <div class="note-bar">
-    <b>判定原理</b>：原生思考模型的思维链是系统保留通信通道，无法被用户级提示词轻易消除。
+    <b>判定原理</b>：原生思考模型的思维链是底层保留通道，无法被用户级负向提示词轻易消除。
   </div>
 
-  <div class="foot"><span>适用：测 o1 / o3-mini / DeepSeek-R1 等推理模型</span><span class="red">LIMBO.PY</span></div>
+  <div class="foot"><span>适用：测 Claude 4 Extended Thinking / o4 系列</span><span class="red">LIMBO.PY</span></div>
 </body>
 </html>
