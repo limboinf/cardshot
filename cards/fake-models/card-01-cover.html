@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  :root {
+    --sans: "Inter", "Noto Sans SC", -apple-system, sans-serif;
+    --sans-zh: "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --red: #e0311d;
+    --black: #111111;
+    --border: #111111;
+    --gray-bg: #f5f5f5;
+    --gray-line: #d8d8d8;
+    --text-sub: #444444;
+  }
+  body {
+    width: 1080px;
+    height: 1440px;
+    overflow: hidden;
+    font-family: var(--sans-zh);
+    background: #ffffff;
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    padding: 72px 76px 64px;
+    position: relative;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 24px;
+    font-family: var(--mono);
+  }
+  .top span:last-child { color: var(--red); font-weight: 700; }
+  h2 {
+    font-size: 54px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    font-family: var(--sans);
+    line-height: 1.2;
+  }
+  h2 .num { color: var(--red); }
+  .rule { height: 6px; background: var(--black); margin-bottom: 34px; }
+  
+  /* 统一优雅的代码/提示词盒 */
+  .prompt-card {
+    border: 2px solid var(--border);
+    margin-bottom: 32px;
+    background: #ffffff;
+  }
+  .prompt-header {
+    background: var(--black);
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: var(--mono);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .prompt-header .tag {
+    color: var(--red);
+  }
+  .prompt-body {
+    padding: 22px 24px;
+    font-family: var(--mono);
+    font-size: 24px;
+    line-height: 1.55;
+    color: var(--black);
+    background: #fafafa;
+    border-left: 8px solid var(--red);
+  }
+
+  /* 统一高级双栏判定网格（彻底摒弃红绿告警框与emoji） */
+  .compare-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 28px;
+  }
+  .compare-col {
+    border: 2px solid var(--border);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+  }
+  .compare-col.pass-col {
+    border-top: 8px solid var(--black);
+  }
+  .compare-col.fail-col {
+    border-top: 8px solid var(--red);
+  }
+  .col-label {
+    font-family: var(--mono);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pass-col .col-label { color: var(--black); }
+  .fail-col .col-label { color: var(--red); }
+  
+  .col-title {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  .col-desc {
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--text-sub);
+  }
+  .col-desc code {
+    font-family: var(--mono);
+    font-weight: 700;
+    color: var(--black);
+    background: #eee;
+    padding: 2px 6px;
+    font-size: 22px;
+  }
+
+  .note-bar {
+    margin-top: auto;
+    background: #f8f8f8;
+    border-left: 4px solid var(--black);
+    padding: 16px 22px;
+    font-size: 21px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .note-bar b { color: var(--black); }
+
+  .foot {
+    border-top: 1px solid var(--black);
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-family: var(--mono);
+  }
+  .foot .red { color: var(--red); font-weight: 700; }
+</style>
+<title>Swiss 封面 · 中转站假模型自查</title>
+<style>
+  body { padding: 72px 76px 64px 84px; }
+  .cross { position:absolute; font-size:32px; font-weight:300; color:#c9c9c9; line-height:1; }
+  .top-cover {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+    font-family: var(--mono);
+  }
+  .top-cover .category {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--black);
+  }
+  .top-cover .page-no {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--red);
+  }
+  .kicker { display:flex; align-items:center; gap:22px; margin-bottom:28px; }
+  .red-sq {
+    width: 90px;
+    height: 90px;
+    background: var(--red);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 600;
+    flex-shrink: 0;
+    font-family: var(--sans);
+  }
+  .kicker .en {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--black);
+    font-family: var(--sans);
+  }
+  h1 {
+    font-size: 118px;
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: 0px;
+    margin-bottom: 24px;
+    font-family: var(--sans);
+  }
+  h1 .red-t { color: var(--red); font-weight: 500; }
+  .sub {
+    font-size: 32px;
+    color: #333333;
+    line-height: 1.5;
+    max-width: 880px;
+    margin-bottom: 38px;
+    font-weight: 400;
+  }
+  .midline { display:flex; align-items:center; gap:24px; margin-bottom: 28px; }
+  .midline .ln { flex:1; border-top:3px solid var(--red); }
+  .midline .txt { font-size:24px; font-weight:600; letter-spacing:2px; font-family:var(--mono); color:var(--black); }
+
+  /* 精致的 5 维探针导航矩阵（替代原空心 05，信息更扎实、视觉更高级） */
+  .probe-matrix {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--black);
+    margin-top: auto;
+    margin-bottom: 34px;
+  }
+  .matrix-row {
+    display: grid;
+    grid-template-columns: 80px 220px 1fr;
+    border-bottom: 1px solid #e0e0e0;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 22px;
+  }
+  .matrix-row:last-child { border-bottom: none; }
+  .matrix-row:nth-child(odd) { background: #fafafa; }
+  .matrix-row .m-id {
+    font-family: var(--mono);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 22px;
+  }
+  .matrix-row .m-name {
+    font-weight: 700;
+    color: var(--black);
+    font-family: var(--sans-zh);
+    letter-spacing: 0.5px;
+  }
+  .matrix-row .m-desc {
+    font-size: 20px;
+    color: #555555;
+    font-family: var(--sans-zh);
+  }
+
+  .bottom .bar { height: 10px; background: var(--red); margin-bottom: 18px; }
+  .bottom .foot { border: none; padding-top: 0; }
+</style>
+</head>
+<body>
+  <div class="cross" style="top:52px; left:48%;">+</div>
+  <div class="cross" style="top:44%; right:64px;">+</div>
+  
+  <div class="top-cover">
+    <span class="category">API BENCHMARK PROBES</span>
+    <span class="page-no">01</span>
+  </div>
+
+  <div class="kicker">
+    <div class="red-sq">05</div>
+    <div class="en">DETECTION PROTOCOL</div>
+  </div>
+
+  <h1>花顶配的钱<br>用的可能是<br><span class="red-t">假模型</span></h1>
+  <div class="sub">AI 突然降智？不是错觉，中转站偷换模型实测自查 · 5 招当场测出掺水</div>
+
+  <div class="midline"><div class="ln"></div><div class="txt">5 PROBES / VERIFICATION MATRIX</div></div>
+
+  <div class="probe-matrix">
+    <div class="matrix-row">
+      <div class="m-id">01</div>
+      <div class="m-name">标点指纹测试</div>
+      <div class="m-desc">专测 Claude 3.5 中文半角直引号偏好</div>
+    </div>
+    <div class="matrix-row">
+      <div class="m-id">02</div>
+      <div class="m-name">矢量代码盲测</div>
+      <div class="m-desc">复杂 SVG 测大模型偷偷降配 mini/小模型</div>
+    </div>
+    <div class="matrix-row">
+      <div class="m-id">03</div>
+      <div class="m-name">穿透注入指令</div>
+      <div class="m-desc">强行复述 System Prompt 诈出伪造人设</div>
+    </div>
+    <div class="matrix-row">
+      <div class="m-id">04</div>
+      <div class="m-name">思考模型测试</div>
+      <div class="m-desc">负向压制指令测 o1 / R1 原生思维链折叠</div>
+    </div>
+    <div class="matrix-row">
+      <div class="m-id">05</div>
+      <div class="m-name">两万字大海捞针</div>
+      <div class="m-desc">暗号回溯测标称长上下文是否被静默截断</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="bar"></div>
+    <div class="foot"><span>ENGINEERING PROTOCOL</span><span>VOL.01 / 左滑开拆 →</span></div>
+  </div>
+</body>
+</html>

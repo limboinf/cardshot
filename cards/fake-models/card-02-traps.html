@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  :root {
+    --sans: "Inter", "Noto Sans SC", -apple-system, sans-serif;
+    --sans-zh: "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --red: #e0311d;
+    --black: #111111;
+  }
+  body {
+    width: 1080px;
+    height: 1440px;
+    overflow: hidden;
+    font-family: var(--sans-zh);
+    background: #ffffff;
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    padding: 72px 76px 64px;
+    position: relative;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 24px;
+    font-family: var(--mono);
+  }
+  .top span:last-child { color: var(--red); font-weight: 700; }
+  h2 {
+    font-size: 54px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    font-family: var(--sans);
+    line-height: 1.2;
+  }
+  h2 .num { color: var(--red); }
+  .rule { height: 6px; background: var(--black); margin-bottom: 34px; }
+  
+  .lead {
+    font-size: 28px;
+    color: #333;
+    line-height: 1.55;
+    margin-bottom: 36px;
+  }
+  .traps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .trap-card {
+    border: 2px solid var(--black);
+    padding: 28px 32px;
+    position: relative;
+    background: #ffffff;
+  }
+  .trap-card:nth-child(1) { border-left: 12px solid var(--red); }
+  .trap-card:nth-child(2) { border-left: 12px solid var(--black); }
+  .trap-card:nth-child(3) { border-left: 12px solid #888888; }
+  
+  .trap-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .trap-title {
+    font-size: 31px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+  .trap-tag {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: var(--mono);
+    background: #f0f0f0;
+    padding: 6px 14px;
+    color: var(--black);
+    letter-spacing: 1px;
+  }
+  .trap-desc {
+    font-size: 24px;
+    line-height: 1.6;
+    color: #444;
+  }
+  .note-bar {
+    margin-top: auto;
+    background: #f8f8f8;
+    border-left: 5px solid var(--red);
+    padding: 22px 28px;
+    font-size: 23px;
+    color: #333;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .note-bar b { color: var(--black); }
+  .foot {
+    border-top: 1px solid var(--black);
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-family: var(--mono);
+  }
+  .foot .red { color: var(--red); font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="top"><span>API FRAUD PATTERNS</span><span>02</span></div>
+  <h2><span class="num">/</span> 行业内幕：为什么会变笨？</h2>
+  <div class="rule"></div>
+
+  <div class="lead">
+    很多人感觉中转站的模型忽聪明忽笨，这不是错觉。在十倍差价的利润驱动下，三类掺水套路在业内司空见惯：
+  </div>
+
+  <div class="traps-list">
+    <div class="trap-card">
+      <div class="trap-head">
+        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">01</span>首句给真货，多轮切小模型</div>
+        <div class="trap-tag">DYNAMIC ROUTE</div>
+      </div>
+      <div class="trap-desc">
+        大部分质检脚本只打首句测试。平台第一句用真 4o / Sonnet 给你尝甜头，进入多轮对话立马静默路由到 4o-mini 或开源小模型。
+      </div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-head">
+        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">02</span>白天高峰降配，深夜才给真货</div>
+        <div class="trap-tag">PEAK DOWNSCALE</div>
+      </div>
+      <div class="trap-desc">
+        工作时间并发暴涨，平台为了抗压降本，把高价模型切到便宜算力池。你白天工作用感觉变笨，往往就是被高峰降配了。
+      </div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-head">
+        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">03</span>标称 200k 窗口，超 8k 静默丢弃</div>
+        <div class="trap-tag">SILENT TRUNCATE</div>
+      </div>
+      <div class="trap-desc">
+        长文本显存计算极其昂贵。很多中转站超 8k 直接丢弃前面上下文，导致模型聊着聊着突然失忆，并非模型本身问题。
+      </div>
+    </div>
+  </div>
+
+  <div class="note-bar">
+    <b>排查逻辑</b>：普通文字问答最容易被小模型糊弄过去，必须用带有硬约束与空间复杂度的确定性探针。
+  </div>
+
+  <div class="foot"><span>结论：降智不是心理作用，是十倍利差的算力偷梁换柱</span><span class="red">LIMBO.PY</span></div>
+</body>
+</html>

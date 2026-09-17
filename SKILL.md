@@ -53,9 +53,14 @@ description: 内容→多平台社媒卡片出图。做小红书/抖音/X/公众
 活体范例：`cards/seedance-*.html`（一份视频模型价格调研 → 5 平台卡片）。
 
 ## 坑（都踩过）
+- **移动端出图强制 2x 视网膜超清采样**：手机高分屏与 Mac Retina 屏幕（@2x/@3x，PPI 400+）查看 1x 标清（1080×1440）会被线性放大 2~3 倍导致文字发虚、边缘毛刺。**所有小红书/社媒卡片出图必须启用 `--force-device-scale-factor=2`（`--scale 2`）导出 2160×2880 物理超清图片**！CSS 视口保持 1080×1440 不变，绝不可通过改大 `--window-size` 强行放大（会导致布局变形与字号失衡）。
+- **标配视网膜字体平滑**：卡片全局 CSS 必须注入 `* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }`，消除 Chromium Headless 模式下的字体光栅化毛刺。
+- **正文严禁 AI 味 UI**：严禁滥用 `✅`/`❌`/`💡`/`⚠️` 等廉价 emoji 符号及高饱和浅红浅绿提示框；严格采用正统瑞士网格黑白红工程规范（如 `BASELINE` 黑色标带对比 `COUNTERFEIT` 红色标带），用结构与排版建立专业信任。
+- **封面拒绝废话，前置实质价值**：严禁出现与主题无关的个人 Title（如 `LIMBO.PY · AI 实战`）、无意义超大空心数字（如占半屏的 `05`）或空泛学术/地理名词；若页面空旷，必须用**结构化内容承接**（如 5 维探针导航规格矩阵、自测清单概要）填充视觉，第一眼传递实质价值。
+- **手机端排版宁拆页不缩字**：小红书为手机竖屏沉浸式阅读，大标题不低于 54~60px，提示词/代码框不低于 28px，正文不低于 25px。页面承载不下时**果断扩充拆页（如 6 页拆为 8 页）**，绝不通过缩小字号或挤占边距破坏美感。
+- **内容贴边**：距画布边 ≥40px（check-overflow 的默认 margin），底线严格锁定在 ≤1362px（留出底部 ≥70px 呼吸感），否则视觉上像被裁。
 - **Chrome 双重放大**：`--window-size` 永远用 CSS 像素，倍率只交给 `--force-device-scale-factor`；两者都乘 → 4x 尺寸错误
-- **卡片必须自包含**：内联 CSS、无外链图片；字体走 Google Fonts 白名单（Noto Serif SC / Playfair Display / Noto Sans SC / Inter / IBM Plex Mono，见 `references/style-library.md` 字体体系表），`<head>` 加载链接后必须保留 system 字体栈兜底（断网/离线自动降级）。shooter 的 `--virtual-time-budget=8000` 会等字体加载，截图字体异常先查网络
-- **内容贴边**：距画布边 ≥40px（check-overflow 的默认 margin），否则视觉上像被裁
+- **卡片必须自包含**：内联 CSS、无外链图片；字体优先本地系统栈（macOS 首选 `PingFang SC`, `Inter`, `Menlo`），Google Fonts 只作为在线备用且避免长连接阻塞。shooter 的 `--virtual-time-budget=8000` 会等字体加载，截图假死先查网络与离线回退。
 - **测试数据污染**：测试改过卡片后要恢复原件（`cards/.backups/`），别把测试文案交付出去
 - **quality-check 浅底误报**：米白/浅色底卡必须传 `--bg`，否则四角检查把设计底色当白边报 WARN
 - **quality-check 底部条带误报（更隐蔽）**：浅底卡带深色吸底结论框时，底部条带方差检查会报 `底部条带杂色(方差XXXX, 可能截字)` 的 WARN。这是误报——结论框是圆角且 body 留了 ~56px 底边距，所以真正画布最底 56px 仍是纯净设计底色。确认方法：check-overflow 通过（内容底线 ≤ 高且 ≥ 安全边距）即权威；再用像素抽检最底 56px 均值≈底色即可，不必理会该 WARN。不要因为 WARN 就去削内容。

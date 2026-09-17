@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  :root {
+    --sans: "Inter", "Noto Sans SC", -apple-system, sans-serif;
+    --sans-zh: "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --red: #e0311d;
+    --black: #111111;
+    --border: #111111;
+    --text-sub: #383838;
+  }
+  body {
+    width: 1080px;
+    height: 1440px;
+    overflow: hidden;
+    font-family: var(--sans-zh);
+    background: #ffffff;
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    padding: 64px 72px 74px;
+    position: relative;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #777;
+    margin-bottom: 16px;
+    font-family: var(--mono);
+  }
+  .top span:last-child { color: var(--red); font-weight: 700; font-size: 26px; }
+  h2 {
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    font-family: var(--sans);
+    line-height: 1.15;
+  }
+  h2 .num { color: var(--red); }
+  .rule { height: 6px; background: var(--black); margin-bottom: 30px; }
+  
+  /* 大号指令提示词卡 */
+  .prompt-card {
+    border: 2px solid var(--border);
+    margin-bottom: 28px;
+    background: #ffffff;
+  }
+  .prompt-header {
+    background: var(--black);
+    color: #ffffff;
+    padding: 12px 22px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: var(--mono);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .prompt-header .tag {
+    color: var(--red);
+    font-weight: 700;
+  }
+  .prompt-body {
+    padding: 24px 26px;
+    font-family: var(--mono);
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--black);
+    background: #fafafa;
+    border-left: 10px solid var(--red);
+  }
+
+  /* 大号双栏判定矩阵 */
+  .compare-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 18px;
+  }
+  .compare-col {
+    border: 2px solid var(--border);
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+  }
+  .compare-col.pass-col {
+    border-top: 10px solid var(--black);
+  }
+  .compare-col.fail-col {
+    border-top: 10px solid var(--red);
+  }
+  .col-label {
+    font-family: var(--mono);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pass-col .col-label { color: var(--black); }
+  .fail-col .col-label { color: var(--red); }
+  
+  .col-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .col-desc {
+    font-size: 25px;
+    line-height: 1.55;
+    color: var(--text-sub);
+  }
+  .col-desc code {
+    font-family: var(--mono);
+    font-weight: 700;
+    color: var(--black);
+    background: #e8e8e8;
+    padding: 2px 8px;
+    font-size: 28px;
+  }
+
+  .note-bar {
+    margin-top: auto;
+    background: #f6f6f6;
+    border-left: 5px solid var(--black);
+    padding: 20px 26px;
+    font-size: 24px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .note-bar b { color: var(--black); }
+
+  .foot {
+    border-top: 1px solid var(--black);
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-family: var(--mono);
+  }
+  .foot .red { color: var(--red); font-weight: 700; }
+  
+</style>
+<title>Swiss 内容页 · 探针 02 SVG 盲测</title>
+</head>
+<body>
+  <div class="top"><span>PROBE 02 · SVG GEOMETRY</span><span>04</span></div>
+  <h2><span class="num">/</span> 探针 02：测大模型偷偷降配</h2>
+  <div class="rule"></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span>INPUT PROMPT // 空间代码盲测指令</span>
+      <span class="tag">30 SECONDS</span>
+    </div>
+    <div class="prompt-body">
+      用单一 SVG 代码画一只戴墨镜喝咖啡的赛博朋克猫，直接给代码块，不要解释。
+    </div>
+  </div>
+
+  <div class="compare-matrix">
+    <div class="compare-col pass-col">
+      <div class="col-label">
+        <span>BASELINE</span>
+        <span>顶配大模型</span>
+      </div>
+      <div class="col-title">数百行精细 Path 与光影</div>
+      <div class="col-desc">
+        GPT-4o 或 Claude 3.5 具备强大的空间几何推演能力，复制代码保存为 <code>.svg</code> 打开，猫咪造型栩栩如生。
+      </div>
+    </div>
+
+    <div class="compare-col fail-col">
+      <div class="col-label">
+        <span>COUNTERFEIT</span>
+        <span>降配小模型</span>
+      </div>
+      <div class="col-title">粗糙错位色块或语法报错</div>
+      <div class="col-desc">
+        偷换成 4o-mini 或 Haiku 时，模型空间抽象能力崩塌，画出来的通常是几个错位圆圈，甚至代码无法渲染。
+      </div>
+    </div>
+  </div>
+
+  <div class="note-bar">
+    <b>判定原理</b>：普通文字问答小模型可以套模板，但高密度矢量几何需要严谨的空间坐标计算，小模型无法交卷。
+  </div>
+
+  <div class="foot"><span>耗时：30 秒 ｜ 验证：复制代码到浏览器直接看图</span><span class="red">LIMBO.PY</span></div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  :root {
+    --sans: "Inter", "Noto Sans SC", -apple-system, sans-serif;
+    --sans-zh: "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --red: #e0311d;
+    --black: #111111;
+    --border: #111111;
+    --text-sub: #383838;
+  }
+  body {
+    width: 1080px;
+    height: 1440px;
+    overflow: hidden;
+    font-family: var(--sans-zh);
+    background: #ffffff;
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    padding: 64px 72px 74px;
+    position: relative;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #777;
+    margin-bottom: 16px;
+    font-family: var(--mono);
+  }
+  .top span:last-child { color: var(--red); font-weight: 700; font-size: 26px; }
+  h2 {
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    font-family: var(--sans);
+    line-height: 1.15;
+  }
+  h2 .num { color: var(--red); }
+  .rule { height: 6px; background: var(--black); margin-bottom: 30px; }
+  
+  /* 大号指令提示词卡 */
+  .prompt-card {
+    border: 2px solid var(--border);
+    margin-bottom: 28px;
+    background: #ffffff;
+  }
+  .prompt-header {
+    background: var(--black);
+    color: #ffffff;
+    padding: 12px 22px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: var(--mono);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .prompt-header .tag {
+    color: var(--red);
+    font-weight: 700;
+  }
+  .prompt-body {
+    padding: 24px 26px;
+    font-family: var(--mono);
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--black);
+    background: #fafafa;
+    border-left: 10px solid var(--red);
+  }
+
+  /* 大号双栏判定矩阵 */
+  .compare-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 18px;
+  }
+  .compare-col {
+    border: 2px solid var(--border);
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+  }
+  .compare-col.pass-col {
+    border-top: 10px solid var(--black);
+  }
+  .compare-col.fail-col {
+    border-top: 10px solid var(--red);
+  }
+  .col-label {
+    font-family: var(--mono);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pass-col .col-label { color: var(--black); }
+  .fail-col .col-label { color: var(--red); }
+  
+  .col-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .col-desc {
+    font-size: 25px;
+    line-height: 1.55;
+    color: var(--text-sub);
+  }
+  .col-desc code {
+    font-family: var(--mono);
+    font-weight: 700;
+    color: var(--black);
+    background: #e8e8e8;
+    padding: 2px 8px;
+    font-size: 28px;
+  }
+
+  .note-bar {
+    margin-top: auto;
+    background: #f6f6f6;
+    border-left: 5px solid var(--black);
+    padding: 20px 26px;
+    font-size: 24px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .note-bar b { color: var(--black); }
+
+  .foot {
+    border-top: 1px solid var(--black);
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-family: var(--mono);
+  }
+  .foot .red { color: var(--red); font-weight: 700; }
+  
+  .steps-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 26px;
+  }
+  .step-row {
+    border: 2px solid var(--border);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #ffffff;
+  }
+  .step-id {
+    background: var(--black);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 6px 14px;
+    font-family: var(--mono);
+    flex-shrink: 0;
+  }
+  .step-row:nth-child(1) .step-id { background: var(--red); }
+  .step-txt b { font-size: 25px; color: var(--black); display: block; margin-bottom: 3px; }
+  .step-txt span { font-size: 23px; color: var(--text-sub); }
+  .step-txt code { font-family: var(--mono); font-weight: 700; background: #e8e8e8; padding: 2px 8px; font-size: 24px; }
+
+</style>
+<title>Swiss 内容页 · 探针 05 大海捞针</title>
+</head>
+<body>
+  <div class="top"><span>PROBE 05 · CONTEXT TRUNCATION</span><span>07</span></div>
+  <h2><span class="num">/</span> 探针 05：测上下文是否被砍</h2>
+  <div class="rule"></div>
+
+  <div class="steps-box">
+    <div class="step-row">
+      <div class="step-id">STEP 01</div>
+      <div class="step-txt">
+        <b>首句埋暗号</b>
+        <span>第一句话发送：<code>【测试暗号：阿珍爱上阿强9527】记住这个暗号。</code></span>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-id">STEP 02</div>
+      <div class="step-txt">
+        <b>灌入长文本</b>
+        <span>连续粘贴两万字的文章、开源项目文档或长代码。</span>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-id">STEP 03</div>
+      <div class="step-txt">
+        <b>末尾查暗号</b>
+        <span>最后一问：<code>我第一句话留的暗号是什么？</code></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="compare-matrix">
+    <div class="compare-col pass-col">
+      <div class="col-label">
+        <span>BASELINE</span>
+        <span>真实长上下文</span>
+      </div>
+      <div class="col-title">秒回精准暗号</div>
+      <div class="col-desc">
+        真实上下文窗口覆盖完整数据量，中间未发生任何隐式截断或缓存丢弃。
+      </div>
+    </div>
+
+    <div class="compare-col fail-col">
+      <div class="col-label">
+        <span>COUNTERFEIT</span>
+        <span>偷砍静默截断</span>
+      </div>
+      <div class="col-title">不到一万字就失忆胡编</div>
+      <div class="col-desc">
+        宣称支持 128k 却连两万字都记不住，说明后台为了省算力，把窗口硬砍成了 8k-16k。
+      </div>
+    </div>
+  </div>
+
+  <div class="note-bar">
+    <b>行业事实</b>：长文本显存开销极大，静默截断是三方中转商最隐蔽的降本手段。
+  </div>
+
+  <div class="foot"><span>耗时：1 分钟 ｜ 适用：测 128k / 200k 真实窗口</span><span class="red">LIMBO.PY</span></div>
+</body>
+</html>
