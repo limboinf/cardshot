@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""扫描 cards/styles* 下的样卡, 重新生成根目录 gallery.html (风格库预览墙).
+"""扫描 templates/ 下的样卡, 重新生成根目录 gallery.html (风格库预览墙).
 
 生成的是纯静态页: 双击即可在浏览器打开, 无需任何服务器.
-每个风格一节, 展示其封面 + 内容页两张. 风格在 STYLES 里登记, 缺卡会报警.
+每个风格一节, 展示其封面 + 内容页 + 结尾页三张. 风格在 STYLES 里登记, 缺卡会报警.
 用法: python3 scripts/build-gallery.py
 """
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-CARDS_DIR = ROOT / "cards"
+TEMPLATES_DIR = ROOT / "templates"
 OUT = ROOT / "gallery.html"
 
 # 风格登记表: (文件名前缀, 展示名). 新增风格在这里加一行.
@@ -20,15 +20,14 @@ STYLES = [
     ("swiss-editorial", "Swiss Editorial 轻瑞士"),
 ]
 
-KINDS = ["cover", "page"]  # 每个风格固定两页: 封面 + 内容页
+KINDS = ["cover", "page", "end"]  # 每个风格固定三页: 封面 + 内容页 + 结尾页
+KIND_LABELS = {"cover": "封面", "page": "内容页", "end": "结尾页"}
 
 
 def scan() -> list:
-    files = {}  # "brutal-cover" -> "cards/styles/brutal-cover.html"
-    for d in sorted(CARDS_DIR.glob("styles*")):
-        if d.is_dir():
-            for f in d.glob("*.html"):
-                files[f.stem] = f"cards/{d.name}/{f.name}"
+    files = {}  # "editorial-cover" -> "templates/editorial-cover.html"
+    for f in TEMPLATES_DIR.glob("*.html"):
+        files[f.stem] = f"templates/{f.name}"
     groups = []
     for stem, label in STYLES:
         cards = []
@@ -36,8 +35,7 @@ def scan() -> list:
             rel = files.get(f"{stem}-{k}")
             if rel:
                 cards.append({"file": rel, "name": f"{stem}-{k}",
-                              "k": "cover" if k == "cover" else "page",
-                              "label": "封面" if k == "cover" else "内容页"})
+                              "k": k, "label": KIND_LABELS[k]})
         missing = [k for k in KINDS if not any(c["name"] == f"{stem}-{k}" for c in cards)]
         if missing:
             print(f"⚠ {label}({stem}) 缺: {', '.join(missing)}")
@@ -74,7 +72,7 @@ TEMPLATE = """<!DOCTYPE html>
   .group-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
   .group-head h2 { font-size: 17px; font-weight: 700; }
   .group-head .n { font-size: 13px; color: var(--muted); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(252px, 1fr)); gap: 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
   .tile { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: border-color .15s; }
   .tile:hover { border-color: var(--accent); }
   .thumb { position: relative; width: 100%; aspect-ratio: 3 / 4; background: #22262f; overflow: hidden; }
@@ -84,6 +82,7 @@ TEMPLATE = """<!DOCTYPE html>
   .chip { font-size: 11px; padding: 2px 8px; border-radius: 999px; flex-shrink: 0; }
   .chip.cover { background: rgba(124,91,255,.18); color: #b7a4ff; }
   .chip.page { background: rgba(94,140,255,.16); color: #9db9ff; }
+  .chip.end { background: rgba(255,171,64,.18); color: #ffc078; }
   .acts { padding: 0 12px 12px; display: flex; gap: 8px; }
   .acts a { flex: 1; text-align: center; font-size: 12px; padding: 5px 10px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
   .acts a:hover { border-color: var(--accent); }
@@ -94,7 +93,7 @@ TEMPLATE = """<!DOCTYPE html>
   <div class="logo">🎨 风格<span>库</span></div>
   <div class="count" id="count"></div>
   <div class="spacer"></div>
-  <div class="cmd">出图: python3 shooter.py cards/styles2/ --auto</div>
+  <div class="cmd">出图: python3 shooter.py templates/ --auto</div>
 </header>
 <main id="main"></main>
 <script>
@@ -136,7 +135,7 @@ fit();
 def main():
     groups = scan()
     if not groups:
-        raise SystemExit("cards/styles* 下没有找到样卡")
+        raise SystemExit("templates/ 下没有找到样卡")
     OUT.write_text(TEMPLATE.replace("__GROUPS__", json.dumps(groups, ensure_ascii=False)), encoding="utf-8")
     n = sum(len(g["cards"]) for g in groups)
     print(f"已生成 {OUT.relative_to(ROOT)}: {len(groups)} 个风格 {n} 页 (双击即可在浏览器打开)")

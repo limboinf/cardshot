@@ -51,19 +51,21 @@
   .rule { height: 6px; background: var(--black); margin-bottom: 28px; }
   
   .lead {
-    font-size: 27px;
+    font-size: 26px;
     color: #333;
     line-height: 1.5;
-    margin-bottom: 28px;
+    margin-bottom: 26px;
   }
+  .lead b { color: var(--red); }
+  
   .traps-list {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 20px;
   }
   .trap-card {
     border: 2px solid var(--black);
-    padding: 22px 28px;
+    padding: 20px 26px;
     position: relative;
     background: #ffffff;
   }
@@ -78,13 +80,13 @@
     margin-bottom: 10px;
   }
   .trap-title {
-    font-size: 28px;
+    font-size: 27px;
     font-weight: 700;
     display: flex;
     align-items: center;
   }
   .trap-tag {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
     font-family: var(--mono);
     background: #f0f0f0;
@@ -94,7 +96,7 @@
   }
   .trap-desc {
     font-size: 22px;
-    line-height: 1.55;
+    line-height: 1.5;
     color: #444;
   }
   .trap-desc b { color: var(--black); }
@@ -122,53 +124,53 @@
   }
   .foot .red { color: var(--red); font-weight: 700; }
 </style>
-<title>Swiss 内容页 · 行业内幕</title>
+<title>Swiss 内容页 · 警惕验真黑产网站</title>
 </head>
 <body>
-  <div class="top"><span>API FRAUD PATTERNS</span><span>02</span></div>
-  <h2><span class="num">/</span> 行业内幕：为什么会变笨？</h2>
+  <div class="top"><span>SECURITY WARNING</span><span>09</span></div>
+  <h2><span class="num">/</span> 警惕所谓「验真网站」</h2>
   <div class="rule"></div>
 
   <div class="lead">
-    很多人感觉中转站的模型忽聪明忽笨，这不是错觉。在十倍差价的暴利驱动下，「素菜荤价」在业内早已屡见不鲜：
+    很多人测中转站喜欢填进第三方的“在线防掺水检测站”。殊不知，<b>裁判本身可能就是最大的黑产玩家</b>：
   </div>
 
   <div class="traps-list">
     <div class="trap-card">
       <div class="trap-head">
-        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">01</span>模型映射与动态路由</div>
-        <div class="trap-tag">ROUTING FRAUD</div>
+        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">01</span>收钱办事的竞价排名</div>
+        <div class="trap-tag">PAID RANKING</div>
       </div>
       <div class="trap-desc">
-        多数人只打首句测试。平台首句用真 Claude 5 / GPT-5 给你尝甜头，进入多轮对话立马静默路由到<b>便宜模型或国产模型</b>，素菜卖出荤菜价。
+        部分验真平台靠收取中转商“认证费”盈利。只要充值到位，把假模型洗成绿标正品；没交保护费的平台则被恶意标注异常。
       </div>
     </div>
 
     <div class="trap-card">
       <div class="trap-head">
-        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">02</span>高峰降配与暗改倍率</div>
-        <div class="trap-tag">PEAK DOWNSCALE</div>
+        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">02</span>既当裁判，又卖中转</div>
+        <div class="trap-tag">REFERRAL TRAP</div>
       </div>
       <div class="trap-desc">
-        工作日并发暴涨，平台为了抗压降本，把高价模型静默切到廉价算力池，甚至在后台悄悄<b>上调扣费倍率</b>。你白天用觉得模型降智，往往正是被超卖降配。
+        自己做检测站吸纳流量，无论用户拿谁的接口来测，一律报“严重掺水”，反手弹窗推荐自己旗下的“官方独家保真”中转站。
       </div>
     </div>
 
     <div class="trap-card">
       <div class="trap-head">
-        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">03</span>偷砍上下文与静默压缩</div>
-        <div class="trap-tag">SILENT TRUNCATE</div>
+        <div class="trap-title"><span style="color:var(--red);margin-right:12px;font-family:var(--mono);">03</span>截留并偷盗 API Key</div>
+        <div class="trap-tag">KEY HARVESTING</div>
       </div>
       <div class="trap-desc">
-        长文本显存开销极大。宣称支持 1M 窗口，实际超 128K/200K 就丢弃前文，导致<b>聊着聊着突然失忆，或者聊了几轮突然就开始压缩</b>，账单却照算。
+        你在网页填入自己的 API Key，后台直接静默保存，用于该站自身的批量刷量甚至转卖黑市，造成余额被莫名盗刷。
       </div>
     </div>
   </div>
 
   <div class="note-bar">
-    <b>核心逻辑</b>：只要你不用探针去测，服务商就有充足的动力用低成本模型偷换高价值调用。
+    <b>自保铁律</b>：绝不在任何第三方在线网页粘贴私钥！验真只用本地开源命令行工具或手动探针测试。
   </div>
 
-  <div class="foot"><span>INDUSTRY PATTERNS</span><span class="red">LIMBO.PY</span></div>
+  <div class="foot"><span>SECURITY ADVISORY</span><span class="red">LIMBO.PY</span></div>
 </body>
 </html>

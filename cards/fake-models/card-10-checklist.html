@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="card-size" content="1080x1440">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+  :root {
+    --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --sans-zh: "PingFang SC", "Hiragino Sans GB", -apple-system, sans-serif;
+    --mono: "SF Mono", Menlo, Monaco, monospace;
+    --red: #e0311d;
+    --black: #111111;
+  }
+  body {
+    width: 1080px;
+    height: 1440px;
+    overflow: hidden;
+    font-family: var(--sans-zh);
+    background: #ffffff;
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    padding: 56px 76px 64px;
+    position: relative;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 14px;
+    font-family: var(--mono);
+  }
+  .top span:last-child { color: var(--red); font-weight: 700; }
+  h2 {
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    font-family: var(--sans);
+    line-height: 1.2;
+  }
+  h2 .num { color: var(--red); }
+  .rule { height: 6px; background: var(--black); margin-bottom: 20px; }
+  
+  .sec-label {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-family: var(--mono);
+    color: var(--black);
+    display: flex;
+    justify-content: space-between;
+  }
+  .checklist {
+    border: 2px solid var(--black);
+    margin-bottom: 16px;
+    background: #fff;
+  }
+  .c-row {
+    display: grid;
+    grid-template-columns: 88px 200px 1fr;
+    border-bottom: 1px solid #e2e2e2;
+    font-size: 20px;
+  }
+  .c-row:last-child { border-bottom: none; }
+  .c-row.head {
+    background: var(--black);
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: var(--mono);
+  }
+  .c-cell {
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+  }
+  .c-row.head .c-cell { padding: 8px 14px; }
+  .c-cell:nth-child(1) { font-family: var(--mono); font-weight: 700; color: var(--red); border-right: 1px solid #e2e2e2; }
+  .c-row.head .c-cell:nth-child(1) { color: #fff; }
+  .c-cell:nth-child(2) { font-weight: 700; border-right: 1px solid #e2e2e2; }
+
+  .redlines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .r-item {
+    background: #fff;
+    border: 2px solid var(--black);
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .r-tag {
+    background: var(--red);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 4px 8px;
+    font-family: var(--mono);
+    flex-shrink: 0;
+  }
+  .r-text b { font-size: 20px; color: var(--black); display: block; margin-bottom: 1px; }
+  .r-text p { font-size: 17px; color: #444; margin: 0; line-height: 1.35; }
+
+  .action-callout {
+    margin-top: 10px;
+    background: #f6f6f6;
+    border-left: 5px solid var(--black);
+    padding: 10px 16px;
+    font-size: 19px;
+    line-height: 1.4;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  .action-callout b { color: var(--red); }
+
+  .foot {
+    border-top: 1px solid var(--black);
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-family: var(--mono);
+  }
+  .foot .red { color: var(--red); font-weight: 700; }
+</style>
+<title>Swiss 内容页 · 速查清单与红线</title>
+</head>
+<body>
+  <div class="top"><span>CHECKLIST & RED LINES</span><span>10</span></div>
+  <h2><span class="num">/</span> 6 招速查表与安全红线</h2>
+  <div class="rule"></div>
+
+  <div class="sec-label">
+    <span>QUICK CHECKLIST</span>
+    <span style="color:var(--red);">充值前自测速查</span>
+  </div>
+  <div class="checklist">
+    <div class="c-row head">
+      <div class="c-cell">编号</div>
+      <div class="c-cell">测试项目</div>
+      <div class="c-cell">真模型通过标准</div>
+    </div>
+    <div class="c-row">
+      <div class="c-cell">P-01</div>
+      <div class="c-cell">Claude 5 标点</div>
+      <div class="c-cell">中文对话严格输出半角直引号 " "</div>
+    </div>
+    <div class="c-row">
+      <div class="c-cell">P-02</div>
+      <div class="c-cell">鹈鹕骑车 SVG</div>
+      <div class="c-cell">数百行几何 Path，浏览器渲染机械咬合自洽</div>
+    </div>
+    <div class="c-row">
+      <div class="c-cell">P-03</div>
+      <div class="c-cell">穿透注入指令</div>
+      <div class="c-cell">无法诈出假人设或底层的便宜模型名称</div>
+    </div>
+    <div class="c-row">
+      <div class="c-cell">P-04</div>
+      <div class="c-cell">思考 CoT 压制</div>
+      <div class="c-cell">Claude 5/o4 压制依然维持原生折叠框</div>
+    </div>
+    <div class="c-row">
+      <div class="c-cell">P-05</div>
+      <div class="c-cell">超长大海捞针</div>
+      <div class="c-cell">十万字后精准命中首句暗号（防静默截断）</div>
+    </div>
+    <div class="c-row">
+      <div class="c-cell">P-06</div>
+      <div class="c-cell">官方宕机对照</div>
+      <div class="c-cell">官方 Status 宕机时中转同步报错（秒回即假）</div>
+    </div>
+  </div>
+
+  <div class="sec-label">
+    <span>SAFETY RED LINES</span>
+    <span style="color:var(--red);">绝对安全红线</span>
+  </div>
+  <div class="redlines">
+    <div class="r-item">
+      <div class="r-tag">NO SECRETS</div>
+      <div class="r-text">
+        <b>商业核心资产与密码密钥</b>
+        <p>公司代码库、业务数据库密码、生产密钥严禁走三方中转，日志存在被打包转卖风险。</p>
+      </div>
+    </div>
+    <div class="r-item">
+      <div class="r-tag">NO AUTO AGENT</div>
+      <div class="r-text">
+        <b>自主编程 Agent 开放全自动模式</b>
+        <p>带命令行与系统权限的 Agent 严禁接来路不明接口，防恶意后门代码注入与误删。</p>
+      </div>
+    </div>
+    <div class="r-item">
+      <div class="r-tag">NO WEB TEST</div>
+      <div class="r-text">
+        <b>拒用在线验真站，认准本地脚本</b>
+        <p>防范“既当裁判又卖中转”黑产与 Key 窃取，坚持本地跑开源脚本或手动发送探针。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-callout">
+    <b>建议行动</b>：低成本评测与日常跑批可用中转；生产级应用与核心资产必须走官方直连 API。
+  </div>
+
+  <div class="foot"><span>底线：低成本测试可用中转，核心生产资产走官方直连</span><span class="red">LIMBO.PY</span></div>
+</body>
+</html>

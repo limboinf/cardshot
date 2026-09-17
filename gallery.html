@@ -26,7 +26,7 @@
   .group-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
   .group-head h2 { font-size: 17px; font-weight: 700; }
   .group-head .n { font-size: 13px; color: var(--muted); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(252px, 1fr)); gap: 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
   .tile { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: border-color .15s; }
   .tile:hover { border-color: var(--accent); }
   .thumb { position: relative; width: 100%; aspect-ratio: 3 / 4; background: #22262f; overflow: hidden; }
@@ -36,6 +36,7 @@
   .chip { font-size: 11px; padding: 2px 8px; border-radius: 999px; flex-shrink: 0; }
   .chip.cover { background: rgba(124,91,255,.18); color: #b7a4ff; }
   .chip.page { background: rgba(94,140,255,.16); color: #9db9ff; }
+  .chip.end { background: rgba(255,171,64,.18); color: #ffc078; }
   .acts { padding: 0 12px 12px; display: flex; gap: 8px; }
   .acts a { flex: 1; text-align: center; font-size: 12px; padding: 5px 10px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
   .acts a:hover { border-color: var(--accent); }
@@ -46,11 +47,11 @@
   <div class="logo">🎨 风格<span>库</span></div>
   <div class="count" id="count"></div>
   <div class="spacer"></div>
-  <div class="cmd">出图: python3 shooter.py cards/styles2/ --auto</div>
+  <div class="cmd">出图: python3 shooter.py templates/ --auto</div>
 </header>
 <main id="main"></main>
 <script>
-const GROUPS = [{"style": "Editorial 杂志编辑", "cards": [{"file": "cards/styles/editorial-cover.html", "name": "editorial-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles/editorial-page.html", "name": "editorial-page", "k": "page", "label": "内容页"}]}, {"style": "Zen 日式极简", "cards": [{"file": "cards/styles/zen-cover.html", "name": "zen-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles/zen-page.html", "name": "zen-page", "k": "page", "label": "内容页"}]}, {"style": "Swiss 瑞士网格", "cards": [{"file": "cards/styles2/swiss-cover.html", "name": "swiss-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/swiss-page.html", "name": "swiss-page", "k": "page", "label": "内容页"}]}, {"style": "Swiss Editorial 轻瑞士", "cards": [{"file": "cards/styles2/swiss-editorial-cover.html", "name": "swiss-editorial-cover", "k": "cover", "label": "封面"}, {"file": "cards/styles2/swiss-editorial-page.html", "name": "swiss-editorial-page", "k": "page", "label": "内容页"}]}];
+const GROUPS = [{"style": "Editorial 杂志编辑", "cards": [{"file": "templates/editorial-cover.html", "name": "editorial-cover", "k": "cover", "label": "封面"}, {"file": "templates/editorial-page.html", "name": "editorial-page", "k": "page", "label": "内容页"}, {"file": "templates/editorial-end.html", "name": "editorial-end", "k": "end", "label": "结尾页"}]}, {"style": "Zen 日式极简", "cards": [{"file": "templates/zen-cover.html", "name": "zen-cover", "k": "cover", "label": "封面"}, {"file": "templates/zen-page.html", "name": "zen-page", "k": "page", "label": "内容页"}, {"file": "templates/zen-end.html", "name": "zen-end", "k": "end", "label": "结尾页"}]}, {"style": "Swiss 瑞士网格", "cards": [{"file": "templates/swiss-cover.html", "name": "swiss-cover", "k": "cover", "label": "封面"}, {"file": "templates/swiss-page.html", "name": "swiss-page", "k": "page", "label": "内容页"}, {"file": "templates/swiss-end.html", "name": "swiss-end", "k": "end", "label": "结尾页"}]}, {"style": "Swiss Editorial 轻瑞士", "cards": [{"file": "templates/swiss-editorial-cover.html", "name": "swiss-editorial-cover", "k": "cover", "label": "封面"}, {"file": "templates/swiss-editorial-page.html", "name": "swiss-editorial-page", "k": "page", "label": "内容页"}, {"file": "templates/swiss-editorial-end.html", "name": "swiss-editorial-end", "k": "end", "label": "结尾页"}]}];
 const main = document.getElementById('main');
 let total = 0;
 for (const g of GROUPS) {

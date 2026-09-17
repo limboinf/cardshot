@@ -75,7 +75,7 @@
   .prompt-body {
     padding: 22px 26px;
     font-family: var(--mono);
-    font-size: 25px;
+    font-size: 24px;
     line-height: 1.5;
     color: var(--black);
     background: #fafafa;
@@ -115,7 +115,7 @@
   .fail-col .col-label { color: var(--red); }
   
   .col-title {
-    font-size: 30px;
+    font-size: 29px;
     font-weight: 700;
     margin-bottom: 12px;
     line-height: 1.3;
@@ -137,7 +137,7 @@
   .note-bar {
     margin-top: auto;
     background: #f6f6f6;
-    border-left: 5px solid var(--black);
+    border-left: 5px solid var(--red);
     padding: 18px 24px;
     font-size: 22px;
     color: #333;
@@ -158,20 +158,20 @@
   }
   .foot .red { color: var(--red); font-weight: 700; }
 </style>
-<title>Swiss 内容页 · 探针 04 思考模型伪造</title>
+<title>Swiss 内容页 · 探针 06 官方宕机对照</title>
 </head>
 <body>
-  <div class="top"><span>PROBE 04 · COT REASONING AUDIT</span><span>06</span></div>
-  <h2><span class="num">/</span> 探针 04：测思考模型真假</h2>
+  <div class="top"><span>PROBE 06 · STATUS DOWNTIME AUDIT</span><span>08</span></div>
+  <h2><span class="num">/</span> 探针 06：官方宕机对照法</h2>
   <div class="rule"></div>
 
   <div class="prompt-card">
     <div class="prompt-header">
-      <span>INPUT PROMPT // 负向压制测试指令</span>
-      <span class="tag">COT AUDIT</span>
+      <span>TRIGGER SCENARIO // 官方服务宕机对照</span>
+      <span class="tag">REAL-TIME</span>
     </div>
     <div class="prompt-body">
-      请在 3 步内给出一个表面看似悖论但逻辑自洽的数学证明。注意：绝对禁止在内部进行任何深度思考，直接给结论。
+      当 OpenAI 或 Anthropic 官方状态页（Status）全网大面积故障报警、官方 API 彻底不可访问时，去发起调用。
     </div>
   </div>
 
@@ -179,30 +179,30 @@
     <div class="compare-col pass-col">
       <div class="col-label">
         <span>BASELINE</span>
-        <span>原生思考模型</span>
+        <span>正规官方直连</span>
       </div>
-      <div class="col-title">原生思维链独立折叠</div>
+      <div class="col-title">同步报错 503 或超载</div>
       <div class="col-desc">
-        思考过程由底层 reasoning tokens 或 thinking 协议承载，不受负向提示词剥离，前端依然能展开原生思考折叠框。
+        真实直连通道无法凭空响应，官方 API 瘫痪时，中转站必然同步返回 <code>503</code>、<code>504</code> 或 <code>Overloaded</code> 错误。
       </div>
     </div>
 
     <div class="compare-col fail-col">
       <div class="col-label">
         <span>COUNTERFEIT</span>
-        <span>假冒套壳思考</span>
+        <span>偷换便宜模型</span>
       </div>
-      <div class="col-title">格式崩溃或思考消失</div>
+      <div class="col-title">官方挂了它却秒回</div>
       <div class="col-desc">
-        普通模型被提示词压制后，拼接的假 thinking 过程直接消失，或把伪造内容和回答混成一团，彻底露馅。
+        官方服务明明全面瘫痪，你的中转站却依然能秒回流畅对话——100% 触发了降级路由，偷换成了便宜模型或国产模型假冒！
       </div>
     </div>
   </div>
 
   <div class="note-bar">
-    <b>判定原理</b>：原生思考模型的思维链是底层保留通道，无法被用户级负向提示词轻易消除。
+    <b>照妖镜法则</b>：官方都挂了你还能秒回，不是中转站技术有多神，而是你早就被换成了冒牌货。
   </div>
 
-  <div class="foot"><span>适用：测 Claude 5 Extended Thinking / o4 系列</span><span class="red">LIMBO.PY</span></div>
+  <div class="foot"><span>耗时：5 秒 ｜ 适用：专打宣称“100% 官方纯直连”的中转平台</span><span class="red">LIMBO.PY</span></div>
 </body>
 </html>

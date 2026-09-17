@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="card-size" content="1080x1440">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+
 <style>
   * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
   :root {
-    --sans: "Inter", "Noto Sans SC", -apple-system, sans-serif;
-    --sans-zh: "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --sans-zh: "PingFang SC", "Hiragino Sans GB", -apple-system, sans-serif;
+    --mono: "SF Mono", Menlo, Monaco, monospace;
     --red: #e0311d;
     --black: #111111;
     --border: #111111;
-    --text-sub: #383838;
+    --text-sub: #444444;
   }
   body {
     width: 1080px;
@@ -26,33 +26,32 @@
     color: var(--black);
     display: flex;
     flex-direction: column;
-    padding: 64px 72px 74px;
+    padding: 68px 76px 60px;
     position: relative;
   }
   .top {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     letter-spacing: 3px;
-    color: #777;
-    margin-bottom: 16px;
+    color: #888;
+    margin-bottom: 20px;
     font-family: var(--mono);
   }
-  .top span:last-child { color: var(--red); font-weight: 700; font-size: 26px; }
+  .top span:last-child { color: var(--red); font-weight: 700; }
   h2 {
-    font-size: 60px;
+    font-size: 52px;
     font-weight: 400;
     letter-spacing: -1px;
     margin-bottom: 12px;
     font-family: var(--sans);
-    line-height: 1.15;
+    line-height: 1.2;
   }
   h2 .num { color: var(--red); }
   .rule { height: 6px; background: var(--black); margin-bottom: 30px; }
   
-  /* 大号指令提示词卡 */
   .prompt-card {
     border: 2px solid var(--border);
     margin-bottom: 28px;
@@ -61,8 +60,8 @@
   .prompt-header {
     background: var(--black);
     color: #ffffff;
-    padding: 12px 22px;
-    font-size: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: 2px;
     font-family: var(--mono);
@@ -72,41 +71,39 @@
   }
   .prompt-header .tag {
     color: var(--red);
-    font-weight: 700;
   }
   .prompt-body {
-    padding: 24px 26px;
+    padding: 22px 26px;
     font-family: var(--mono);
-    font-size: 28px;
+    font-size: 26px;
     line-height: 1.5;
     color: var(--black);
     background: #fafafa;
-    border-left: 10px solid var(--red);
+    border-left: 8px solid var(--red);
   }
 
-  /* 大号双栏判定矩阵 */
   .compare-matrix {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
   }
   .compare-col {
     border: 2px solid var(--border);
-    padding: 24px 26px;
+    padding: 22px 24px;
     display: flex;
     flex-direction: column;
     background: #ffffff;
   }
   .compare-col.pass-col {
-    border-top: 10px solid var(--black);
+    border-top: 8px solid var(--black);
   }
   .compare-col.fail-col {
-    border-top: 10px solid var(--red);
+    border-top: 8px solid var(--red);
   }
   .col-label {
     font-family: var(--mono);
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 12px;
@@ -124,7 +121,7 @@
     line-height: 1.3;
   }
   .col-desc {
-    font-size: 25px;
+    font-size: 23px;
     line-height: 1.55;
     color: var(--text-sub);
   }
@@ -134,15 +131,15 @@
     color: var(--black);
     background: #e8e8e8;
     padding: 2px 8px;
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .note-bar {
     margin-top: auto;
     background: #f6f6f6;
     border-left: 5px solid var(--black);
-    padding: 20px 26px;
-    font-size: 24px;
+    padding: 18px 24px;
+    font-size: 22px;
     color: #333;
     line-height: 1.5;
     margin-bottom: 16px;
@@ -151,31 +148,30 @@
 
   .foot {
     border-top: 1px solid var(--black);
-    padding-top: 18px;
+    padding-top: 16px;
     display: flex;
     justify-content: space-between;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
     letter-spacing: 2px;
     font-family: var(--mono);
   }
   .foot .red { color: var(--red); font-weight: 700; }
-  
 </style>
-<title>Swiss 内容页 · 探针 02 SVG 盲测</title>
+<title>Swiss 内容页 · 探针 02 鹈鹕几何盲测</title>
 </head>
 <body>
-  <div class="top"><span>PROBE 02 · SVG GEOMETRY</span><span>04</span></div>
-  <h2><span class="num">/</span> 探针 02：测旗舰偷换小模型</h2>
+  <div class="top"><span>PROBE 02 · PELICAN SVG BENCHMARK</span><span>04</span></div>
+  <h2><span class="num">/</span> 探针 02：测顶配偷换小模型</h2>
   <div class="rule"></div>
 
   <div class="prompt-card">
     <div class="prompt-header">
-      <span>INPUT PROMPT // 空间代码盲测指令</span>
+      <span>INPUT PROMPT // 鹈鹕骑车空间盲测指令</span>
       <span class="tag">30 SECONDS</span>
     </div>
     <div class="prompt-body">
-      用单一 SVG 代码画一只戴赛博墨镜喝咖啡的机械猫，直接给代码块，不要解释。
+      用单一 SVG 代码画一只鹈鹕骑自行车，直接给代码块，不要解释。
     </div>
   </div>
 
@@ -185,28 +181,28 @@
         <span>BASELINE</span>
         <span>顶配大模型</span>
       </div>
-      <div class="col-title">数百行精细 Path 与光影</div>
+      <div class="col-title">数百行自洽 Path 与咬合结构</div>
       <div class="col-desc">
-        GPT-5 或 Claude 4 具备极强空间几何推演能力，复制代码保存为 <code>.svg</code> 打开，机械猫造型精细、光影分明。
+        GPT-5 或 Claude 5 具备顶尖物理空间推演力，代码保存为 <code>.svg</code> 打开，鹈鹕大嘴、自行车轮与脚踏板咬合清晰自洽。
       </div>
     </div>
 
     <div class="compare-col fail-col">
       <div class="col-label">
         <span>COUNTERFEIT</span>
-        <span>降配小模型</span>
+        <span>便宜小模型</span>
       </div>
-      <div class="col-title">粗糙错位色块或语法报错</div>
+      <div class="col-title">车轮错位色块或语法报错</div>
       <div class="col-desc">
-        偷换成开源蒸馏小模型或淘汰版时，空间抽象能力崩塌，画出来的往往是几个错位圆圈，甚至代码无法渲染。
+        偷换成便宜模型或国产模型时，空间几何推演崩塌，画出来的往往是车轮与鸟身割裂的错位色块，甚至语法报错。
       </div>
     </div>
   </div>
 
   <div class="note-bar">
-    <b>判定原理</b>：普通文字问答小模型可以套模板，但高密度矢量几何需要严谨的空间坐标计算，小模型无法交卷。
+    <b>判定原理</b>：普通文字问答小模型可以套模板，但高难度矢量空间几何推演，便宜模型根本交不出卷。
   </div>
 
-  <div class="foot"><span>耗时：30 秒 ｜ 验证：复制代码到浏览器直接看图</span><span class="red">LIMBO.PY</span></div>
+  <div class="foot"><span>耗时：30 秒 ｜ 验证：复制代码存为 .svg 浏览器直接看图</span><span class="red">LIMBO.PY</span></div>
 </body>
 </html>
